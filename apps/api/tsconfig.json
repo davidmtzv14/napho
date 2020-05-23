@@ -3,7 +3,13 @@
   "compilerOptions": {
     "types": ["node", "jest"],
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "module": "commonjs",
+    "target": "es2015",
+    "paths": {
+      "@api/*": ["apps/api/src/app/*"],
+      "@env/*": ["apps/api/src/environments/*"],
+      "@napho/data": ["libs/data/src/index.ts"]
+    }
   },
   "include": ["**/*.ts"]
 }

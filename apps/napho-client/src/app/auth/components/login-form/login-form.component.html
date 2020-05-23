@@ -1,0 +1,43 @@
+<mat-card class="h-100">
+  <mat-card-header class="bg-primary py-3 text-center">
+    <!-- <div>Message: {{ hello$ | async | json }}</div> -->
+    <h4 class="text-white">
+      <strong>Iniciar Sesión</strong>
+    </h4>
+  </mat-card-header>
+  <mat-card-content class="px-lg-5 pt-3">
+    <form [formGroup]="form"
+          (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Correo</mat-label>
+            <input matInput
+                   type="email"
+                   [formControl]="form.get('email')">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput
+                   type="password"
+                   [formControl]="form.get('password')">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="row">
+      <div class="col">
+        <button mat-raised-button
+                color="primary"
+                type="submit">Iniciar</button>
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>

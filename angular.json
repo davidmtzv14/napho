@@ -4,7 +4,7 @@
     "napho-client": {
       "projectType": "application",
       "schematics": {
-        "@nrwl/angular:component": {
+        "@schematics/angular:component": {
           "style": "scss"
         }
       },
@@ -203,6 +203,38 @@
             "tsConfig": "libs/api-interfaces/tsconfig.spec.json",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "data": {
+      "projectType": "library",
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "prefix": "napho",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data/tsconfig.lib.json",
+              "libs/data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "tsConfig": "libs/data/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/data/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

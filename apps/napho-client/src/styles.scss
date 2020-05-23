@@ -1,1 +1,152 @@
 /* You can add global styles to this file, and also import other style files */
+$primary-color: #44443b;
+$accent-color: #f36b0a;
+$dark-color: #90462c;
+$white-color: #f2f4f7;
+$text-color: #808080;
+
+/*** Layout ***/
+$border-color: #E8EAEF;
+$border: 1px solid $border-color;
+$border-radius: 3px;
+$default-padding: 0.625rem;
+$spacer-x-x-small: 0.25rem; /* 4px */
+$spacer-x-small: 0.5rem; /* 8px */
+$spacer-m-small: 0.75rem; /* 12px */
+$spacer-small: 1rem; /* 16px */
+$spacer-medium-small: 1.25rem; /* 20px */
+$spacer-medium: 1.5rem; /* 24px */
+$spacer-medium-large: 1.75rem; /* 28px */
+$spacer-large: 2rem; /* 32px */
+$spacer-m-large: 2.25rem; /* 36px */
+$spacer-x-large: 2.5rem; /* 40px */
+$spacer-xx-large: 2.75rem; /* 44px */
+$spacer-xxx-large: 3rem; /* 48px */
+$spacer-4x-large: 3.5rem; /* 56px */
+
+$font-size: 14px;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+button {
+  text-transform: none !important;
+  padding: $spacer-x-x-small !important;
+}
+
+mat-card, mat-card-footer {
+  border: 1px solid $border-color;
+  padding: $spacer-large;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin: $spacer-small 0;
+  color: $primary-color;
+}
+
+//--------------------------------
+//     Bootstrap Customization
+//--------------------------------
+
+// Override Bootstrap Variables here.
+// See https://getbootstrap.com/docs/4.3/getting-started/theming
+// Variable Reference: https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
+
+// Import  function from bootstrap to be able to call them
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$brand-orange: (
+  50: #fef3e4,
+  100: #fde0bb,
+  200: #fccc8e,
+  300: #fab861,
+  400: #f9a83f,
+  500: #f8991d,
+  600: #f7911a,
+  700: #f68615,
+  800: #f57c11,
+  900: #f36b0a,
+  A100: #ffffff,
+  A200: #fff1e9,
+  A400: #ffd1b6,
+  A700: #ffc19c,
+  contrast: (
+          500: white,
+          600: white,
+          700: white,
+          800: white,
+          900: white,
+          A700: white,
+  )
+);
+
+$theme-colors: (
+  'primary': $primary-color,
+  'secondary': $accent-color,
+  'success': #79cc21,
+  'info': #9b806e,
+  'warning': #ffc137,
+  'danger': #e63917,
+  'dark': #44443b,
+  'light': #f2f4f7
+);
+
+$text-muted: #e6e4e0;
+
+$h1-font-size: $font-size-base * 1.375 !important;
+$h2-font-size: $font-size-base * 1.125 !important;
+$h3-font-size: $font-size-base * 1 !important;
+$h4-font-size: $font-size-base * 1 !important;
+$h5-font-size: $font-size-base * 1 !important;
+$h6-font-size: $font-size-base * 1 !important;
+
+$headings-margin-bottom: 2rem;
+
+$border-radius: 3px;
+
+// Import Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($brand-orange);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
