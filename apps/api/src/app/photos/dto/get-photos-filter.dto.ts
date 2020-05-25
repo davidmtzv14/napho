@@ -1,6 +1,4 @@
-import { Photo } from '@napho/data';
-import { IsOptional, IsIn, IsNotEmpty } from 'class-validator';
-import { keys } from 'ts-transformer-keys';
+import { IsOptional, IsNotEmpty } from 'class-validator';
 
 export class GetPhotosFilterDto {
   @IsOptional()
@@ -8,10 +6,6 @@ export class GetPhotosFilterDto {
   search: string;
 
   @IsOptional()
-  @IsIn(keys<Photo>())
+  @IsNotEmpty()
   field: string;
-
-  @IsOptional()
-  @IsIn(['ASC', 'DESC'])
-  order: string;
 }

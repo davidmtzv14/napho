@@ -9,7 +9,7 @@ export const environment: Environment = {
     database: 'napho_dev',
     username: 'davidmartinez',
     password: 'postgres',
-    syncrhonize: true
+    synchronize: true
   },
   server: {
     port: 3333

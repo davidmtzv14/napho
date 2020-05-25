@@ -8,7 +8,7 @@ import {
 import { CommentStatus, Comment, Photo } from '@napho/data';
 import { PhotoEntity } from '../../photos/data/photo.entity';
 
-@Entity()
+@Entity('comments')
 export class CommentEntity extends BaseEntity implements Comment {
   @PrimaryGeneratedColumn()
   id: number;
@@ -23,6 +23,6 @@ export class CommentEntity extends BaseEntity implements Comment {
   @Column()
   content: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: CommentStatus })
   status: CommentStatus;
 }

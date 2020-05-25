@@ -9,7 +9,12 @@ import { PhotosModule } from './photos/photos.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule,CommentsModule, PhotosModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
+    AuthModule,
+    CommentsModule,
+    PhotosModule
+  ],
   controllers: [AppController],
   providers: [AppService]
 })

@@ -7,7 +7,7 @@ export interface Environment {
     username: string;
     password: string;
     database: string;
-    syncrhonize: boolean;
+    synchronize: boolean;
   };
   server: {
     port: number;

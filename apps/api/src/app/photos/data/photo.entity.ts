@@ -11,8 +11,9 @@ import {
 import { User, Photo, Comment } from '@napho/data';
 import { UserEntity } from '../../users/user.entity';
 import { CommentEntity } from '../../comments/data/comment.entity';
+import { TagEntity } from './tag.entity';
 
-@Entity()
+@Entity('photos')
 export class PhotoEntity extends BaseEntity implements Photo {
   @PrimaryGeneratedColumn()
   id: number;
@@ -38,7 +39,7 @@ export class PhotoEntity extends BaseEntity implements Photo {
   user: Partial<User>;
 
   @Column()
-  userId: number
+  userId: number;
 
   @ManyToMany(
     type => UserEntity,
@@ -48,6 +49,10 @@ export class PhotoEntity extends BaseEntity implements Photo {
   @JoinTable()
   favoriteOf: Partial<User>[];
 
-  @Column()
+  @OneToMany(
+    type => TagEntity,
+    tag => tag.photo,
+    { eager: false }
+  )
   tags: string[];
 }

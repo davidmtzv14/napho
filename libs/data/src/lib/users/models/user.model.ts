@@ -9,11 +9,12 @@ export interface User {
   gender: string;
   birthDate: Date;
   phone: string;
+  description: string;
+  profileImgUrl: string;
   salt: string;
   token?: string;
   photos?: Photo[];
   favPhotos?: Photo[];
-  followers?: Partial<User>[];
   following?: Partial<User>[];
 }
 

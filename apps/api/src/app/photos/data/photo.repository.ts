@@ -6,25 +6,24 @@ import { User } from '@napho/data';
 
 @EntityRepository(PhotoEntity)
 export class PhotoRepository extends Repository<PhotoEntity> {
-  async getPhotos(filterDto: GetPhotosFilterDto, user: Partial<User>): Promise<PhotoEntity[]> {
-    const { search, field, order } = filterDto;
+  async getPhotos(
+    filterDto: GetPhotosFilterDto,
+    user: Partial<User>
+  ): Promise<PhotoEntity[]> {
+    const { search, field } = filterDto;
     const query = this.createQueryBuilder('photo');
 
     query.where('photo.userId = :userId', { userId: user.id });
 
     if (search) {
       query.andWhere(
-        '(photo.content LIKE :search photo.user.username LIKE :search OR photo.tags LIKE :search)',
+        '(photo.content LIKE :search OR photo.user.username LIKE :search OR photo.tags LIKE :search)',
         { search: `%${search}%` }
       );
     }
 
     if (field) {
-      if (order === 'ASC') {
-        query.orderBy('photo.:field', 'ASC').setParameters({ field });
-      } else {
-        query.orderBy('photo.:field', 'DESC').setParameters({ field });
-      }
+      query.orderBy('photo.:field', 'ASC').setParameters({ field });
     }
 
     const photos = await query.getMany();

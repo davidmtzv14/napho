@@ -45,6 +45,12 @@ export class UserEntity extends BaseEntity implements User {
   @Column({ nullable: true })
   phone: string;
 
+  @Column({ nullable: true })
+  description: string;
+
+  @Column({ nullable: true })
+  profileImgUrl: string;
+
   @OneToMany(
     type => PhotoEntity,
     photo => photo.user,
@@ -61,14 +67,15 @@ export class UserEntity extends BaseEntity implements User {
 
   @ManyToMany(
     type => UserEntity,
-    user => user.followers,
-    { cascade: true }
+    user => user.following
   )
   @JoinTable()
   followers: Partial<User>[];
 
-  @ManyToMany(type => UserEntity)
-  @JoinTable()
+  @ManyToMany(
+    type => UserEntity,
+    user => user.followers
+  )
   following: Partial<User>[];
 
   async validatePassword(password: string): Promise<boolean> {
