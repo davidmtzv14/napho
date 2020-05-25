@@ -7,20 +7,22 @@ const routes: Routes = [
   {
     path: '',
     component: SpaContainerComponent,
-    // children: [
-    //   {
-    //     path: 'workplaces',
-    //     loadChildren: () =>
-    //       import('@app/workplaces/workplaces.module').then(
-    //         m => m.WorkplacesModule
-    //       )
-    //   },
-    //   {
-    //     path: '',
-    //     redirectTo: 'workplaces',
-    //     pathMatch: 'full'
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('@app/feed/feed.module').then(
+            m => m.FeedModule
+          )
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('@app/profile/profile.module').then(
+            m => m.ProfileModule
+          )
+      }
+    ]
   }
 ];
 @NgModule({

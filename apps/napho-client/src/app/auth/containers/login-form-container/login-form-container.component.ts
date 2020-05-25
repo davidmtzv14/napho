@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { User } from '@napho/data';
+import { fromAuth } from '../../state';
 
 @Component({
   selector: 'napho-login-form-container',
@@ -12,5 +14,4 @@ export class LoginFormContainerComponent {
   submit(user: Partial<User>): void {
     this.store.dispatch(fromAuth.actions.signIn({ user }));
   }
-
 }

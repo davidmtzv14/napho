@@ -16,6 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@app/*": ["apps/napho-client/src/app/*"],
+      "@env/*": ["apps/napho-client/src/environments/*"],
       "@napho/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@napho/data": ["libs/data/src/index.ts"]
     }
