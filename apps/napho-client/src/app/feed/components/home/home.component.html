@@ -1,1 +1,55 @@
-<p>home works!</p>
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-12">
+        <h3>Create a new post</h3>
+        <div>
+          <mat-form-field>
+            <mat-label>Photo description</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+        </div>
+        <div class="custom-file">
+          <input #imageInput
+                 type="file"
+                 name="image"
+                 accept="image/*"
+                 class="custom-file-input"
+                 id="newPost"
+                 accept="image/*"
+                 (change)="fileProgress($event)">
+          <label class="custom-file-label"
+                 for="newPost">Choose a picture</label>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div>
+              <div class="text-center"
+                   *ngIf="previewUrl">
+                <img [src]="previewUrl"
+                     style="  min-width: 300px; max-width: 600px;" />
+              </div>
+
+              <!-- <div class="mb-3"
+                   *ngIf="uploadedFilePath">
+                {{uploadedFilePath}}
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="row">
+      <div class="col-6">
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="onSubmit()">Post</button>
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>
+<napho-photo-post></napho-photo-post>
+<napho-photo-post></napho-photo-post>

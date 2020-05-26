@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { User } from '@napho/data';
-// import { clear, get } from 'local-storage';
+import { clear, get } from 'local-storage';
 import { Observable } from 'rxjs';
 import { NaphoDataConfiguration, NAPHO_DATA_CONFIGURATION } from '../../../../../../libs/data/src/lib/data.config';
 

@@ -25,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 
 const modules = [
   CommonModule,
@@ -38,6 +39,7 @@ const modules = [
   MatDatepickerModule,
   MatRadioModule,
   MatSelectModule,
+  NgMatSearchBarModule,
   // Navigation
   MatMenuModule,
   MatSidenavModule,

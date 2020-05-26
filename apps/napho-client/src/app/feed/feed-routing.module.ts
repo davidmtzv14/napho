@@ -5,12 +5,17 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'feed',
     component: HomeContainerComponent
   },
   {
     path: 'search-results',
     component: SearchResultsContainerComponent
+  },
+  {
+    path: '',
+    redirectTo: 'feed',
+    pathMatch: 'full'
   }
 ];
 

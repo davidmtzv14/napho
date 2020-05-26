@@ -6,6 +6,7 @@ import { SearchResultsContainerComponent } from './containers/search-results-con
 import { HomeContainerComponent } from './containers/home-container/home-container.component';
 import { SharedModule } from '../shared/shared.module';
 import { FeedRoutingModule } from './feed-routing.module';
+import { PhotosModule } from '@app/photos/photos.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import { FeedRoutingModule } from './feed-routing.module';
     SearchResultsContainerComponent,
     HomeContainerComponent
   ],
-  imports: [CommonModule, SharedModule, FeedRoutingModule]
+  imports: [CommonModule, SharedModule, FeedRoutingModule, PhotosModule]
 })
 export class FeedModule {}

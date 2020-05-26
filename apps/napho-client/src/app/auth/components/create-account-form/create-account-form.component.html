@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field>
-            <mat-label>First mame</mat-label>
+            <mat-label>First name</mat-label>
             <input matInput
                    type="text"
                    [formControl]="form.get('firstName')">
@@ -30,11 +30,11 @@
 
       <div class="row">
         <div class="col">
-          <mat-form-field>
+          <label>Gender:</label>
             <mat-radio-group [formControl]="form.get('gender')">
-              <mat-radio-button></mat-radio-button>
+              <mat-radio-button value="M">Male</mat-radio-button>
+              <mat-radio-button value="F">Female</mat-radio-button>
             </mat-radio-group>
-          </mat-form-field>
         </div>
       </div>
 
@@ -74,10 +74,13 @@
   </mat-card-content>
   <mat-card-footer>
     <div class="row">
-      <div class="col">
+      <div class="col-6">
         <button mat-raised-button
                 color="primary"
                 type="submit">Sign Up</button>
+      </div>
+      <div class="col-6">
+        <p>Already have an account? <a [routerLink]="['..', 'log-in']">Log in</a></p>
       </div>
     </div>
   </mat-card-footer>

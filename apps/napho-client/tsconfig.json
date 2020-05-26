@@ -2,6 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "types": ["node", "jest"],
-    "paths": { "@app/*": ["apps/napho-client/src/app/*"] }
+    "paths": {
+      "@app/*": ["apps/napho-client/src/app/*"],
+      "@napho/data": ["libs/data/src/index.ts"],
+      "@napho/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+    }
   }
 }

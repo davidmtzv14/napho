@@ -1,1 +1,42 @@
-<p>spa works!</p>
+<header>
+  <div class="row">
+    <div class="col">
+      <mat-toolbar class="d-flex justify-content-end"
+                   color="primary">
+        <h1 class="text-white mr-auto">Napho</h1>
+        <div>
+          <button mat-button
+                  (click)="search(input.value)">Search <mat-icon>search</mat-icon>
+          </button>
+        </div>
+        <div class="col-3 mr-5">
+          <mat-form-field>
+            <input #input
+                   matInput
+                   placeholder=""
+                   (keyup.enter)="search(input.value)"
+                   [formControl]="searchControl" />
+          </mat-form-field>
+
+        </div>
+        <!-- <mat-search-bar [formControl]="searchControl"
+                        (onEnter)="search($event)"></mat-search-bar> -->
+        <button mat-button
+                [routerLink]="['home']">Home <mat-icon>home</mat-icon>
+        </button>
+        <button mat-button
+                [routerLink]="['profile']">Profile <mat-icon>person</mat-icon>
+        </button>
+        <button mat-button
+                [routerLink]="['..']">Log out <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</main>

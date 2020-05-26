@@ -54,6 +54,8 @@
     "class-validator": "^0.12.2",
     "config": "^3.3.1",
     "core-js": "^2.5.4",
+    "local-storage": "^2.0.0",
+    "ng-mat-search-bar": "^9.0.0",
     "ngrx": "0.0.1-security",
     "ngx-localstorage": "^3.1.0",
     "passport": "^0.4.1",
