@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'napho-spa-container',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spa-container.component.scss']
 })
 export class SpaContainerComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onSearchChange(value) {
+    console.log('navigate', this.router);
+    this.router.navigateByUrl('/spa/home/search-results');
   }
-
 }

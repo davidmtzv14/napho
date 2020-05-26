@@ -10,6 +10,26 @@
         <mat-card-content class="px-lg-5 pt-3">
           <form [formGroup]="form"
                 (ngSubmit)="submit()">
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+                <label class="hoverable"
+                       for="fileInput">
+                  <img [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath">
+                  <div class="hover-text">Change picture</div>
+                  <div class="background"></div>
+                </label>
+                <br />
+                <input id="fileInput"
+                       type='file'
+                       accept="image/*"
+                       (change)="onSelectFile($event)">
+                <button *ngIf="profilePictureUrl"
+                        mat-icon-button
+                        (click)="delete()">Remove photo
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
 
             <div class="row">
               <div class="col-lg-6 col-12">
@@ -76,8 +96,20 @@
     </mat-card>
   </div>
   <div class="col-lg-8 col-12">
-    <h1>Photos</h1>
-    <napho-photo-post></napho-photo-post>
+    <div class="row mt-2">
+      <div class="col">
+        <mat-tab-group>
+          <mat-tab label="Photos">
+            <napho-photo-post></napho-photo-post>
+            <napho-photo-post></napho-photo-post>
+            <napho-photo-post></napho-photo-post>
+          </mat-tab>
+          <mat-tab label="Favorite Photos">
+            <napho-photo-post></napho-photo-post>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
     <div>
     </div>
   </div>

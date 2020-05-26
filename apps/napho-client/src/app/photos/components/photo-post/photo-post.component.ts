@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./photo-post.component.scss']
 })
 export class PhotoPostComponent implements OnInit {
+  profilePictureUrl;
+  defaultPicturePath = 'assets/img/blank-profile.png';
 
   constructor() { }
 

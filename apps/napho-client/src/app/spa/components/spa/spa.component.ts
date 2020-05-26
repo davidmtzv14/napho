@@ -32,6 +32,7 @@ export class SpaComponent implements OnInit, OnDestroy {
   }
 
   search(value) {
+    this.searchChange.emit(value);
     console.log(value);
   }
 }

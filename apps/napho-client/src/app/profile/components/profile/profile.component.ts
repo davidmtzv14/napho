@@ -9,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent extends FormComponent {
+  profilePictureUrl;
+  defaultPicturePath = 'assets/img/blank-profile.png';
   constructor(protected formService: FormService, private fb: FormBuilder) {
     super(formService);
     this.form = this.fb.group({
@@ -16,8 +18,22 @@ export class ProfileComponent extends FormComponent {
       lastName: [null, Validators.required],
       username: [null, Validators.required],
       email: [null, Validators.required],
-      gender: [null, Validators.required],
+      gender: [null, Validators.required]
     });
   }
 
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]);
+
+      reader.onload = load => {
+        this.profilePictureUrl = load.target.result;
+      };
+    }
+  }
+  public delete() {
+    this.profilePictureUrl = null;
+  }
 }
