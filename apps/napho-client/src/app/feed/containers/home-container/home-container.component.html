@@ -1,1 +1,2 @@
-<napho-home (formSubmit)="submit($event)"></napho-home>
+<napho-home [photos]="photos$ |async"
+            (formSubmit)="submit($event)"></napho-home>

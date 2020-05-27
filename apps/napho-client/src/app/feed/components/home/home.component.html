@@ -69,5 +69,8 @@
   </form>
 </mat-card>
 
-<napho-photo-post></napho-photo-post>
-<napho-photo-post></napho-photo-post>
+<div *ngFor="let photo of photoArray">
+  <napho-photo-post [photo]="photo"></napho-photo-post>
+</div>
+
+

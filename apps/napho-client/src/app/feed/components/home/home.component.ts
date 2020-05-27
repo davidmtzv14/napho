@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormComponent } from '@app/core/components/form/form.component';
 import { FormService } from '@app/core/services/form.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Photo } from '@napho/data';
 
 @Component({
   selector: 'napho-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent extends FormComponent {
+export class HomeComponent extends FormComponent implements OnChanges {
+  @Input() photos: Photo[];
+  photoArray: Photo[]
   fileData: File = null;
   previewUrl: any = null;
   fileUploadProgress: string = null;
@@ -29,6 +38,13 @@ export class HomeComponent extends FormComponent {
       tags: [null],
       imageUrl: [null, Validators.required]
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.photos) {
+      this.photoArray = Object.values(this.photos)
+      console.log(this.photoArray)
+    }
   }
 
   add(event: MatChipInputEvent): void {

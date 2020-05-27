@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Photo } from '@napho/data';
-import { fromFeed } from '@app/feed/state';
+import { fromFeed, getFeedPhotosState } from '@app/feed/state';
 
 @Component({
   selector: 'napho-home-container',
@@ -9,6 +9,8 @@ import { fromFeed } from '@app/feed/state';
   styleUrls: ['./home-container.component.scss']
 })
 export class HomeContainerComponent {
+  photos$ = this.store.select(getFeedPhotosState);
+
   constructor(private store: Store<any>) {}
 
   submit(photo: Partial<Photo>): void {

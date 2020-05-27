@@ -17,6 +17,14 @@ export const authReducer = createReducer(
         ...action.photo
       }
     };
+  }),
+  on(FeedActions.getFeedPhotosSuccess, (state, action) => {
+    return {
+      ...state,
+      photos: {
+        ...action.photos
+      }
+    }
   })
 );
 

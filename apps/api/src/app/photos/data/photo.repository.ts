@@ -14,7 +14,7 @@ export class PhotoRepository extends Repository<PhotoEntity> {
     const { search, field } = filterDto;
     const query = this.createQueryBuilder('photo');
 
-    query.where('photo.userId = :userId', { userId: user.id });
+    query.andWhere('photo.userId = :userId', { userId: user.id });
 
     if (search) {
       query.andWhere(
@@ -24,10 +24,13 @@ export class PhotoRepository extends Repository<PhotoEntity> {
     }
 
     if (field) {
-      query.orderBy('photo.:field', 'ASC').setParameters({ field });
+      query.orderBy(':field', 'ASC').setParameters({ field });
     }
 
-    const photos = await query.getMany();
+    const photos = await query
+      .leftJoinAndSelect('photo.user', 'user')
+      .leftJoinAndSelect('photo.tags', 'tag')
+      .getMany();
 
     return photos;
   }

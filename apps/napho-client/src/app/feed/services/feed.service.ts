@@ -18,12 +18,12 @@ export class FeedService {
     public config: NaphoDataConfiguration
   ) {}
 
-  createPhoto(photo: Partial<Photo>, user: Partial<User>): Observable<User> {
-    const payload = { photo, user };
+  createPhoto(photo: Partial<Photo>): Observable<User> {
+    const payload = { photo };
     return this.http.post<User>(`${this.config.apiUrl}/photos`, payload);
   }
 
-  getPhotos(user: Partial<User>): Observable<User> {
-    return this.http.get<User>(`${this.config.apiUrl}/photos?user=${user}`);
+  getPhotos(): Observable<Photo[]> {
+    return this.http.get<Photo[]>(`${this.config.apiUrl}/photos?`);
   }
 }

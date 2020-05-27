@@ -12,6 +12,8 @@ import { NaphoDataConfiguration, NAPHO_DATA_CONFIGURATION } from '@napho/data';
 import { environment } from '../environments/environment';
 import { AuthEffects, fromAuth } from './auth/state';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
+import { fromFeed } from './feed/state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 const NAPHO_DATA_CONFIGURATION_VALUE: NaphoDataConfiguration = {
   apiUrl: environment.apiUrl
@@ -24,8 +26,12 @@ const NAPHO_DATA_CONFIGURATION_VALUE: NaphoDataConfiguration = {
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    StoreModule.forRoot({ auth: fromAuth.reducer }, {}),
+    StoreModule.forRoot({ auth: fromAuth.reducer, feed: fromFeed.reducer }, {}),
     EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      name: 'EOS UI',
+      maxAge: 100,
+    }),
     NgxLocalStorageModule.forRoot()
   ],
   providers: [

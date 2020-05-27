@@ -10,12 +10,11 @@ import { getAuthUserState } from '@app/auth/state';
 
 @Injectable()
 export class FeedEffects {
-  signUp$ = createEffect(() =>
+  createPhoto$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FeedActions.createPhoto),
-      withLatestFrom(this.store.pipe(select(getAuthUserState))),
-      mergeMap(([{ photo }, user]) =>
-        this.feedService.createPhoto(photo, user).pipe(
+      mergeMap(({ photo }) =>
+        this.feedService.createPhoto(photo).pipe(
           map(photoResponse =>
             FeedActions.createPhotoSuccess({ photo: photoResponse })
           ),
@@ -24,6 +23,20 @@ export class FeedEffects {
       )
     )
   );
+
+  getPhotos$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(FeedActions.getFeedPhotos),
+    mergeMap(() =>
+      this.feedService.getPhotos().pipe(
+        map(photos =>
+          FeedActions.getFeedPhotosSuccess({ photos })
+        ),
+        catchError(() => of(FeedActions.getFeedPhotosFailed()))
+      )
+    )
+  )
+);
 
   constructor(
     private actions$: Actions,

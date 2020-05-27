@@ -13,26 +13,24 @@ export const createPhotoSuccess = createAction(
 
 export const createPhotoFailed = createAction('[Feed] Create post failed');
 
-export const getFeedPhotos = createAction(
-  '[Feed] Get feed photos',
-  props<{ user: Partial<User> }>()
-);
+export const getFeedPhotos = createAction('[Feed] Get feed photos');
 
 export const getFeedPhotosSuccess = createAction(
   '[Feed] Get feed photos success',
-  props<{ user: Partial<User> }>()
+  props<{ photos: Partial<Photo>[] }>()
 );
 
-export const getFeedPhotosFailed = createAction('[Feed] Get feed photos failed');
-
-export const getSearchPhotos = createAction(
-  '[Feed] Get feed photos',
-  props<{ user: Partial<User> }>()
+export const getFeedPhotosFailed = createAction(
+  '[Feed] Get feed photos failed'
 );
+
+export const getSearchPhotos = createAction('[Feed] Get feed photos');
 
 export const getSearchPhotosSuccess = createAction(
   '[Feed] Get feed photos success',
-  props<{ user: Partial<User> }>()
+  props<{ photos: Partial<Photo>[] }>()
 );
 
-export const getSearchPhotosFailed = createAction('[Feed] Get feed photos failed');
+export const getSearchPhotosFailed = createAction(
+  '[Feed] Get feed photos failed'
+);
