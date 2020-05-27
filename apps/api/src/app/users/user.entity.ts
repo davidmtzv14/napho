@@ -61,7 +61,6 @@ export class UserEntity extends BaseEntity implements User {
   @ManyToMany(
     type => PhotoEntity,
     favPhoto => favPhoto.user,
-    { eager: true }
   )
   favPhotos: Photo[];
 

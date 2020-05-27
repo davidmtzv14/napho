@@ -1,24 +1,26 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
+import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
 import { UserRepository } from '../../users/user.repository';
 import { User } from '@napho/data';
+import { Connection } from 'typeorm';
 
 @Injectable()
 export class AuthService {
+  private userRepository: UserRepository;
   constructor(
-    @InjectRepository(UserRepository)
-    private userRepository: UserRepository,
-    private jwtService: JwtService
-  ) {}
+    private jwtService: JwtService,
+    private readonly connection: Connection
+  ) {
+    this.userRepository = this.connection.getCustomRepository(UserRepository);
+  }
 
-  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    return this.userRepository.signUp(authCredentialsDto);
+  async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
+    return this.userRepository.signUp(signUpCredentialsDto);
   }
 
   async signIn(authCredentialsDto: AuthCredentialsDto): Promise<User> {
-    const user = await this.userRepository.validateUserPassword(
+    const user = await this.validateUserPassword(
       authCredentialsDto
     );
 
@@ -30,5 +32,21 @@ export class AuthService {
     const token = await this.jwtService.sign(payload);
 
     return { ...user, token };
+  }
+
+
+  async validateUserPassword(
+    authCredentialsDto: AuthCredentialsDto
+  ): Promise<User> {
+    const { email, password } = authCredentialsDto;
+    const user = await this.userRepository.findOne({
+      where: [{ email }]
+    });
+
+    if (user && (await user.validatePassword(password))) {
+      return user;
+    } else {
+      return null;
+    }
   }
 }

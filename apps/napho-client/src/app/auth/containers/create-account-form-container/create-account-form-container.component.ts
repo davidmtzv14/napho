@@ -12,7 +12,7 @@ export class CreateAccountFormContainerComponent {
   constructor(private store: Store<any>) {}
 
   submit(user: Partial<User>): void {
-    this.store.dispatch(fromAuth.actions.signIn({ user }));
+    this.store.dispatch(fromAuth.actions.signUp({ user }));
   }
 
 }

@@ -4,20 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SpaContainerComponent } from './spa/containers/spa-container/spa-container.component';
-import { SpaComponent } from './spa/components/spa/spa.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { NgxLocalStorageModule } from 'ngx-localstorage';
+import { NaphoDataConfiguration, NAPHO_DATA_CONFIGURATION } from '@napho/data';
+import { environment } from '../environments/environment';
+import { AuthEffects, fromAuth } from './auth/state';
 
-// const NAPHO_DATA_CONFIGURATION_VALUE: NaphoDataConfiguration = {
-//   apiUrl: environment.apiUrl
-// };
+const NAPHO_DATA_CONFIGURATION_VALUE: NaphoDataConfiguration = {
+  apiUrl: environment.apiUrl
+};
 
-// const defaultDataServiceConfig: DefaultDataServiceConfig = {
-//   root: environment.apiUrl
-// };
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,11 +23,16 @@ import { NgxLocalStorageModule } from 'ngx-localstorage';
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({ auth: fromAuth.reducer }, {}),
+    EffectsModule.forRoot([AuthEffects]),
     NgxLocalStorageModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NAPHO_DATA_CONFIGURATION,
+      useValue: NAPHO_DATA_CONFIGURATION_VALUE
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

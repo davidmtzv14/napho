@@ -1,7 +1,10 @@
 import { EntityRepository, Repository } from 'typeorm';
 
 import { UserEntity } from './user.entity';
-import { AuthCredentialsDto } from '../auth/dto/auth-credentials.dto';
+import {
+  AuthCredentialsDto,
+  SignUpCredentialsDto
+} from '../auth/dto/auth-credentials.dto';
 import {
   ConflictException,
   InternalServerErrorException
@@ -11,11 +14,22 @@ import { User } from '@napho/data';
 
 @EntityRepository(UserEntity)
 export class UserRepository extends Repository<UserEntity> {
-  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    const { username, password } = authCredentialsDto;
+  async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
+    const {
+      username,
+      password,
+      email,
+      firstName,
+      lastName,
+      gender
+    } = signUpCredentialsDto;
 
     const user = new UserEntity();
     user.username = username;
+    user.email = email;
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.gender = gender;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
 
@@ -28,19 +42,7 @@ export class UserRepository extends Repository<UserEntity> {
         throw new InternalServerErrorException();
       }
     }
-  }
-
-  async validateUserPassword(
-    authCredentialsDto: AuthCredentialsDto
-  ): Promise<User> {
-    const { username, password } = authCredentialsDto;
-    const user = await this.findOne({ username });
-
-    if (user && (await user.validatePassword(password))) {
-      return user;
-    } else {
-      return null;
-    }
+    return user;
   }
 
   private async hashPassword(password: string, salt: string): Promise<string> {

@@ -16,6 +16,7 @@ import { Subject } from 'rxjs';
 })
 export class SpaComponent implements OnInit, OnDestroy {
   @Output() searchChange = new EventEmitter<string>();
+  @Output() logout = new EventEmitter();
   searchControl = new FormControl('');
 
   private destroy$ = new Subject<void>();

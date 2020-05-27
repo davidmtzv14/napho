@@ -31,7 +31,7 @@
         <mat-icon>person</mat-icon>
       </button>
       <button mat-button
-              [routerLink]="['..']"><span class="d-none d-lg-inline">Log out</span>
+              (click)="logout.emit()"><span class="d-none d-lg-inline">Log out</span>
         <mat-icon>exit_to_app</mat-icon>
       </button>
   </mat-toolbar>

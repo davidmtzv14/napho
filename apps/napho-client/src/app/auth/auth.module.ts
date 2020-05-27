@@ -7,6 +7,9 @@ import { LoginFormContainerComponent } from './containers/login-form-container/l
 import { CreateAccountFormComponent } from './components/create-account-form/create-account-form.component';
 import { CreateAccountFormContainerComponent } from './containers/create-account-form-container/create-account-form-container.component';
 import { SharedModule } from '../shared/shared.module';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects, fromAuth } from './state';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,12 @@ import { SharedModule } from '../shared/shared.module';
     CreateAccountFormComponent,
     CreateAccountFormContainerComponent
   ],
-  imports: [SharedModule, CommonModule, AuthRoutingModule]
+  imports: [
+    StoreModule.forFeature('auth', fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
+    SharedModule,
+    CommonModule,
+    AuthRoutingModule
+  ]
 })
 export class AuthModule {}
