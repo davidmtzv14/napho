@@ -2,14 +2,13 @@ import { EntityRepository, Repository } from 'typeorm';
 
 import { UserEntity } from './user.entity';
 import {
-  AuthCredentialsDto,
   SignUpCredentialsDto
 } from '../auth/dto/auth-credentials.dto';
 import {
   ConflictException,
   InternalServerErrorException
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { User } from '@napho/data';
 
 @EntityRepository(UserEntity)

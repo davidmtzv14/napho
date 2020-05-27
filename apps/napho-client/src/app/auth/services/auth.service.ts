@@ -3,9 +3,6 @@ import { Inject, Injectable } from '@angular/core';
 import { User } from '@napho/data';
 import { Observable } from 'rxjs';
 import { NaphoDataConfiguration, NAPHO_DATA_CONFIGURATION } from '@napho/data';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { getAuthUserState } from '../state/auth.selectors';
 
 @Injectable({
   providedIn: 'root'

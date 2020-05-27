@@ -7,6 +7,9 @@ import { HomeContainerComponent } from './containers/home-container/home-contain
 import { SharedModule } from '../shared/shared.module';
 import { FeedRoutingModule } from './feed-routing.module';
 import { PhotosModule } from '@app/photos/photos.module';
+import { StoreModule } from '@ngrx/store';
+import { fromFeed, FeedEffects } from './state';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,13 @@ import { PhotosModule } from '@app/photos/photos.module';
     SearchResultsContainerComponent,
     HomeContainerComponent
   ],
-  imports: [CommonModule, SharedModule, FeedRoutingModule, PhotosModule]
+  imports: [
+    StoreModule.forFeature('auth', fromFeed.reducer),
+    EffectsModule.forFeature([FeedEffects]),
+    CommonModule,
+    SharedModule,
+    FeedRoutingModule,
+    PhotosModule
+  ]
 })
 export class FeedModule {}

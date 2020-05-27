@@ -5,16 +5,16 @@ import {
   Column,
   ManyToOne
 } from 'typeorm';
-import { Photo } from '@napho/data';
+import { Photo,Tag } from '@napho/data';
 import { PhotoEntity } from './photo.entity';
 
 @Entity('tags')
-export class TagEntity extends BaseEntity {
+export class TagEntity extends BaseEntity implements Tag {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  tag: string;
+  content: string;
 
   @ManyToOne(
     type => PhotoEntity,
@@ -22,4 +22,7 @@ export class TagEntity extends BaseEntity {
     { eager: false }
   )
   photo: Photo;
+
+  @Column()
+  photoId: number;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormComponent } from '@app/core/components/form/form.component';
 import { FormService } from '@app/core/services/form.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -8,9 +8,11 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent extends FormComponent {
+export class ProfileComponent extends FormComponent implements OnChanges {
+  @Input() userProfile;
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
+
   constructor(protected formService: FormService, private fb: FormBuilder) {
     super(formService);
     this.form = this.fb.group({
@@ -20,6 +22,16 @@ export class ProfileComponent extends FormComponent {
       email: [null, Validators.required],
       gender: [null, Validators.required]
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.userProfile) {
+      this.populateProfile();
+    }
+  }
+
+  populateProfile() {
+    this.form.patchValue(this.userProfile);
   }
 
   onSelectFile(event) {

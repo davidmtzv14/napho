@@ -12,7 +12,6 @@ export class SpaContainerComponent {
   constructor(private router: Router, private store: Store<any>) {}
 
   onSearchChange(value) {
-    console.log('navigate', this.router);
     this.router.navigateByUrl('/spa/home/search-results');
   }
 

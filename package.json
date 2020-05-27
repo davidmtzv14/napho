@@ -48,7 +48,7 @@
     "@ngrx/effects": "^9.1.2",
     "@ngrx/store": "^9.1.2",
     "@nrwl/angular": "9.2.4",
-    "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",

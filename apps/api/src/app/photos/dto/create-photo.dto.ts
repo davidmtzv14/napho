@@ -1,7 +1,12 @@
-import { IsNotEmpty } from 'class-validator';
-import { User } from '@napho/data';
+import { IsNotEmpty, IsArray, IsString, IsOptional } from 'class-validator';
 
 export class CreatePhotoDto {
-  @IsNotEmpty()
+  @IsOptional()
+  @IsString()
+  description: string;
+
+  @IsOptional()
+  tags: string[];
+
   imageUrl: string;
 }

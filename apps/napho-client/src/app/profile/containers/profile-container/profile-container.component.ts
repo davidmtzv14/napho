@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { getAuthUserState } from '@app/auth/state';
 
 @Component({
   selector: 'napho-profile-container',
@@ -6,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-container.component.scss']
 })
 export class ProfileContainerComponent implements OnInit {
+  userProfile$ = this.store.select(getAuthUserState);
+  constructor(public store: Store<any>) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

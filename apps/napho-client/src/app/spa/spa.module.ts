@@ -6,13 +6,8 @@ import { SpaComponent } from './components/spa/spa.component';
 import { SpaContainerComponent } from './containers/spa-container/spa-container.component';
 import { SharedModule } from '@app/shared/shared.module';
 
-
 @NgModule({
   declarations: [SpaComponent, SpaContainerComponent],
-  imports: [
-    SharedModule,
-    CommonModule,
-    SpaRoutingModule
-  ]
+  imports: [SharedModule, CommonModule, SpaRoutingModule],
 })
-export class SpaModule { }
+export class SpaModule {}

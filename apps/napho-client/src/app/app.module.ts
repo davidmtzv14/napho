@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { NgxLocalStorageModule } from 'ngx-localstorage';
 import { NaphoDataConfiguration, NAPHO_DATA_CONFIGURATION } from '@napho/data';
 import { environment } from '../environments/environment';
 import { AuthEffects, fromAuth } from './auth/state';
+import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 
 const NAPHO_DATA_CONFIGURATION_VALUE: NaphoDataConfiguration = {
   apiUrl: environment.apiUrl
@@ -31,6 +32,11 @@ const NAPHO_DATA_CONFIGURATION_VALUE: NaphoDataConfiguration = {
     {
       provide: NAPHO_DATA_CONFIGURATION,
       useValue: NAPHO_DATA_CONFIGURATION_VALUE
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

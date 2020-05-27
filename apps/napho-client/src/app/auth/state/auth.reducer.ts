@@ -19,6 +19,7 @@ export const authReducer = createReducer(
   on(AuthActions.signUpSuccess, AuthActions.signInSuccess, (state, action) => {
     localStorage.setItem('id', '' + action.user.id);
     localStorage.setItem('token', String(action.user.token));
+    localStorage.setItem('username', String(action.user.username));
     localStorage.setItem('firstName', String(action.user.firstName));
     localStorage.setItem('lastName', String(action.user.lastName));
     localStorage.setItem('email', String(action.user.email));

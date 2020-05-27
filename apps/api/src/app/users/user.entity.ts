@@ -9,7 +9,7 @@ import {
   ManyToMany,
   JoinTable
 } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { PhotoEntity } from '../photos/data/photo.entity';
 
 @Entity('users')

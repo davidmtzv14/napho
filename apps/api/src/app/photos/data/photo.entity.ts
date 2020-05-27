@@ -22,12 +22,12 @@ export class PhotoEntity extends BaseEntity implements Photo {
   imageUrl: string;
 
   @Column()
-  content: string;
+  description: string;
 
   @OneToMany(
     type => CommentEntity,
     comment => comment.photo,
-    { eager: true }
+    { eager: true, cascade: true }
   )
   comments: Partial<Comment[]>;
 
@@ -52,7 +52,7 @@ export class PhotoEntity extends BaseEntity implements Photo {
   @OneToMany(
     type => TagEntity,
     tag => tag.photo,
-    { eager: false }
+    { eager: true, cascade: true }
   )
-  tags: string[];
+  tags: TagEntity[];
 }

@@ -39,13 +39,13 @@
 
 <main>
   <div class="container-fluid">
-    <div class="row mr-auto">
-      <div class="col-3  d-inline d-lg-none">
+    <div class="row d-flex justify-content-center">
+      <div class="ml-auto d-inline d-lg-none">
         <button mat-button
                 (click)="search(input.value)">Search <mat-icon>search</mat-icon>
         </button>
       </div>
-      <div class="col-9 d-inline d-lg-none">
+      <div class="mr-auto d-inline d-lg-none">
         <mat-form-field>
           <input #input
                  matInput

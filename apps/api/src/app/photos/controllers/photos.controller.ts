@@ -19,7 +19,6 @@ import { User } from '@napho/data';
 import { GetPhotosFilterDto } from '../dto/get-photos-filter.dto';
 import { CreatePhotoDto } from '../dto/create-photo.dto';
 import { GetUser } from '../../auth/decorators/get-user.decorator';
-import { UserEntity } from '../../users/user.entity';
 
 @Controller('photos')
 @UseGuards(AuthGuard())
@@ -45,7 +44,7 @@ export class PhotosController {
   @Post()
   @UsePipes(ValidationPipe)
   createPhoto(
-    @Body() createPhotoDto: CreatePhotoDto,
+    @Body('photo') createPhotoDto: CreatePhotoDto,
     @GetUser() user: Partial<User>
   ): Promise<PhotoEntity> {
     return this.photosService.createPhoto(createPhotoDto, user);

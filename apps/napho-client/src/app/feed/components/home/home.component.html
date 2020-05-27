@@ -1,54 +1,73 @@
 <mat-card>
-  <mat-card-content>
-    <div class="row">
-      <div class="col-12">
-        <h3>Create a new post</h3>
-        <div>
-          <mat-form-field>
-            <mat-label>Photo description</mat-label>
-            <textarea matInput></textarea>
-          </mat-form-field>
-        </div>
-        <div class="custom-file">
-          <input #imageInput
-                 type="file"
-                 name="image"
-                 accept="image/*"
-                 class="custom-file-input"
-                 id="newPost"
-                 (change)="fileProgress($event)">
-          <label class="custom-file-label"
-                 for="newPost">Choose a picture</label>
-        </div>
-        <div class="row mt-2">
-          <div class="col">
-            <div>
-              <div class="text-center"
-                   *ngIf="previewUrl">
-                <img [src]="previewUrl"
-                     style="  min-width: 300px; max-width: 600px;" />
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-12">
+          <h3>Create a new post</h3>
+          <div>
+            <mat-form-field>
+              <mat-label>Photo description</mat-label>
+              <textarea matInput
+                        [formControl]="form.get('description')"></textarea>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-chip-list #chipList
+                             aria-label="Tags">
+                <mat-chip *ngFor="let tag of tags"
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="remove(tag)">
+                  {{tag}}
+                  <mat-icon matChipRemove
+                            *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Add tags..."
+                       [matChipInputFor]="chipList"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       [matChipInputAddOnBlur]="addOnBlur"
+                       (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+          <div class="custom-file">
+            <input #imageInput
+                   type="file"
+                   name="image"
+                   accept="image/*"
+                   class="custom-file-input"
+                   id="newPost"
+                   (change)="fileProgress($event)">
+            <label class="custom-file-label"
+                   for="newPost">Choose a picture</label>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <div>
+                <div class="text-center"
+                     *ngIf="previewUrl">
+                  <img [src]="previewUrl"
+                       style="  min-width: 300px; max-width: 600px;" />
+                </div>
               </div>
-
-              <!-- <div class="mb-3"
-                   *ngIf="uploadedFilePath">
-                {{uploadedFilePath}}
-              </div> -->
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </mat-card-content>
-  <mat-card-footer>
-    <div class="row">
-      <div class="col-6">
-        <button mat-raised-button
-                color="primary"
-                type="submit"
-                (click)="onSubmit()">Post</button>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="row">
+        <div class="col-6">
+          <button mat-raised-button
+                  color="primary"
+                  type="submit">Post</button>
+        </div>
       </div>
-    </div>
-  </mat-card-footer>
+    </mat-card-footer>
+  </form>
 </mat-card>
+
 <napho-photo-post></napho-photo-post>
 <napho-photo-post></napho-photo-post>

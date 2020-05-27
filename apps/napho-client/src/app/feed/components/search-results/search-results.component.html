@@ -1,2 +1,15 @@
+<div class="row mt-2 d-flex justify-content-center">
+  <div class="col-6">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let filter of filterOptions"
+                    [value]="filter.value">
+          {{filter.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
 <napho-photo-post></napho-photo-post>
 <napho-photo-post></napho-photo-post>

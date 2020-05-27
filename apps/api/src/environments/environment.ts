@@ -16,6 +16,6 @@ export const environment: Environment = {
   },
   jwt: {
     secret: 'pqowieurytlaksjdhf',
-    expiresIn: 3600
+    expiresIn: 86400
   }
 };
