@@ -6,6 +6,7 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { environment } from '@env/environment';
+import * as bodyParser from 'body-parser';
 
 import { AppModule } from './app/app.module';
 
@@ -15,6 +16,8 @@ async function bootstrap() {
   app.enableCors();
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  app.use(bodyParser.json({limit: '50mb'}));
+  app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
   const port =  process.env.PORT || environment.server.port;
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);

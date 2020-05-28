@@ -46,6 +46,7 @@ export class CommentsService {
     comment.photoId = photoId;
     comment.status = CommentStatus.pending;
     comment.user = user;
+    comment.username = user.username
 
     photo.comments.push(comment);
     await photo.save();

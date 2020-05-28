@@ -7,7 +7,8 @@ export interface Comment {
   photoId: number;
   content: string,
   status: CommentStatus,
-  user: Partial<User>
+  user: Partial<User>,
+  username: string
 }
 
 export enum CommentStatus {

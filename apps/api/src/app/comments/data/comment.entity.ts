@@ -30,8 +30,9 @@ export class CommentEntity extends BaseEntity implements Comment {
   @Column({ type: 'enum', enum: CommentStatus })
   status: CommentStatus;
 
-  @ManyToOne(
-    type => UserEntity,
-  )
+  @ManyToOne(type => UserEntity)
   user: Partial<User>;
+
+  @Column()
+  username: string;
 }

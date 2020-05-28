@@ -13,6 +13,7 @@ export class PhotoPostComponent extends FormComponent {
   @Input() photo: Photo;
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
+  showComment = false;
 
   constructor(protected formService: FormService, private fb: FormBuilder) {
     super(formService);
@@ -20,6 +21,10 @@ export class PhotoPostComponent extends FormComponent {
       photoId: [null, Validators.required],
       content: [null, Validators.required]
     });
+  }
+
+  changeShowComment() {
+    this.showComment = !this.showComment;
   }
 
   onSubmit() {

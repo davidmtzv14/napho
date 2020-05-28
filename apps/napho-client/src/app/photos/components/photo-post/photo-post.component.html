@@ -28,7 +28,8 @@
             </button>
           </div>
           <div class="col-lg-3 col-6">
-            <button mat-button>
+            <button mat-button
+                    (click)="changeShowComment()">
               <mat-icon>comment</mat-icon>
               Comment
             </button>
@@ -42,7 +43,7 @@
           </div>
           <div class="col-lg-3 col-6">
             <div>
-              5 Comments
+              {{photo.comments.length}} Comments
             </div>
           </div>
         </div>
@@ -54,28 +55,15 @@
         <div class="mt-1">
           {{photo.description}}
         </div>
-      </mat-card-content>
-      <mat-card-footer>
-        <div *ngFor="let comment of photo.comments"
-             class="row">
-          <div class="col">
-            {{comment.content}}
-            <button mat-icon-button>
-              <mat-icon>check</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </div>
-        </div>
         <form [formGroup]="form"
               (ngSubmit)="onSubmit()">
-          <div class="row">
+          <div *ngIf="showComment"
+               class="row">
             <div class="col-11">
               <mat-form-field>
                 <mat-label>Add a comment</mat-label>
                 <textarea matInput
-                       [formControl]="form.get('content')" ></textarea>
+                          [formControl]="form.get('content')"></textarea>
               </mat-form-field>
             </div>
             <div class="col-1">
@@ -86,6 +74,21 @@
             </div>
           </div>
         </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <h6 class="m-0">Comments</h6>
+        <div *ngFor="let comment of photo.comments"
+             class="row m-0">
+          <div class="col p-0">
+            <strong>{{comment.username}} </strong> {{comment.content}}
+            <button mat-icon-button>
+              <mat-icon>check</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
       </mat-card-footer>
     </mat-card>
   </div>
