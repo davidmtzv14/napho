@@ -6,15 +6,15 @@ import { ProfileContainerComponent } from './containers/profile-container/profil
 import { ProfileRoutingModule } from './profile-routing.module';
 import { PhotosModule } from '@app/photos/photos.module';
 import { StoreModule } from '@ngrx/store';
-import { fromFeed, FeedEffects } from '@app/feed/state';
 import { EffectsModule } from '@ngrx/effects';
 import { SearchProfileContainerComponent } from './containers/search-profile-container/search-profile-container.component';
+import { fromProfile, ProfileEffects } from './state';
 
 @NgModule({
   declarations: [ProfileComponent, ProfileContainerComponent, SearchProfileContainerComponent],
   imports: [
-    StoreModule.forFeature('feed', fromFeed.reducer),
-    EffectsModule.forFeature([FeedEffects]),
+    StoreModule.forFeature('profile', fromProfile.reducer),
+    EffectsModule.forFeature([ProfileEffects]),
     SharedModule,
     CommonModule,
     ProfileRoutingModule,

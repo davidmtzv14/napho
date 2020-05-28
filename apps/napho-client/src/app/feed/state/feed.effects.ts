@@ -73,18 +73,6 @@ export class FeedEffects {
     )
   );
 
-  getUser$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(FeedActions.getUser),
-    mergeMap(({ id }) =>
-      this.feedService.getUser(id).pipe(
-        map(user => FeedActions.getUserSuccess({ user })),
-        catchError(() => of(FeedActions.getUserFailed()))
-      )
-    )
-  )
-);
-
   constructor(
     private actions$: Actions,
     private store: Store<any>,

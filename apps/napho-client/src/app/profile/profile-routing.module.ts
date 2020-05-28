@@ -7,7 +7,8 @@ import { SearchProfileContainerComponent } from './containers/search-profile-con
 const routes: Routes = [
   {
     path: '',
-    component: ProfileContainerComponent
+    component: ProfileContainerComponent,
+    resolve: {resolvedProfile: ProfileResolverService}
   },
   {
     path: ':id',

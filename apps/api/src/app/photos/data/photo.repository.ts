@@ -7,10 +7,24 @@ import { TagEntity } from './tag.entity';
 
 @EntityRepository(PhotoEntity)
 export class PhotoRepository extends Repository<PhotoEntity> {
-  async getUserPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
+  async getUserPhotos(id: number): Promise<PhotoEntity[]> {
     const query = this.createQueryBuilder('photo');
 
-    query.andWhere('photo.userId = :userId', { userId: user.id });
+    query.andWhere('photo.userId = :userId', { userId: id });
+
+    const photos = await query
+      .leftJoinAndSelect('photo.user', 'user')
+      .leftJoinAndSelect('photo.comments', 'comment')
+      .leftJoinAndSelect('photo.tags', 'tag')
+      .getMany();
+
+    return photos;
+  }
+
+  async getUserFavPhotos(id: number): Promise<PhotoEntity[]> {
+    const query = this.createQueryBuilder('photo');
+
+    query.andWhere('photo.userId = :userId', { userId: id });
 
     const photos = await query
       .leftJoinAndSelect('photo.user', 'user')

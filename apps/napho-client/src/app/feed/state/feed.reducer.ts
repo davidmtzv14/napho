@@ -10,7 +10,7 @@ export const initialState: FeedState = {
   profileUser: {}
 };
 
-export const authReducer = createReducer(
+export const feedReducer = createReducer(
   initialState,
   on(FeedActions.createPhotoSuccess, (state, action) => {
     return {
@@ -56,5 +56,5 @@ export const authReducer = createReducer(
 );
 
 export function reducer(state: FeedState, action: Action): FeedState {
-  return authReducer(state, action);
+  return feedReducer(state, action);
 }

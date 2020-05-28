@@ -52,9 +52,4 @@ export class FeedService {
       params
     });
   }
-
-  getUser(id: number): Observable<User> {
-    console.log(id)
-    return this.http.get<User>(`${this.config.apiUrl}/users/${id}`);
-  }
 }

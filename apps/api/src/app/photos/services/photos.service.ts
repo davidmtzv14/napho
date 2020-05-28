@@ -14,8 +14,12 @@ export class PhotosService {
     private photoRepository: PhotoRepository
   ) {}
 
-  async getUserPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
-    return this.photoRepository.getUserPhotos(user);
+  async getUserPhotos(id: number): Promise<PhotoEntity[]> {
+    return this.photoRepository.getUserPhotos(id);
+  }
+
+  async getUserFavPhotos(id: number): Promise<PhotoEntity[]> {
+    return this.photoRepository.getUserFavPhotos(id);
   }
 
   async getFeedPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
