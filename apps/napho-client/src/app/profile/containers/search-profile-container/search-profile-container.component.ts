@@ -8,6 +8,8 @@ import {
   getUserFollowersState,
   getUserFollowingState
 } from '@app/profile/state';
+import { fromFeed } from '@app/feed/state';
+import { Comment } from '@napho/data';
 
 @Component({
   selector: 'napho-search-profile-container',
@@ -25,5 +27,9 @@ export class SearchProfileContainerComponent {
 
   followUser(id: number): void {
     this.store.dispatch(fromProfile.actions.followUser({ id }));
+  }
+
+  createComment(comment: Comment) {
+    this.store.dispatch(fromFeed.actions.createComment(comment));
   }
 }

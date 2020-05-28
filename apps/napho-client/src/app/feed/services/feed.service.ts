@@ -5,7 +5,8 @@ import {
   NaphoDataConfiguration,
   Photo,
   Comment,
-  User
+  User,
+  CommentStatus
 } from '@napho/data';
 import { Observable } from 'rxjs';
 
@@ -31,6 +32,14 @@ export class FeedService {
     const payload = { content: comment.content };
     return this.http.post<Comment>(
       `${this.config.apiUrl}/${comment.photoId}/comments`,
+      payload
+    );
+  }
+
+  updateCommentStatus(comment: Partial<Comment>): Observable<Comment> {
+    const payload = { status: comment.status };
+    return this.http.patch<Comment>(
+      `${this.config.apiUrl}/${comment.photoId}/comments/${comment.id}/status`,
       payload
     );
   }

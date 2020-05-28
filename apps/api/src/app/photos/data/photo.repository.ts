@@ -4,6 +4,7 @@ import { GetPhotosFilterDto } from '../dto/get-photos-filter.dto';
 import { CreatePhotoDto } from '../dto/create-photo.dto';
 import { User } from '@napho/data';
 import { TagEntity } from './tag.entity';
+import { UserRepository } from '@api/users/data/user.repository';
 
 @EntityRepository(PhotoEntity)
 export class PhotoRepository extends Repository<PhotoEntity> {
@@ -25,18 +26,6 @@ export class PhotoRepository extends Repository<PhotoEntity> {
     const query = this.createQueryBuilder('photo');
 
     query.andWhere('photo.userId = :userId', { userId: id });
-
-    const photos = await query
-      .leftJoinAndSelect('photo.user', 'user')
-      .leftJoinAndSelect('photo.comments', 'comment')
-      .leftJoinAndSelect('photo.tags', 'tag')
-      .getMany();
-
-    return photos;
-  }
-
-  async getFeedPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
-    const query = this.createQueryBuilder('photo');
 
     const photos = await query
       .leftJoinAndSelect('photo.user', 'user')

@@ -81,12 +81,16 @@
              class="row m-0">
           <div class="col p-0">
             <strong>{{comment.username}} </strong> {{comment.content}}
-            <button mat-icon-button>
-              <mat-icon>check</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon>cancel</mat-icon>
-            </button>
+            <span *ngIf="photo.user.id === user.id && comment.status === pendingStatus">
+              <button mat-icon-button
+                      (click)="changeCommentStatus(comment.id, approvedStatus)">
+                <mat-icon>check</mat-icon>
+              </button>
+              <button mat-icon-button
+                      (click)="changeCommentStatus(comment.id, rejectedStatus)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </span>
           </div>
         </div>
       </mat-card-footer>

@@ -70,6 +70,6 @@
 </mat-card>
 
 <div *ngFor="let photo of photoArray">
-  <napho-photo-post [photo]="photo"
-                    (formSubmit)="createComment.emit($event)"></napho-photo-post>
+  <napho-photo-post-container [photo]="photo"
+                              (createComment)="createComment.emit($event)"></napho-photo-post-container>
 </div>

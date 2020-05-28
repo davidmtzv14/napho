@@ -1,18 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { PhotoRepository } from '../data/photo.repository';
 import { PhotoEntity } from '../data/photo.entity';
 import { User } from '@napho/data';
 import { GetPhotosFilterDto } from '../dto/get-photos-filter.dto';
 import { CreatePhotoDto } from '../dto/create-photo.dto';
-import { UserEntity } from '../../users/data/user.entity';
+import { Connection } from 'typeorm';
+import { UserRepository } from '@api/users/data/user.repository';
 
 @Injectable()
 export class PhotosService {
-  constructor(
-    @InjectRepository(PhotoRepository)
-    private photoRepository: PhotoRepository
-  ) {}
+  private photoRepository: PhotoRepository;
+  private userRepository: UserRepository;
+
+  constructor(private readonly connection: Connection) {
+    this.photoRepository = this.connection.getCustomRepository(PhotoRepository);
+    this.userRepository = this.connection.getCustomRepository(UserRepository);
+  }
 
   async getUserPhotos(id: number): Promise<PhotoEntity[]> {
     return this.photoRepository.getUserPhotos(id);
@@ -23,7 +26,30 @@ export class PhotosService {
   }
 
   async getFeedPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
-    return this.photoRepository.getFeedPhotos(user);
+    const photoQuery = this.photoRepository.createQueryBuilder('photo');
+    const userQuery = this.userRepository.createQueryBuilder('user');
+
+    userQuery
+      .where('user.id = :userId', { userId: user.id })
+      .leftJoinAndSelect('user.following', 'following');
+
+    const userEntity = await userQuery.getOne();
+
+    const following = userEntity.following.map(follow => follow.id);
+
+    let photos = await photoQuery
+      .leftJoinAndSelect('photo.user', 'user')
+      .leftJoinAndSelect('photo.comments', 'comment')
+      .leftJoinAndSelect('photo.tags', 'tag')
+      .getMany();
+
+    photos = photos.filter(photo => {
+      if (following.includes(photo.user.id)) {
+        return photo;
+      }
+    });
+
+    return photos;
   }
 
   async getSearchPhotos(filterDto: GetPhotosFilterDto): Promise<PhotoEntity[]> {

@@ -17,6 +17,7 @@ export class ProfileComponent extends FormComponent implements OnChanges {
   @Input() followers: Partial<Photo>[];
   @Input() isSearch: boolean;
   @Output() followUser = new EventEmitter<number>();
+  @Output() createComment = new EventEmitter<Comment>();
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
   photoArray: Partial<Photo>[];

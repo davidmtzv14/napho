@@ -2,5 +2,6 @@
                [photos]="photos$ | async"
                [favPhotos]="favPhotos$ | async"
                [followers]="followers$ | async"
-               [following] ="following$ | async"
-               [isSearch]="false"></napho-profile>
+               [following]="following$ | async"
+               [isSearch]="false"
+               (createComment)="createComment($event)"></napho-profile>

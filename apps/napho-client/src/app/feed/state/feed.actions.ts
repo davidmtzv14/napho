@@ -25,6 +25,20 @@ export const createCommentSuccess = createAction(
 
 export const createCommentFailed = createAction('[Feed] Create comment failed');
 
+export const updateCommentStatus = createAction(
+  '[Feed] Update comment status',
+  props<{ comment: Partial<Comment> }>()
+);
+
+export const updateCommentStatusSuccess = createAction(
+  '[Feed] Update comment status success',
+  props<{ comment: Partial<Comment> }>()
+);
+
+export const updateCommentStatusFailed = createAction(
+  '[Feed] Update comment status failed'
+);
+
 export const getFeedPhotos = createAction('[Feed] Get feed photos');
 
 export const getFeedPhotosSuccess = createAction(
@@ -38,7 +52,7 @@ export const getFeedPhotosFailed = createAction(
 
 export const getSearchPhotos = createAction(
   '[Feed] Get search photos',
-  props<{ search: string, field?: string }>()
+  props<{ search: string; field?: string }>()
 );
 
 export const getSearchPhotosSuccess = createAction(

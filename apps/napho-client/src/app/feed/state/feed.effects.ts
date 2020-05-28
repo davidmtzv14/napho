@@ -37,6 +37,20 @@ export class FeedEffects {
     )
   );
 
+  updateCommentStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FeedActions.updateCommentStatus),
+      mergeMap(({ comment }) =>
+        this.feedService.updateCommentStatus(comment).pipe(
+          map(commentResponse =>
+            FeedActions.updateCommentStatusSuccess({ comment: commentResponse })
+          ),
+          catchError(() => of(FeedActions.updateCommentStatusFailed()))
+        )
+      )
+    )
+  );
+
   getFeedPhotos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FeedActions.getFeedPhotos),

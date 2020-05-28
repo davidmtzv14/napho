@@ -7,6 +7,8 @@ import {
   getUserFollowersState,
   getUserFollowingState
 } from '@app/profile/state';
+import { fromFeed } from '@app/feed/state';
+import { Comment } from '@napho/data';
 
 @Component({
   selector: 'napho-profile-container',
@@ -21,4 +23,8 @@ export class ProfileContainerComponent {
   following$ = this.store.select(getUserFollowingState);
 
   constructor(public store: Store<any>) {}
+
+  createComment(comment: Comment) {
+    this.store.dispatch(fromFeed.actions.createComment(comment));
+  }
 }

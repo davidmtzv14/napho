@@ -55,7 +55,7 @@ export class CommentsController {
     return this.commentsService.deleteComment(id);
   }
 
-  @Patch('/:id/status')
+  @Patch(':id/status')
   updateCommentStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body('status', CommentStatusValidationPipe) status: CommentStatus
