@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { User, Photo } from '@napho/data';
+import { Comment, Photo } from '@napho/data';
 
 export const createPhoto = createAction(
   '[Feed] Create post',
@@ -12,6 +12,18 @@ export const createPhotoSuccess = createAction(
 );
 
 export const createPhotoFailed = createAction('[Feed] Create post failed');
+
+export const createComment = createAction(
+  '[Feed] Create comment',
+  props<{ photoId: number; content: string }>()
+);
+
+export const createCommentSuccess = createAction(
+  '[Feed] Create comment success',
+  props<{ comment: Partial<Comment> }>()
+);
+
+export const createCommentFailed = createAction('[Feed] Create comment failed');
 
 export const getFeedPhotos = createAction('[Feed] Get feed photos');
 

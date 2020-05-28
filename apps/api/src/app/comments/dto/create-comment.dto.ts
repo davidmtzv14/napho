@@ -1,10 +1,8 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { Photo } from '@napho/data';
 
 export class CreateCommentDto {
   @IsNotEmpty()
-  photo: Partial<Photo>;
-
-  @IsNotEmpty()
+  @IsString()
   content: string;
 }

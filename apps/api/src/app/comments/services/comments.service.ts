@@ -1,17 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CommentStatus } from '@napho/data';
+import { CommentStatus, User } from '@napho/data';
 import { CreateCommentDto } from '../dto/create-comment.dto';
 import { GetCommentsFilterDto } from '../dto/get-comments-filter.dto';
 import { CommentRepository } from '../data/comment.repository';
-import { InjectRepository } from '@nestjs/typeorm';
 import { CommentEntity } from '../data/comment.entity';
+import { PhotoRepository } from '@api/photos/data/photo.repository';
+import { Connection } from 'typeorm';
 
 @Injectable()
 export class CommentsService {
-  constructor(
-    @InjectRepository(CommentRepository)
-    private commentRepository: CommentRepository
-  ) {}
+  private commentRepository: CommentRepository;
+  private photoRepository: PhotoRepository;
+
+  constructor(private readonly connection: Connection) {
+    this.commentRepository = this.connection.getCustomRepository(
+      CommentRepository
+    );
+    this.photoRepository = this.connection.getCustomRepository(PhotoRepository);
+  }
 
   async getComments(filterDto: GetCommentsFilterDto): Promise<CommentEntity[]> {
     return this.commentRepository.getComments(filterDto);
@@ -28,9 +34,23 @@ export class CommentsService {
   }
 
   async createComment(
-    createCommentDto: CreateCommentDto
+    photoId: number,
+    createCommentDto: CreateCommentDto,
+    user: Partial<User>
   ): Promise<CommentEntity> {
-    return this.commentRepository.createComment(createCommentDto);
+    const { content } = createCommentDto;
+    const photo = await this.photoRepository.findOne({ id: photoId });
+
+    const comment = new CommentEntity();
+    comment.content = content;
+    comment.photoId = photoId;
+    comment.status = CommentStatus.pending;
+    comment.user = user;
+
+    photo.comments.push(comment);
+    await photo.save();
+
+    return comment;
   }
 
   async deleteComment(id: number): Promise<void> {

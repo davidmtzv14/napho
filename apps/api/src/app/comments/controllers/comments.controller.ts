@@ -13,14 +13,15 @@ import {
   UseGuards
 } from '@nestjs/common';
 import { CommentsService } from '../services/comments.service';
-import { CommentStatus } from '@napho/data';
+import { CommentStatus, User } from '@napho/data';
 import { CreateCommentDto } from '../dto/create-comment.dto';
 import { GetCommentsFilterDto } from '../dto/get-comments-filter.dto';
 import { CommentStatusValidationPipe } from '../pipes/comment-status-validation.pipe';
 import { CommentEntity } from '../data/comment.entity';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '@api/auth/decorators/get-user.decorator';
 
-@Controller('comments')
+@Controller(':photoId/comments')
 @UseGuards(AuthGuard())
 export class CommentsController {
   constructor(private commentsService: CommentsService) {}
@@ -42,9 +43,11 @@ export class CommentsController {
   @Post()
   @UsePipes(ValidationPipe)
   createComment(
-    @Body() createCommentDto: CreateCommentDto
+    @Param('photoId', ParseIntPipe) photoId: number,
+    @Body() createCommentDto: CreateCommentDto,
+    @GetUser() user: Partial<User>
   ): Promise<CommentEntity> {
-    return this.commentsService.createComment(createCommentDto);
+    return this.commentsService.createComment(photoId, createCommentDto, user);
   }
 
   @Delete(':id')

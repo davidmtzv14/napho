@@ -29,11 +29,40 @@ export class PhotoRepository extends Repository<PhotoEntity> {
 
     const photos = await query
       .leftJoinAndSelect('photo.user', 'user')
+      .leftJoinAndSelect('photo.comments', 'comment')
       .leftJoinAndSelect('photo.tags', 'tag')
       .getMany();
 
     return photos;
   }
+
+  // async getFeedPhotos(
+  //   filterDto: GetPhotosFilterDto,
+  //   user: Partial<User>
+  // ): Promise<PhotoEntity[]> {
+  //   const { search, field } = filterDto;
+  //   const query = this.createQueryBuilder('photo');
+
+  //   query.andWhere('photo.userId = :userId', { userId: user.id });
+
+  //   if (search) {
+  //     query.andWhere(
+  //       '(photo.content LIKE :search OR photo.user.username LIKE :search OR photo.tags LIKE :search)',
+  //       { search: `%${search}%` }
+  //     );
+  //   }
+
+  //   if (field) {
+  //     query.orderBy(':field', 'ASC').setParameters({ field });
+  //   }
+
+  //   const photos = await query
+  //     .leftJoinAndSelect('photo.user', 'user')
+  //     .leftJoinAndSelect('photo.tags', 'tag')
+  //     .getMany();
+
+  //   return photos;
+  // }
 
   async createPhoto(
     createPhotoDto: CreatePhotoDto,

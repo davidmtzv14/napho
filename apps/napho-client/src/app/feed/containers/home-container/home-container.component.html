@@ -1,2 +1,3 @@
 <napho-home [photos]="photos$ |async"
-            (formSubmit)="submit($event)"></napho-home>
+            (createComment)="createComment($event)"
+            (formSubmit)="createPhoto($event)"></napho-home>

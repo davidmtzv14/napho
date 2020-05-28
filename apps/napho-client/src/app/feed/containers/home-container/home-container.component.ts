@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Photo } from '@napho/data';
+import { Photo, Comment } from '@napho/data';
 import { fromFeed, getFeedPhotosState } from '@app/feed/state';
 
 @Component({
@@ -13,8 +13,11 @@ export class HomeContainerComponent {
 
   constructor(private store: Store<any>) {}
 
-  submit(photo: Partial<Photo>): void {
-    this.store.dispatch(fromFeed.actions.createPhoto({ photo }));
+  createComment(comment: Comment) {
+    this.store.dispatch(fromFeed.actions.createComment(comment));
   }
 
+  createPhoto(photo: Partial<Photo>): void {
+    this.store.dispatch(fromFeed.actions.createPhoto({ photo }));
+  }
 }

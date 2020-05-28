@@ -22,18 +22,4 @@ export class CommentRepository extends Repository<CommentEntity> {
 
     return comments;
   }
-
-  async createComment(
-    createCommentDto: CreateCommentDto
-  ): Promise<CommentEntity> {
-    const { photo, content } = createCommentDto;
-
-    const comment = new CommentEntity();
-    comment.content = content;
-    comment.photo = photo;
-    comment.status = CommentStatus.pending;
-    await comment.save();
-
-    return comment;
-  }
 }

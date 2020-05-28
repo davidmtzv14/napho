@@ -4,7 +4,7 @@ import { PhotoPostComponent } from './components/photo-post/photo-post.component
 import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
-  declarations: [PhotoPostComponent],
+  declarations: [PhotoPostComponent,],
   imports: [SharedModule, CommonModule],
   exports: [PhotoPostComponent]
 })

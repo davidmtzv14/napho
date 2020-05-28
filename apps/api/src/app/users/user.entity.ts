@@ -66,16 +66,16 @@ export class UserEntity extends BaseEntity implements User {
 
   @ManyToMany(
     type => UserEntity,
-    user => user.following
+    user => user.followers
   )
   @JoinTable()
-  followers: Partial<User>[];
+  following: Partial<User>[];
 
   @ManyToMany(
     type => UserEntity,
-    user => user.followers
+    user => user.following
   )
-  following: Partial<User>[];
+  followers: Partial<User>[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

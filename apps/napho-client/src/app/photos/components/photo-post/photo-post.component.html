@@ -55,6 +55,38 @@
           {{photo.description}}
         </div>
       </mat-card-content>
+      <mat-card-footer>
+        <div *ngFor="let comment of photo.comments"
+             class="row">
+          <div class="col">
+            {{comment.content}}
+            <button mat-icon-button>
+              <mat-icon>check</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
+        <form [formGroup]="form"
+              (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-11">
+              <mat-form-field>
+                <mat-label>Add a comment</mat-label>
+                <textarea matInput
+                       [formControl]="form.get('content')" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-1">
+              <button mat-icon-button
+                      type="submit">
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-card-footer>
     </mat-card>
   </div>
 </div>

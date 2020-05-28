@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import {
   NAPHO_DATA_CONFIGURATION,
   NaphoDataConfiguration,
-  User,
-  Photo
+  Photo,
+  Comment
 } from '@napho/data';
 import { Observable } from 'rxjs';
 
@@ -18,9 +18,20 @@ export class FeedService {
     public config: NaphoDataConfiguration
   ) {}
 
-  createPhoto(photo: Partial<Photo>): Observable<User> {
+  createPhoto(photo: Partial<Photo>): Observable<Photo> {
     const payload = { photo };
-    return this.http.post<User>(`${this.config.apiUrl}/photos`, payload);
+    return this.http.post<Photo>(`${this.config.apiUrl}/photos`, payload);
+  }
+
+  createComment(comment: {
+    photoId: number;
+    content: string;
+  }): Observable<Comment> {
+    const payload = { content: comment.content };
+    return this.http.post<Comment>(
+      `${this.config.apiUrl}/${comment.photoId}/comments`,
+      payload
+    );
   }
 
   getPhotos(): Observable<Photo[]> {

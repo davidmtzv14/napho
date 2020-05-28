@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import * as FeedActions from './feed.actions';
 import { FeedService } from '../services/feed.service';
-import { select, Store } from '@ngrx/store';
-import { getAuthUserState } from '@app/auth/state';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class FeedEffects {
@@ -23,6 +22,20 @@ export class FeedEffects {
       )
     )
   );
+
+  createComment$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(FeedActions.createComment),
+    mergeMap(( comment ) =>
+      this.feedService.createComment(comment).pipe(
+        map(commentResponse =>
+          FeedActions.createCommentSuccess({ comment: commentResponse })
+        ),
+        catchError(() => of(FeedActions.createCommentFailed()))
+      )
+    )
+  )
+);
 
   getPhotos$ = createEffect(() =>
   this.actions$.pipe(

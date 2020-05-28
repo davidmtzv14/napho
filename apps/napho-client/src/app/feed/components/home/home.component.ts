@@ -3,14 +3,16 @@ import {
   OnInit,
   Input,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormComponent } from '@app/core/components/form/form.component';
 import { FormService } from '@app/core/services/form.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Photo } from '@napho/data';
+import { Photo, CommentStatus, Comment } from '@napho/data';
 
 @Component({
   selector: 'napho-home',
@@ -19,7 +21,8 @@ import { Photo } from '@napho/data';
 })
 export class HomeComponent extends FormComponent implements OnChanges {
   @Input() photos: Photo[];
-  photoArray: Photo[]
+  @Output() createComment = new EventEmitter<Comment>();
+  photoArray: Photo[];
   fileData: File = null;
   previewUrl: any = null;
   fileUploadProgress: string = null;
@@ -42,8 +45,7 @@ export class HomeComponent extends FormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.photos) {
-      this.photoArray = Object.values(this.photos)
-      console.log(this.photoArray)
+      this.photoArray = Object.values(this.photos);
     }
   }
 
