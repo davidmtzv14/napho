@@ -63,17 +63,3 @@ export const getSearchUsersSuccess = createAction(
 export const getSearchUsersFailed = createAction(
   '[Feed] Get search users failed'
 );
-
-export const getUser = createAction(
-  '[Feed] Get user',
-  props<{ id: number }>()
-);
-
-export const getUserSuccess = createAction(
-  '[Feed] Get user success',
-  props<{ user: Partial<User> }>()
-);
-
-export const getUserFailed = createAction(
-  '[Feed] Get user failed'
-);

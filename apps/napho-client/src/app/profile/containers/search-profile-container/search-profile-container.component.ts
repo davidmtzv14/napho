@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { getProfileUserState } from '@app/feed/state';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getProfilePhotosState, getProfileFavPhotosState } from '@app/profile/state';
+import { getProfilePhotosState, getProfileFavPhotosState, getProfileUserState } from '@app/profile/state';
 
 @Component({
   selector: 'napho-search-profile-container',

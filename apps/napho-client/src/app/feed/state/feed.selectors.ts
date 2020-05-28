@@ -24,7 +24,3 @@ export const getSearchUsersState = createSelector(
   state => state.searchUsers
 );
 
-export const getProfileUserState = createSelector(
-  getFeedFeatureState,
-  state => state.profileUser
-);

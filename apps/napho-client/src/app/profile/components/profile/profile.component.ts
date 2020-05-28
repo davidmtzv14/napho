@@ -13,6 +13,7 @@ export class ProfileComponent extends FormComponent implements OnChanges {
   @Input() userProfile: Partial<User>;
   @Input() photos: Partial<Photo>[];
   @Input() favPhotos: Partial<Photo>[];
+  @Input() isSearch: boolean;
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
   photoArray: Partial<Photo>[];
@@ -25,12 +26,14 @@ export class ProfileComponent extends FormComponent implements OnChanges {
       lastName: [null, Validators.required],
       username: [null, Validators.required],
       email: [null, Validators.required],
-      gender: [null, Validators.required]
+      gender: [null, Validators.required],
+      description: [null],
+      profileImgUrl: [null],
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.userProfile) {
+    if (changes.userProfile && this.userProfile) {
       this.populateProfile();
     }
 
@@ -44,6 +47,9 @@ export class ProfileComponent extends FormComponent implements OnChanges {
 
   populateProfile() {
     this.form.patchValue(this.userProfile);
+    if (this.isSearch) {
+      this.form.disable();
+    }
   }
 
   onSelectFile(event) {

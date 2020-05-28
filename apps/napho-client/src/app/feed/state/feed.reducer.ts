@@ -45,14 +45,6 @@ export const feedReducer = createReducer(
       }
     };
   }),
-  on(FeedActions.getUserSuccess, (state, action) => {
-    return {
-      ...state,
-      profileUser: {
-        ...action.user
-      }
-    };
-  })
 );
 
 export function reducer(state: FeedState, action: Action): FeedState {

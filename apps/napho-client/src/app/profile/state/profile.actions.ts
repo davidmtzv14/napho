@@ -13,7 +13,6 @@ export const getProfileUserSuccess = createAction(
 
 export const getProfileUserFailed = createAction('[Profile] Get user failed');
 
-
 export const getProfilePhotos = createAction(
   '[Profile] Get profile photos',
   props<{ id: number }>()
@@ -29,15 +28,15 @@ export const getProfilePhotosFailed = createAction(
 );
 
 export const getFavPhotos = createAction(
-  '[Profile] Get search photos',
+  '[Profile] Get fav photos',
   props<{ id: number }>()
 );
 
 export const getFavPhotosSuccess = createAction(
-  '[Profile] Get search photos success',
+  '[Profile] Get fav photos success',
   props<{ photos: Partial<Photo>[] }>()
 );
 
 export const getFavPhotosFailed = createAction(
-  '[Profile] Get search photos failed'
+  '[Profile] Get fav photos failed'
 );
