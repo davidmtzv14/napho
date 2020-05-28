@@ -13,12 +13,16 @@ export class ProfileComponent extends FormComponent implements OnChanges {
   @Input() userProfile: Partial<User>;
   @Input() photos: Partial<Photo>[];
   @Input() favPhotos: Partial<Photo>[];
+  @Input() following: Partial<Photo>[];
+  @Input() followers: Partial<Photo>[];
   @Input() isSearch: boolean;
   @Output() followUser = new EventEmitter<number>();
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
   photoArray: Partial<Photo>[];
   favPhotoArray: Partial<Photo>[];
+  followingArray: Partial<User>[];
+  followerArray: Partial<User>[];
 
   constructor(protected formService: FormService, private fb: FormBuilder) {
     super(formService);
@@ -43,6 +47,12 @@ export class ProfileComponent extends FormComponent implements OnChanges {
     }
     if (changes.favPhotos && this.favPhotos) {
       this.favPhotoArray = Object.values(this.favPhotos);
+    }
+    if (changes.followers && this.followers) {
+      this.followerArray = Object.values(this.followers);
+    }
+    if (changes.following && this.following) {
+      this.followingArray = Object.values(this.following);
     }
   }
 

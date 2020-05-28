@@ -29,6 +29,14 @@ export class UsersService {
     return found;
   }
 
+  async getUserFollowers(id: number): Promise<UserEntity[]> {
+    return this.userRepository.getUserFollowers(id);
+  }
+
+  async getUserFollowing(id: number): Promise<Partial<User>[]> {
+    return this.userRepository.getUserFollowing(id);
+  }
+
   async followUser(user: Partial<User>, id: number): Promise<UserEntity> {
     return this.userRepository.followUser(user, id);
   }

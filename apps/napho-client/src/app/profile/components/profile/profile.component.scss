@@ -2,7 +2,7 @@ p {
   font-family: Lato;
 }
 
-img {
+.profileImg {
   height: 100% !important;
   width: 100% !important;
   border-radius: 50% !important;
@@ -47,3 +47,13 @@ img {
 #fileInput{
   display: none;
 }
+
+.profile {
+  border-radius: 50% !important;
+  min-width: auto !important;
+  height: 30px;
+  width: 30px;
+  border: 2px solid #44443b;
+  border-radius: 50%;
+}
+

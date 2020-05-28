@@ -45,17 +45,45 @@ export class ProfileEffects {
     )
   );
 
-  followUser$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(ProfileActions.followUser),
-    mergeMap(({ id }) =>
-      this.profileService.followUser(id).pipe(
-        map(user => ProfileActions.followUserSuccess({ user })),
-        catchError(() => of(ProfileActions.followUserFailed()))
+  getUserFollowers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.getUserFollowers),
+      mergeMap(({ id }) =>
+        this.profileService.getUserFollowers(id).pipe(
+          map(followers =>
+            ProfileActions.getUserFollowersSuccess({ followers })
+          ),
+          catchError(() => of(ProfileActions.getUserFollowersFailed()))
+        )
       )
     )
-  )
-);
+  );
+
+  getUserFollowing$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.getUserFollowing),
+      mergeMap(({ id }) =>
+        this.profileService.getUserFollowing(id).pipe(
+          map(following =>
+            ProfileActions.getUserFollowingSuccess({ following })
+          ),
+          catchError(() => of(ProfileActions.getUserFollowingFailed()))
+        )
+      )
+    )
+  );
+
+  followUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.followUser),
+      mergeMap(({ id }) =>
+        this.profileService.followUser(id).pipe(
+          map(user => ProfileActions.followUserSuccess({ user })),
+          catchError(() => of(ProfileActions.followUserFailed()))
+        )
+      )
+    )
+  );
 
   constructor(
     private actions$: Actions,

@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getProfilePhotosState, getProfileFavPhotosState, getProfileUserState, fromProfile } from '@app/profile/state';
+import {
+  getProfilePhotosState,
+  getProfileFavPhotosState,
+  getProfileUserState,
+  fromProfile,
+  getUserFollowersState,
+  getUserFollowingState
+} from '@app/profile/state';
 
 @Component({
   selector: 'napho-search-profile-container',
@@ -11,6 +18,8 @@ export class SearchProfileContainerComponent {
   userProfile$ = this.store.select(getProfileUserState);
   photos$ = this.store.select(getProfilePhotosState);
   favPhotos$ = this.store.select(getProfileFavPhotosState);
+  followers$ = this.store.select(getUserFollowersState);
+  following$ = this.store.select(getUserFollowingState);
 
   constructor(public store: Store<any>) {}
 

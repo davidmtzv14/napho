@@ -1,5 +1,7 @@
 <napho-profile [userProfile]="userProfile$ | async"
                [photos]="photos$ | async"
                [favPhotos]="favPhotos$ | async"
+               [followers]="followers$ | async"
+               [following]="following$ | async"
                [isSearch]="true"
                (followUser)="followUser($event)"></napho-profile>

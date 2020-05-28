@@ -25,7 +25,7 @@
               <div class="col d-flex justify-content-center">
                 <label class="hoverable"
                        for="fileInput">
-                  <img [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath">
+                  <img class="profileImg" [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath">
                   <div *ngIf="!isSearch"
                        class="hover-text">Change picture</div>
                   <div class="background"></div>
@@ -131,6 +131,73 @@
               <napho-photo-post [photo]="photo"></napho-photo-post>
             </div>
           </mat-tab>
+          <mat-tab label="Followers">
+            <div *ngFor="let user of followerArray"
+                 class="row">
+              <div class="col">
+                <mat-card class="mt-0">
+                  <mat-card-content>
+                    <div class="row">
+                      <div *ngIf="user.profileImgUrl"
+                           class="col-1">
+                        <img class="profile"
+                             [src]="user.profileImgUrl">
+                      </div>
+                      <div *ngIf="!user.profileImgUrl"
+                           class="col-1">
+                        <img class="profile"
+                             [src]="defaultPicturePath">
+                      </div>
+                      <div class="ml-3 col-7">
+                        <h3>{{user.username}}</h3>
+                      </div>
+                      <div class="col-3 d-flex justify-content-end">
+                        <button mat-button
+                                [routerLink]="['../..','profile',user.id]"><span class="d-none d-lg-inline">View
+                            Profile</span>
+                          <mat-icon>person</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Following">
+            <div *ngFor="let user of followingArray"
+                 class="row">
+              <div class="col">
+                <mat-card class="mt-0">
+                  <mat-card-content>
+                    <div class="row">
+                      <div *ngIf="user.profileImgUrl"
+                           class="col-1">
+                        <img class="profile"
+                             [src]="user.profileImgUrl">
+                      </div>
+                      <div *ngIf="!user.profileImgUrl"
+                           class="col-1">
+                        <img class="profile"
+                             [src]="defaultPicturePath">
+                      </div>
+                      <div class="ml-3 col-7">
+                        <h3>{{user.username}}</h3>
+                      </div>
+                      <div class="col-3 d-flex justify-content-end">
+                        <button mat-button
+                                [routerLink]="['../..','profile',user.id]"><span class="d-none d-lg-inline">View
+                            Profile</span>
+                          <mat-icon>person</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-tab>
+
         </mat-tab-group>
       </div>
     </div>

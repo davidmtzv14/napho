@@ -20,13 +20,23 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('search')
-  getSearchPhotos(@Query('search') search: string): Promise<UserEntity[]> {
+  getSearchUsers(@Query('search') search: string): Promise<UserEntity[]> {
     return this.usersService.getSearchUsers(search);
   }
 
   @Get(':id')
-  getPhotoById(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
+  getUserById(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
     return this.usersService.getUserById(id);
+  }
+
+  @Get(':id/followers')
+  getUserFollowers(@Param('id', ParseIntPipe) id: number): Promise<UserEntity[]> {
+    return this.usersService.getUserFollowers(id);
+  }
+
+  @Get(':id/following')
+  getUserFollowing(@Param('id', ParseIntPipe) id: number): Promise<Partial<User>[]> {
+    return this.usersService.getUserFollowing(id);
   }
 
   @Put('follow/:id')

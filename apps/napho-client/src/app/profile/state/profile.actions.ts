@@ -41,6 +41,34 @@ export const getFavPhotosFailed = createAction(
   '[Profile] Get fav photos failed'
 );
 
+export const getUserFollowers = createAction(
+  '[Profile] Get user followers',
+  props<{ id: number }>()
+);
+
+export const getUserFollowersSuccess = createAction(
+  '[Profile] Get user followers success',
+  props<{ followers: Partial<User>[] }>()
+);
+
+export const getUserFollowersFailed = createAction(
+  '[Profile] Get user followers failed'
+);
+
+export const getUserFollowing = createAction(
+  '[Profile] Get user following',
+  props<{ id: number }>()
+);
+
+export const getUserFollowingSuccess = createAction(
+  '[Profile] Get user following success',
+  props<{ following: Partial<User>[] }>()
+);
+
+export const getUserFollowingFailed = createAction(
+  '[Profile] Get user following failed'
+);
+
 export const followUser = createAction(
   '[Profile] Follow user',
   props<{ id: number }>()

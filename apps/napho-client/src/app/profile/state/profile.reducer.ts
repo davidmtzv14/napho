@@ -6,7 +6,9 @@ import { ProfileState } from './profile.state';
 export const initialState: ProfileState = {
   user: {},
   photos: [],
-  favPhotos:[]
+  favPhotos:[],
+  followers:[],
+  following:[]
 };
 
 export const profileReducer = createReducer(
@@ -32,6 +34,22 @@ export const profileReducer = createReducer(
       ...state,
       favPhotos: {
         ...action.photos
+      }
+    };
+  }),
+  on(ProfileActions.getUserFollowersSuccess, (state, action) => {
+    return {
+      ...state,
+      followers: {
+        ...action.followers
+      }
+    };
+  }),
+  on(ProfileActions.getUserFollowingSuccess, (state, action) => {
+    return {
+      ...state,
+      following: {
+        ...action.following
       }
     };
   }),

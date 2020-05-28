@@ -23,3 +23,12 @@ export const getProfileFavPhotosState = createSelector(
   getFeedFeatureState,
   state => state.favPhotos
 );
+
+export const getUserFollowersState = createSelector(
+  getFeedFeatureState,
+  state => state.followers
+);
+export const getUserFollowingState = createSelector(
+  getFeedFeatureState,
+  state => state.following
+);

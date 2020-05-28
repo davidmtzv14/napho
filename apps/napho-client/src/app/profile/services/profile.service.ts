@@ -1,6 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NAPHO_DATA_CONFIGURATION, NaphoDataConfiguration, User, Photo } from '@napho/data';
+import {
+  NAPHO_DATA_CONFIGURATION,
+  NaphoDataConfiguration,
+  User,
+  Photo
+} from '@napho/data';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,10 +27,24 @@ export class ProfileService {
   }
 
   getFavPhotos(id: number): Observable<Photo[]> {
-    return this.http.get<Photo[]>(`${this.config.apiUrl}/photos/user-fav/${id}`);
+    return this.http.get<Photo[]>(
+      `${this.config.apiUrl}/photos/user-fav/${id}`
+    );
+  }
+
+  getUserFollowers(id: number): Observable<Photo[]> {
+    return this.http.get<Photo[]>(
+      `${this.config.apiUrl}/users/${id}/followers`
+    );
+  }
+
+  getUserFollowing(id: number): Observable<Photo[]> {
+    return this.http.get<Photo[]>(
+      `${this.config.apiUrl}/users/${id}/following`
+    );
   }
 
   followUser(id: number): Observable<User> {
-    return this.http.put<User>(`${this.config.apiUrl}/users/follow/${id}`,{});
+    return this.http.put<User>(`${this.config.apiUrl}/users/follow/${id}`, {});
   }
 }

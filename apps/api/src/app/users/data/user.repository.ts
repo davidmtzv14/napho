@@ -57,6 +57,30 @@ export class UserRepository extends Repository<UserEntity> {
     return users;
   }
 
+  async getUserFollowers(id: number): Promise<UserEntity[]> {
+    const query = this.createQueryBuilder('user');
+
+    query
+      .leftJoinAndSelect('user.following', 'following')
+      .where('following.id = :userId', { userId: id });
+
+    const users = await query.getMany();
+
+    return users;
+  }
+
+  async getUserFollowing(id: number): Promise<Partial<User>[]> {
+    const query = this.createQueryBuilder('user');
+
+    query
+      .where('user.id = :userId', { userId: id })
+      .leftJoinAndSelect('user.following', 'following');
+
+    const user = await query.getOne();
+
+    return user.following;
+  }
+
   async followUser(user: Partial<User>, id: number): Promise<UserEntity> {
     const query = this.createQueryBuilder('user');
 
