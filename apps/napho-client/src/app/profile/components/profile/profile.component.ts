@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormComponent } from '@app/core/components/form/form.component';
 import { FormService } from '@app/core/services/form.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ export class ProfileComponent extends FormComponent implements OnChanges {
   @Input() photos: Partial<Photo>[];
   @Input() favPhotos: Partial<Photo>[];
   @Input() isSearch: boolean;
+  @Output() followUser = new EventEmitter<number>();
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
   photoArray: Partial<Photo>[];

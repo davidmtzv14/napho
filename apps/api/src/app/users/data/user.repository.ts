@@ -57,6 +57,36 @@ export class UserRepository extends Repository<UserEntity> {
     return users;
   }
 
+  async followUser(user: Partial<User>, id: number): Promise<UserEntity> {
+    const query = this.createQueryBuilder('user');
+
+    query
+      .where('user.id = :userId', { userId: user.id })
+      .leftJoinAndSelect('user.following', 'following');
+
+    const userEntity = await query.getOne();
+    const followingUser = await this.findOne(id);
+
+    let found = false;
+    for (let i = 0; i < userEntity.following.length; i++) {
+      if (userEntity.following[i].id === followingUser.id) {
+        found = true;
+        break;
+      }
+    }
+
+    if (found) {
+      userEntity.following = userEntity.following.filter(
+        following => following.id !== followingUser.id
+      );
+    } else {
+      userEntity.following.push(followingUser);
+    }
+    await userEntity.save();
+
+    return followingUser;
+  }
+
   private async hashPassword(password: string, salt: string): Promise<string> {
     return bcrypt.hash(password, salt);
   }

@@ -29,7 +29,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const { photos, favPhotos, ...payload } = user;
+    const { photos, favPhotos, following, ...payload } = user;
     // const payload = { user };
     const token = await this.jwtService.sign(payload);
 

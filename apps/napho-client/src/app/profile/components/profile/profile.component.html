@@ -12,7 +12,8 @@
                class="col-5 d-flex justify-content-end">
             <button mat-raised-button
                     color="primary"
-                    type="submit">Follow</button>
+                    type="button"
+                    (click)="followUser.emit(userProfile.id)">Follow</button>
           </div>
         </div>
       </mat-card-header>

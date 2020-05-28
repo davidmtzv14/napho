@@ -50,14 +50,13 @@ export class PhotoRepository extends Repository<PhotoEntity> {
   async getSearchPhotos(filterDto: GetPhotosFilterDto): Promise<PhotoEntity[]> {
     const { search, field } = filterDto;
     const query = this.createQueryBuilder('photo');
+    query.leftJoinAndSelect('photo.user', 'user');
 
     if (search) {
-      query
-        .leftJoinAndSelect('photo.user', 'user')
-        .where(
-          '(photo.description LIKE :search OR user.username LIKE :search)',
-          { search: `%${search}%` }
-        );
+      query.where(
+        '(photo.description LIKE :search OR user.username LIKE :search)',
+        { search: `%${search}%` }
+      );
     }
 
     if (field) {

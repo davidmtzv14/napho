@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getProfilePhotosState, getProfileFavPhotosState, getProfileUserState } from '@app/profile/state';
+import { getProfilePhotosState, getProfileFavPhotosState, getProfileUserState, fromProfile } from '@app/profile/state';
 
 @Component({
   selector: 'napho-search-profile-container',
@@ -13,4 +13,8 @@ export class SearchProfileContainerComponent {
   favPhotos$ = this.store.select(getProfileFavPhotosState);
 
   constructor(public store: Store<any>) {}
+
+  followUser(id: number): void {
+    this.store.dispatch(fromProfile.actions.followUser({ id }));
+  }
 }

@@ -40,3 +40,17 @@ export const getFavPhotosSuccess = createAction(
 export const getFavPhotosFailed = createAction(
   '[Profile] Get fav photos failed'
 );
+
+export const followUser = createAction(
+  '[Profile] Follow user',
+  props<{ id: number }>()
+);
+
+export const followUserSuccess = createAction(
+  '[Profile] Follow user success',
+  props<{ user: Partial<User> }>()
+);
+
+export const followUserFailed = createAction(
+  '[Profile] Follow user failed'
+);

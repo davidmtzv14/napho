@@ -45,6 +45,18 @@ export class ProfileEffects {
     )
   );
 
+  followUser$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(ProfileActions.followUser),
+    mergeMap(({ id }) =>
+      this.profileService.followUser(id).pipe(
+        map(user => ProfileActions.followUserSuccess({ user })),
+        catchError(() => of(ProfileActions.followUserFailed()))
+      )
+    )
+  )
+);
+
   constructor(
     private actions$: Actions,
     private store: Store<any>,

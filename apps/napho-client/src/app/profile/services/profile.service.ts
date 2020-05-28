@@ -24,4 +24,8 @@ export class ProfileService {
   getFavPhotos(id: number): Observable<Photo[]> {
     return this.http.get<Photo[]>(`${this.config.apiUrl}/photos/user-fav/${id}`);
   }
+
+  followUser(id: number): Observable<User> {
+    return this.http.put<User>(`${this.config.apiUrl}/users/follow/${id}`,{});
+  }
 }

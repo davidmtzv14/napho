@@ -35,6 +35,14 @@ export const profileReducer = createReducer(
       }
     };
   }),
+  on(ProfileActions.followUserSuccess, (state, action) => {
+    return {
+      ...state,
+      user: {
+        ...action.user
+      }
+    };
+  }),
 );
 
 export function reducer(state: ProfileState, action: Action): ProfileState {

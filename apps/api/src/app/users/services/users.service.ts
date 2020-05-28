@@ -3,6 +3,7 @@ import { UserRepository } from '../data/user.repository';
 import { UserEntity } from '../data/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { User } from '@napho/data';
 
 @Injectable()
 export class UsersService {
@@ -26,5 +27,9 @@ export class UsersService {
     }
 
     return found;
+  }
+
+  async followUser(user: Partial<User>, id: number): Promise<UserEntity> {
+    return this.userRepository.followUser(user, id);
   }
 }

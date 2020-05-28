@@ -60,22 +60,16 @@ export class UserEntity extends BaseEntity implements User {
 
   @ManyToMany(
     type => PhotoEntity,
-    favPhoto => favPhoto.user,
+    favPhoto => favPhoto.user
   )
   favPhotos: Photo[];
 
-  @ManyToMany(
-    type => UserEntity,
-    user => user.followers
-  )
-  @JoinTable()
+  @ManyToMany(type => UserEntity, { cascade: true })
+  @JoinTable({
+    joinColumns: [{ name: 'followerId' }],
+    inverseJoinColumns: [{ name: 'followingId' }]
+  })
   following: Partial<User>[];
-
-  @ManyToMany(
-    type => UserEntity,
-    user => user.following
-  )
-  followers: Partial<User>[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);
