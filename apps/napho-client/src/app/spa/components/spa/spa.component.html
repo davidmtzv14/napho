@@ -4,57 +4,61 @@
     <h1 class="text-white mr-auto"
         [routerLink]="['home']">Napho</h1>
     <div class="row mr-auto">
-      <div class="col-3  d-none d-lg-inline">
-        <button mat-button
-                (click)="search(input.value)">Search <mat-icon>search</mat-icon>
-        </button>
-      </div>
-      <div class="col-9  d-none d-lg-inline">
-        <mat-form-field>
-          <input #input
-                 matInput
-                 placeholder=""
-                 (keyup.enter)="search(input.value)"
-                 [formControl]="searchControl" />
-        </mat-form-field>
-      </div>
+
+      <form [formGroup]="form"
+            (ngSubmit)="search()">
+        <div class="col-3  d-none d-lg-inline">
+          <button mat-button>Search <mat-icon>search</mat-icon>
+          </button>
+        </div>
+        <div class="col-9  d-none d-lg-inline">
+          <mat-form-field>
+            <input #input
+                   matInput
+                   placeholder=""
+                   [formControl]="form.get('search')" />
+          </mat-form-field>
+        </div>
+      </form>
     </div>
 
     <!-- <mat-search-bar [formControl]="searchControl"
                         (onEnter)="search($event)"></mat-search-bar> -->
-      <button mat-button
-              [routerLink]="['home']"><span class="d-none d-lg-inline">Home</span>
-        <mat-icon>home</mat-icon>
-      </button>
-      <button mat-button
-              [routerLink]="['profile']"><span class="d-none d-lg-inline">Profile</span>
-        <mat-icon>person</mat-icon>
-      </button>
-      <button mat-button
-              (click)="logout.emit()"><span class="d-none d-lg-inline">Log out</span>
-        <mat-icon>exit_to_app</mat-icon>
-      </button>
+    <button mat-button
+            [routerLink]="['home']"><span class="d-none d-lg-inline">Home</span>
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-button
+            [routerLink]="['profile']"><span class="d-none d-lg-inline">Profile</span>
+      <mat-icon>person</mat-icon>
+    </button>
+    <button mat-button
+            (click)="logout.emit()"><span class="d-none d-lg-inline">Log out</span>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
   </mat-toolbar>
 </header>
 
 <main>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center">
-      <div class="ml-auto d-inline d-lg-none">
-        <button mat-button
-                (click)="search(input.value)">Search <mat-icon>search</mat-icon>
-        </button>
-      </div>
-      <div class="mr-auto d-inline d-lg-none">
-        <mat-form-field>
-          <input #input
-                 matInput
-                 placeholder=""
-                 (keyup.enter)="search(input.value)"
-                 [formControl]="searchControl" />
-        </mat-form-field>
-      </div>
+      <form [formGroup]="form"
+            (ngSubmit)="search()">
+        <div class="ml-auto d-inline d-lg-none">
+          <button mat-button>Search <mat-icon>search</mat-icon>
+          </button>
+        </div>
+        <div class="mr-auto d-inline d-lg-none">
+          <mat-form-field>
+            <input #input
+                   matInput
+                   placeholder=""
+                   [formControl]="form.get('search')" />
+          </mat-form-field>
+        </div>
+      </form>
     </div>
+
     <router-outlet></router-outlet>
   </div>
 </main>

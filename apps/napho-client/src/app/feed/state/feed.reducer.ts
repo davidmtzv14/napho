@@ -4,7 +4,10 @@ import * as FeedActions from './feed.actions';
 import { FeedState } from './feed.state';
 
 export const initialState: FeedState = {
-  photos: []
+  photos: [],
+  searchPhotos: [],
+  searchUsers: [],
+  profileUser: {}
 };
 
 export const authReducer = createReducer(
@@ -24,7 +27,31 @@ export const authReducer = createReducer(
       photos: {
         ...action.photos
       }
-    }
+    };
+  }),
+  on(FeedActions.getSearchPhotosSuccess, (state, action) => {
+    return {
+      ...state,
+      searchPhotos: {
+        ...action.photos
+      }
+    };
+  }),
+  on(FeedActions.getSearchUsersSuccess, (state, action) => {
+    return {
+      ...state,
+      searchUsers: {
+        ...action.users
+      }
+    };
+  }),
+  on(FeedActions.getUserSuccess, (state, action) => {
+    return {
+      ...state,
+      profileUser: {
+        ...action.user
+      }
+    };
   })
 );
 

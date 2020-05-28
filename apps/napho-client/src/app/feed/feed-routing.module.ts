@@ -3,6 +3,7 @@ import { HomeContainerComponent } from './containers/home-container/home-contain
 import { SearchResultsContainerComponent } from './containers/search-results-container/search-results-container.component';
 import { NgModule } from '@angular/core';
 import { FeedResolverService } from './resolvers/feed-resolver.service';
+import { SearchResolverService } from './resolvers/search-resolver.service';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'search-results',
-    component: SearchResultsContainerComponent
+    component: SearchResultsContainerComponent,
+    resolve: { resolvedPhotos: SearchResolverService }
   },
   {
     path: '',

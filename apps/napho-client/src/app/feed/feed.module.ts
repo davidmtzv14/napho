@@ -19,7 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
     HomeContainerComponent
   ],
   imports: [
-    StoreModule.forFeature('auth', fromFeed.reducer),
+    StoreModule.forFeature('feed', fromFeed.reducer),
     EffectsModule.forFeature([FeedEffects]),
     CommonModule,
     SharedModule,

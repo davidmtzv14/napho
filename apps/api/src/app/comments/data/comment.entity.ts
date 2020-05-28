@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { CommentStatus, Comment, Photo, User } from '@napho/data';
 import { PhotoEntity } from '../../photos/data/photo.entity';
-import { UserEntity } from '@api/users/user.entity';
+import { UserEntity } from '@api/users/data/user.entity';
 
 @Entity('comments')
 export class CommentEntity extends BaseEntity implements Comment {

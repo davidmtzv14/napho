@@ -14,6 +14,7 @@ export class PhotoPostComponent extends FormComponent {
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
   showComment = false;
+  showComments = false;
 
   constructor(protected formService: FormService, private fb: FormBuilder) {
     super(formService);
@@ -25,6 +26,10 @@ export class PhotoPostComponent extends FormComponent {
 
   changeShowComment() {
     this.showComment = !this.showComment;
+  }
+
+  changeShowComments() {
+    this.showComments = !this.showComments;
   }
 
   onSubmit() {

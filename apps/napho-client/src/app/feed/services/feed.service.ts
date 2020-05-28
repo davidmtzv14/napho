@@ -4,7 +4,8 @@ import {
   NAPHO_DATA_CONFIGURATION,
   NaphoDataConfiguration,
   Photo,
-  Comment
+  Comment,
+  User
 } from '@napho/data';
 import { Observable } from 'rxjs';
 
@@ -34,7 +35,26 @@ export class FeedService {
     );
   }
 
-  getPhotos(): Observable<Photo[]> {
-    return this.http.get<Photo[]>(`${this.config.apiUrl}/photos?`);
+  getFeedPhotos(): Observable<Photo[]> {
+    return this.http.get<Photo[]>(`${this.config.apiUrl}/photos/feed`);
+  }
+
+  getSearchPhotos({ search }): Observable<Photo[]> {
+    const params = { search };
+    return this.http.get<Photo[]>(`${this.config.apiUrl}/photos/search`, {
+      params
+    });
+  }
+
+  getSearchUsers({ search }): Observable<User[]> {
+    const params = { search };
+    return this.http.get<User[]>(`${this.config.apiUrl}/users/search`, {
+      params
+    });
+  }
+
+  getUser(id: number): Observable<User> {
+    console.log(id)
+    return this.http.get<User>(`${this.config.apiUrl}/users/${id}`);
   }
 }

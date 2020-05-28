@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-6">
-            <div>
+            <div (click)="changeShowComments()">
               {{photo.comments.length}} Comments
             </div>
           </div>
@@ -75,7 +75,7 @@
           </div>
         </form>
       </mat-card-content>
-      <mat-card-footer>
+      <mat-card-footer *ngIf="showComments">
         <h6 class="m-0">Comments</h6>
         <div *ngFor="let comment of photo.comments"
              class="row m-0">

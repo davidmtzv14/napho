@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { fromAuth } from '@app/auth/state';
+import { fromFeed } from '@app/feed/state';
 
 @Component({
   selector: 'napho-spa-container',
@@ -11,7 +12,9 @@ import { fromAuth } from '@app/auth/state';
 export class SpaContainerComponent {
   constructor(private router: Router, private store: Store<any>) {}
 
-  onSearchChange(value) {
+  onSearchChange(search) {
+    this.store.dispatch(fromFeed.actions.getSearchUsers({ search }));
+    this.store.dispatch(fromFeed.actions.getSearchPhotos({ search }));
     this.router.navigateByUrl('/spa/home/search-results');
   }
 

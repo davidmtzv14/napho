@@ -24,28 +24,62 @@ export class FeedEffects {
   );
 
   createComment$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(FeedActions.createComment),
-    mergeMap(( comment ) =>
-      this.feedService.createComment(comment).pipe(
-        map(commentResponse =>
-          FeedActions.createCommentSuccess({ comment: commentResponse })
-        ),
-        catchError(() => of(FeedActions.createCommentFailed()))
+    this.actions$.pipe(
+      ofType(FeedActions.createComment),
+      mergeMap(comment =>
+        this.feedService.createComment(comment).pipe(
+          map(commentResponse =>
+            FeedActions.createCommentSuccess({ comment: commentResponse })
+          ),
+          catchError(() => of(FeedActions.createCommentFailed()))
+        )
       )
     )
-  )
-);
+  );
 
-  getPhotos$ = createEffect(() =>
+  getFeedPhotos$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FeedActions.getFeedPhotos),
+      mergeMap(() =>
+        this.feedService.getFeedPhotos().pipe(
+          map(photos => FeedActions.getFeedPhotosSuccess({ photos })),
+          catchError(() => of(FeedActions.getFeedPhotosFailed()))
+        )
+      )
+    )
+  );
+
+  getSearchPhotos$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FeedActions.getSearchPhotos),
+      mergeMap(({ search }) =>
+        this.feedService.getSearchPhotos(search).pipe(
+          map(photos => FeedActions.getSearchPhotosSuccess({ photos })),
+          catchError(() => of(FeedActions.getSearchPhotosFailed()))
+        )
+      )
+    )
+  );
+
+  getSearchUsers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FeedActions.getSearchUsers),
+      mergeMap(({ search }) =>
+        this.feedService.getSearchUsers(search).pipe(
+          map(users => FeedActions.getSearchUsersSuccess({ users })),
+          catchError(() => of(FeedActions.getSearchUsersFailed()))
+        )
+      )
+    )
+  );
+
+  getUser$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(FeedActions.getFeedPhotos),
-    mergeMap(() =>
-      this.feedService.getPhotos().pipe(
-        map(photos =>
-          FeedActions.getFeedPhotosSuccess({ photos })
-        ),
-        catchError(() => of(FeedActions.getFeedPhotosFailed()))
+    ofType(FeedActions.getUser),
+    mergeMap(({ id }) =>
+      this.feedService.getUser(id).pipe(
+        map(user => FeedActions.getUserSuccess({ user })),
+        catchError(() => of(FeedActions.getUserFailed()))
       )
     )
   )

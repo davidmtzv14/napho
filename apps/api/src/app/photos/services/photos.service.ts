@@ -5,7 +5,7 @@ import { PhotoEntity } from '../data/photo.entity';
 import { User } from '@napho/data';
 import { GetPhotosFilterDto } from '../dto/get-photos-filter.dto';
 import { CreatePhotoDto } from '../dto/create-photo.dto';
-import { UserEntity } from '../../users/user.entity';
+import { UserEntity } from '../../users/data/user.entity';
 
 @Injectable()
 export class PhotosService {
@@ -14,8 +14,16 @@ export class PhotosService {
     private photoRepository: PhotoRepository
   ) {}
 
-  async getPhotos(filterDto: GetPhotosFilterDto, user): Promise<PhotoEntity[]> {
-    return this.photoRepository.getPhotos(filterDto, user);
+  async getUserPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
+    return this.photoRepository.getUserPhotos(user);
+  }
+
+  async getFeedPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
+    return this.photoRepository.getFeedPhotos(user);
+  }
+
+  async getSearchPhotos(filterDto: GetPhotosFilterDto): Promise<PhotoEntity[]> {
+    return this.photoRepository.getSearchPhotos(filterDto);
   }
 
   async getPhotoById(id: number, user: Partial<User>): Promise<PhotoEntity> {

@@ -9,7 +9,7 @@ import {
   JoinTable
 } from 'typeorm';
 import { User, Photo, Comment } from '@napho/data';
-import { UserEntity } from '../../users/user.entity';
+import { UserEntity } from '../../users/data/user.entity';
 import { CommentEntity } from '../../comments/data/comment.entity';
 import { TagEntity } from './tag.entity';
 

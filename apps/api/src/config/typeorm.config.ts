@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { environment } from '@env/environment';
-import { UserEntity } from '@api/users/user.entity';
+import { UserEntity } from '@api/users/data/user.entity';
 import { CommentEntity } from '@api/comments/data/comment.entity';
 import { PhotoEntity } from '@api/photos/data/photo.entity';
 import { TagEntity } from '@api/photos/data/tag.entity';

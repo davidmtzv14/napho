@@ -7,9 +7,7 @@ import { getAuthUserState } from '@app/auth/state';
   templateUrl: './profile-container.component.html',
   styleUrls: ['./profile-container.component.scss']
 })
-export class ProfileContainerComponent implements OnInit {
+export class ProfileContainerComponent {
   userProfile$ = this.store.select(getAuthUserState);
   constructor(public store: Store<any>) {}
-
-  ngOnInit(): void {}
 }

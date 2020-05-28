@@ -1,9 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 
 import { UserEntity } from './user.entity';
-import {
-  SignUpCredentialsDto
-} from '../auth/dto/auth-credentials.dto';
+import { SignUpCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import {
   ConflictException,
   InternalServerErrorException
@@ -42,6 +40,21 @@ export class UserRepository extends Repository<UserEntity> {
       }
     }
     return user;
+  }
+
+  async getSearchUsers(search: string): Promise<UserEntity[]> {
+    const query = this.createQueryBuilder('user');
+
+    if (search) {
+      query.where(
+        '(user.username LIKE :search OR user.firstName LIKE :search OR user.lastName LIKE :search OR user.description LIKE :search)',
+        { search: `%${search}%` }
+      );
+    }
+
+    const users = await query.getMany();
+
+    return users;
   }
 
   private async hashPassword(password: string, salt: string): Promise<string> {

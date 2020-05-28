@@ -5,21 +5,29 @@ import {
   EventEmitter,
   OnDestroy
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { FormComponent } from '@app/core/components/form/form.component';
+import { FormService } from '@app/core/services/form.service';
 
 @Component({
   selector: 'napho-spa',
   templateUrl: './spa.component.html',
   styleUrls: ['./spa.component.scss']
 })
-export class SpaComponent implements OnInit, OnDestroy {
+export class SpaComponent extends FormComponent implements OnInit, OnDestroy {
   @Output() searchChange = new EventEmitter<string>();
   @Output() logout = new EventEmitter();
-  searchControl = new FormControl('');
 
   private destroy$ = new Subject<void>();
+
+  constructor(protected formService: FormService, private fb: FormBuilder) {
+    super(formService);
+    this.form = this.fb.group({
+      search: [null]
+    });
+  }
 
   ngOnInit() {
     // this.searchControl.valueChanges
@@ -32,8 +40,7 @@ export class SpaComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  search(value) {
-    this.searchChange.emit(value);
-    console.log(value);
+  search() {
+    this.submit()
   }
 }

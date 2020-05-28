@@ -10,7 +10,7 @@ import {
   JoinTable
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { PhotoEntity } from '../photos/data/photo.entity';
+import { PhotoEntity } from '../../photos/data/photo.entity';
 
 @Entity('users')
 @Unique(['username', 'email'])

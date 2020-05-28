@@ -7,13 +7,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../config/typeorm.config';
 import { PhotosModule } from './photos/photos.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from '@napho/data';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     AuthModule,
     CommentsModule,
-    PhotosModule
+    PhotosModule,
   ],
   controllers: [AppController],
   providers: [AppService]

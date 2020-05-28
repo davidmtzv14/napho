@@ -25,12 +25,23 @@ import { GetUser } from '../../auth/decorators/get-user.decorator';
 export class PhotosController {
   constructor(private photosService: PhotosService) {}
 
-  @Get()
-  getPhotos(
-    @Query(ValidationPipe) filterDto: GetPhotosFilterDto,
+  @Get('user')
+  getUserPhotos(@GetUser() user: Partial<User>): Promise<PhotoEntity[]> {
+    return this.photosService.getUserPhotos(user);
+  }
+
+  @Get('feed')
+  getFeedPhotos(
     @GetUser() user: Partial<User>
   ): Promise<PhotoEntity[]> {
-    return this.photosService.getPhotos(filterDto, user);
+    return this.photosService.getFeedPhotos(user);
+  }
+
+  @Get('search')
+  getSearchPhotos(
+    @Query(ValidationPipe) filterDto: GetPhotosFilterDto,
+  ): Promise<PhotoEntity[]> {
+    return this.photosService.getSearchPhotos(filterDto);
   }
 
   @Get(':id')

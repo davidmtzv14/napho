@@ -13,3 +13,18 @@ export const getFeedPhotosState = createSelector(
   getFeedFeatureState,
   state => state.photos
 );
+
+export const getSearchPhotosState = createSelector(
+  getFeedFeatureState,
+  state => state.searchPhotos
+);
+
+export const getSearchUsersState = createSelector(
+  getFeedFeatureState,
+  state => state.searchUsers
+);
+
+export const getProfileUserState = createSelector(
+  getFeedFeatureState,
+  state => state.profileUser
+);

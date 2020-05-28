@@ -7,25 +7,10 @@ import { TagEntity } from './tag.entity';
 
 @EntityRepository(PhotoEntity)
 export class PhotoRepository extends Repository<PhotoEntity> {
-  async getPhotos(
-    filterDto: GetPhotosFilterDto,
-    user: Partial<User>
-  ): Promise<PhotoEntity[]> {
-    const { search, field } = filterDto;
+  async getUserPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
     const query = this.createQueryBuilder('photo');
 
     query.andWhere('photo.userId = :userId', { userId: user.id });
-
-    if (search) {
-      query.andWhere(
-        '(photo.content LIKE :search OR photo.user.username LIKE :search OR photo.tags LIKE :search)',
-        { search: `%${search}%` }
-      );
-    }
-
-    if (field) {
-      query.orderBy(':field', 'ASC').setParameters({ field });
-    }
 
     const photos = await query
       .leftJoinAndSelect('photo.user', 'user')
@@ -36,33 +21,52 @@ export class PhotoRepository extends Repository<PhotoEntity> {
     return photos;
   }
 
-  // async getFeedPhotos(
-  //   filterDto: GetPhotosFilterDto,
-  //   user: Partial<User>
-  // ): Promise<PhotoEntity[]> {
-  //   const { search, field } = filterDto;
-  //   const query = this.createQueryBuilder('photo');
+  async getFeedPhotos(user: Partial<User>): Promise<PhotoEntity[]> {
+    const query = this.createQueryBuilder('photo');
 
-  //   query.andWhere('photo.userId = :userId', { userId: user.id });
+    const photos = await query
+      .leftJoinAndSelect('photo.user', 'user')
+      .leftJoinAndSelect('photo.comments', 'comment')
+      .leftJoinAndSelect('photo.tags', 'tag')
+      .getMany();
 
-  //   if (search) {
-  //     query.andWhere(
-  //       '(photo.content LIKE :search OR photo.user.username LIKE :search OR photo.tags LIKE :search)',
-  //       { search: `%${search}%` }
-  //     );
-  //   }
+    return photos;
+  }
 
-  //   if (field) {
-  //     query.orderBy(':field', 'ASC').setParameters({ field });
-  //   }
+  async getSearchPhotos(filterDto: GetPhotosFilterDto): Promise<PhotoEntity[]> {
+    const { search, field } = filterDto;
+    const query = this.createQueryBuilder('photo');
 
-  //   const photos = await query
-  //     .leftJoinAndSelect('photo.user', 'user')
-  //     .leftJoinAndSelect('photo.tags', 'tag')
-  //     .getMany();
+    if (search) {
+      query
+        .leftJoinAndSelect('photo.user', 'user')
+        .where(
+          '(photo.description LIKE :search OR user.username LIKE :search)',
+          { search: `%${search}%` }
+        );
+    }
 
-  //   return photos;
-  // }
+    if (field) {
+      if (field === 'favoriteOf') {
+        query
+          .leftJoin('photo.favoriteOf', 'favoriteOf')
+          .addSelect('COUNT(favoriteOf.id) as favoriteCount')
+          .orderBy('favoriteCount', 'ASC');
+      } else if (field === 'comments') {
+        query
+          .leftJoin('photo.comments', 'comment')
+          .addSelect('COUNT(comment.id) as commentCount')
+          .orderBy('commentCount', 'ASC');
+      }
+    }
+
+    const photos = await query
+      .leftJoinAndSelect('photo.comments', 'comment')
+      .leftJoinAndSelect('photo.tags', 'tag')
+      .getMany();
+
+    return photos;
+  }
 
   async createPhoto(
     createPhotoDto: CreatePhotoDto,

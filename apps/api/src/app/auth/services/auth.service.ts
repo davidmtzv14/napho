@@ -4,7 +4,7 @@ import {
   AuthCredentialsDto,
   SignUpCredentialsDto
 } from '../dto/auth-credentials.dto';
-import { UserRepository } from '../../users/user.repository';
+import { UserRepository } from '../../users/data/user.repository';
 import { User } from '@napho/data';
 import { Connection } from 'typeorm';
 

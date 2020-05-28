@@ -1,1 +1,3 @@
-<napho-search-results></napho-search-results>
+<napho-search-results [users]="users$ |async"
+                      [photos]="photos$ |async"
+                      (createComment)="createComment($event)"></napho-search-results>
