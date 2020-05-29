@@ -1160,7 +1160,7 @@ function bootstrap() {
         app.setGlobalPrefix(globalPrefix);
         app.use(bodyParser.json({ limit: '50mb' }));
         app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-        const port = environment_1.environment.server.port;
+        const port = process.env.PORT || environment_1.environment.server.port;
         yield app.listen(port, () => {
             common_1.Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
         });
