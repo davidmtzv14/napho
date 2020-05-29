@@ -1,5 +1,78 @@
 # Napho
 
+## Endpoint documentation 
+- Auth /auth
+Post /signup: 
+> Body:
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  password: string; Must be between 8 & 20 characters and have 1 uppercase letter, 1 lowercase letter, 1 number and 1 especial character
+
+Post /signin
+> Body:
+  email: string;
+  password: string;
+
+- Comments :photoId/comments
+Get /
+> Params:
+  photoId: number;
+
+Post /
+> Params:
+  photoId: number;
+
+> Body: 
+  content: string;
+
+Patch /:id/status
+> Params:
+  photoId: number;
+  id: number;
+
+> Body:
+  status: CommentStatus -- enum: pending, approved, rejected
+
+- Photos /photos
+Get /user/:id
+  > Params:
+  id: number;
+
+Get /feed/:id
+
+Get /search
+> QueryParams:
+  search: string;
+
+Post /
+> Body:
+  photo: Photo -- {description: string, tags: [], imageUrl: string}
+
+Patch /:id/favorite
+> Param:
+  id: number
+
+- Users: /users
+
+Get /search
+> QueryParams:
+  search: string;
+
+Get /:id/followers
+> Params:
+  id: number;
+
+Get /:id/following
+> Params:
+  id: number;
+
+Put /follow/:id
+> Params:
+  id: number;
+
 This project was generated using [Nx](https://nx.dev).
 
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>

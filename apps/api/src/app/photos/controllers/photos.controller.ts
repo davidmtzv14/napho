@@ -25,11 +25,6 @@ import { GetUser } from '../../auth/decorators/get-user.decorator';
 export class PhotosController {
   constructor(private photosService: PhotosService) {}
 
-  // @Get('user')
-  // getUserPhotos(@GetUser() user: Partial<User>): Promise<PhotoEntity[]> {
-  //   return this.photosService.getUserPhotos(user);
-  // }
-
   @Get('user/:id')
   getUserPhotos(
     @Param('id', ParseIntPipe) id: number,
@@ -62,7 +57,6 @@ export class PhotosController {
   @Get(':id')
   getPhotoById(
     @Param('id', ParseIntPipe) id: number
-    // @GetUser() user: Partial<User>
   ): Promise<PhotoEntity> {
     return this.photosService.getPhotoById(id);
   }
