@@ -299,11 +299,11 @@ exports.environment = {
     production: true,
     databaseConfig: {
         type: 'postgres',
-        host: 'localhost',
+        host: 'ec2-54-175-117-212.compute-1.amazonaws.com',
         port: 5432,
-        database: 'napho_dev',
-        username: 'davidmartinez',
-        password: 'postgres',
+        database: 'drqg21iajeqfe',
+        username: 'spazardonyzsqm',
+        password: '89ed7d9c8c8a7f1e5bf007478cb3aa0bd3c3e56bd9ad8d6e0848140491438c8f',
         synchronize: true
     },
     server: {
@@ -764,7 +764,9 @@ let AuthService = class AuthService {
             if (!user) {
                 throw new common_1.UnauthorizedException('Invalid credentials');
             }
-            const { photos, favPhotos, following } = user, payload = tslib_1.__rest(user, ["photos", "favPhotos", "following"]);
+            const { photos, favPhotos, following, profileImgUrl } = user, payload = tslib_1.__rest(user
+            // const payload = { user };
+            , ["photos", "favPhotos", "following", "profileImgUrl"]);
             // const payload = { user };
             const token = yield this.jwtService.sign(payload);
             return Object.assign(Object.assign({}, user), { token });
