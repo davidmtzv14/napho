@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://napho.herokuapp.com/'
+  apiUrl: 'http://localhost:23147/api'
 };
