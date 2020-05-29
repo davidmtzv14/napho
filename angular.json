@@ -20,6 +20,7 @@
             "main": "apps/napho-client/src/main.ts",
             "polyfills": "apps/napho-client/src/polyfills.ts",
             "tsConfig": "apps/napho-client/tsconfig.app.json",
+            "showCircularDependencies": false,
             "aot": true,
             "assets": [
               "apps/napho-client/src/favicon.ico",
@@ -138,6 +139,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
+            "showCircularDependencies": false,
             "assets": ["apps/api/src/assets"]
           },
           "configurations": {
