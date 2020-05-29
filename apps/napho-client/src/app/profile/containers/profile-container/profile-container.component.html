@@ -4,4 +4,5 @@
                [followers]="followers$ | async"
                [following]="following$ | async"
                [isSearch]="false"
-               (createComment)="createComment($event)"></napho-profile>
+               (createComment)="createComment($event)"
+               (formSubmit)="updateProfile($event)"></napho-profile>

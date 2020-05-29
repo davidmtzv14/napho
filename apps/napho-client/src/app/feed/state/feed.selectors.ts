@@ -24,3 +24,8 @@ export const getSearchUsersState = createSelector(
   state => state.searchUsers
 );
 
+
+export const getSearchState = createSelector(
+  getFeedFeatureState,
+  state => state.search
+);

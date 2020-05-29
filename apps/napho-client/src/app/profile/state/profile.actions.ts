@@ -13,6 +13,18 @@ export const getProfileUserSuccess = createAction(
 
 export const getProfileUserFailed = createAction('[Profile] Get user failed');
 
+export const updateProfile = createAction(
+  '[Profile] Update profile user',
+  props<{ user: Partial<User>  }>()
+);
+
+export const updateProfileSuccess = createAction(
+  '[Profile] Update profile user success',
+  props<{ user: Partial<User> }>()
+);
+
+export const updateProfileFailed = createAction('[Profile] Update profile user failed');
+
 export const getProfilePhotos = createAction(
   '[Profile] Get profile photos',
   props<{ id: number }>()

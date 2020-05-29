@@ -55,8 +55,8 @@ export class FeedService {
     return this.http.get<Photo[]>(`${this.config.apiUrl}/photos/feed`);
   }
 
-  getSearchPhotos({ search }): Observable<Photo[]> {
-    const params = { search };
+  getSearchPhotos({search, field}): Observable<Photo[]> {
+    const params = { search: search.search, field };
     return this.http.get<Photo[]>(`${this.config.apiUrl}/photos/search`, {
       params
     });

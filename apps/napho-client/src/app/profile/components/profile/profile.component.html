@@ -17,106 +17,104 @@
           </div>
         </div>
       </mat-card-header>
-      <mat-card-content>
+      <form [formGroup]="form"
+            (ngSubmit)="submit()">
         <mat-card-content class="px-lg-5 pt-3">
-          <form [formGroup]="form"
-                (ngSubmit)="submit()">
-            <div class="row">
-              <div class="col d-flex justify-content-center">
-                <label class="hoverable"
-                       for="fileInput">
-                  <img class="profileImg"
-                       [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath"
-                       alt="Profile image">
-                  <div *ngIf="!isSearch"
-                       class="hover-text">Change picture</div>
-                  <div class="background"></div>
-                </label>
-                <br />
-                <input id="fileInput"
-                       type='file'
-                       accept="image/*"
-                       [formControl]="form.get('profileImgUrl')"
-                       (change)="onSelectFile($event)">
-                <!-- <button *ngIf="profilePictureUrl"
+          <div class="row">
+            <div class="col d-flex justify-content-center">
+              <label class="hoverable"
+                     for="fileInput">
+                <img class="profileImg"
+                     [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath"
+                     alt="Profile image">
+                <div *ngIf="!isSearch"
+                     class="hover-text">Change picture</div>
+                <div class="background"></div>
+              </label>
+              <br />
+              <input id="fileInput"
+                     type='file'
+                     accept="image/*"
+                     (change)="onSelectFile($event)">
+              <!-- <button *ngIf="profilePictureUrl"
                         mat-icon-button
                         (click)="delete()">Remove photo
                   <mat-icon>delete</mat-icon>
                 </button> -->
-              </div>
             </div>
-
-            <div class="row">
-              <div class="col-xl-6 col-12">
-                <mat-form-field>
-                  <mat-label>First name</mat-label>
-                  <input matInput
-                         type="text"
-                         [formControl]="form.get('firstName')">
-                </mat-form-field>
-              </div>
-              <div class="col-xl-6 col-12">
-                <mat-form-field>
-                  <mat-label>Last name</mat-label>
-                  <input matInput
-                         type="text"
-                         [formControl]="form.get('lastName')">
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <label>Gender:</label>
-                <mat-radio-group [formControl]="form.get('gender')">
-                  <mat-radio-button value="M">Male</mat-radio-button>
-                  <mat-radio-button value="F">Female</mat-radio-button>
-                </mat-radio-group>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Username</mat-label>
-                  <input matInput
-                         type="text"
-                         [formControl]="form.get('username')">
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Email</mat-label>
-                  <input matInput
-                         disabled
-                         [value]="form.get('email').value">
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Description</mat-label>
-                  <textarea matInput
-                            [formControl]="form.get('description')"></textarea>
-                </mat-form-field>
-              </div>
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card-content>
-      <mat-card-footer *ngIf="!isSearch">
-        <div class="row">
-          <div class="col-6">
-            <button mat-raised-button
-                    color="primary"
-                    type="submit">Save</button>
           </div>
-        </div>
-      </mat-card-footer>
+
+          <div class="row">
+            <div class="col-xl-6 col-12">
+              <mat-form-field>
+                <mat-label>First name</mat-label>
+                <input matInput
+                       type="text"
+                       [formControl]="form.get('firstName')">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-6 col-12">
+              <mat-form-field>
+                <mat-label>Last name</mat-label>
+                <input matInput
+                       type="text"
+                       [formControl]="form.get('lastName')">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Gender:</label>
+              <mat-radio-group [formControl]="form.get('gender')">
+                <mat-radio-button value="M">Male</mat-radio-button>
+                <mat-radio-button value="F">Female</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput
+                       type="text"
+                       [formControl]="form.get('username')">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput
+                       disabled
+                       [value]="form.get('email').value">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput
+                          [formControl]="form.get('description')"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-footer *ngIf="!isSearch">
+          <div class="row">
+            <div class="col-6">
+              <button mat-raised-button
+                      color="primary"
+                      type="submit">Save</button>
+            </div>
+          </div>
+        </mat-card-footer>
+      </form>
+
     </mat-card>
   </div>
   <div class="col-lg-8 col-12">

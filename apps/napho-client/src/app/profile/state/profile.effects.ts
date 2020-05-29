@@ -21,6 +21,18 @@ export class ProfileEffects {
     )
   );
 
+  updateProfile$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.updateProfile),
+      mergeMap(({ user }) =>
+        this.profileService.updateProfile(user).pipe(
+          map(userResponse => ProfileActions.updateProfileSuccess({ user: userResponse })),
+          catchError(() => of(ProfileActions.updateProfileFailed()))
+        )
+      )
+    )
+  );
+
   getProfilePhotos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProfileActions.getProfilePhotos),

@@ -18,6 +18,7 @@ export class SearchResultsComponent {
   @Input() users: User[];
   @Input() photos: Photo[];
   @Output() createComment = new EventEmitter<Comment>();
+  @Output() valueChange = new EventEmitter<string>();
   filterOptions = [
     { label: 'Most recent', value: 'date' },
     { label: 'Most favorites', value: 'favoriteOf' },

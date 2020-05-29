@@ -7,7 +7,8 @@ export const initialState: FeedState = {
   photos: [],
   searchPhotos: [],
   searchUsers: [],
-  profileUser: {}
+  profileUser: {},
+  search: ''
 };
 
 export const feedReducer = createReducer(
@@ -28,6 +29,12 @@ export const feedReducer = createReducer(
     return {
       ...state,
       photos: [...action.photos]
+    };
+  }),
+  on(FeedActions.getSearchPhotos, (state, action) => {
+    return {
+      ...state,
+      search: action.search
     };
   }),
   on(FeedActions.getSearchPhotosSuccess, (state, action) => {

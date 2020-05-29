@@ -42,9 +42,7 @@ export class FeedEffects {
       ofType(FeedActions.updatePhotoFavorite),
       mergeMap(({ id }) =>
         this.feedService.updatePhotoFavorite(id).pipe(
-          map(photo =>
-            FeedActions.updatePhotoFavoriteSuccess({ photo })
-          ),
+          map(photo => FeedActions.updatePhotoFavoriteSuccess({ photo })),
           catchError(() => of(FeedActions.updatePhotoFavoriteFailed()))
         )
       )
@@ -80,8 +78,8 @@ export class FeedEffects {
   getSearchPhotos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FeedActions.getSearchPhotos),
-      mergeMap(({ search }) =>
-        this.feedService.getSearchPhotos(search).pipe(
+      mergeMap(({ search, field }) =>
+        this.feedService.getSearchPhotos({ search, field }).pipe(
           map(photos => FeedActions.getSearchPhotosSuccess({ photos })),
           catchError(() => of(FeedActions.getSearchPhotosFailed()))
         )

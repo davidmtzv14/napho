@@ -52,7 +52,7 @@ Get /search
 
 Post /
 > Body:
-  photo: Photo -- {description: string, tags: [], imageUrl: string}
+  photo: Photo -- {description: string, tags: string[], imageUrl: string}
 
 Patch /:id/favorite
 > Param:
@@ -75,6 +75,10 @@ Get /:id/following
 Put /follow/:id
 > Params:
   id: number;
+
+Patch 
+> Params:
+  userBody: User;
 
 This project was generated using [Nx](https://nx.dev).
 

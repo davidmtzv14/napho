@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { FormComponent } from '@app/core/components/form/form.component';
 import { FormService } from '@app/core/services/form.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -30,7 +37,7 @@ export class ProfileComponent extends FormComponent implements OnChanges {
       email: [null, Validators.required],
       gender: [null, Validators.required],
       description: [null],
-      profileImgUrl: [null],
+      profileImgUrl: [null]
     });
   }
 
@@ -41,7 +48,10 @@ export class ProfileComponent extends FormComponent implements OnChanges {
   }
 
   populateProfile() {
-    this.form.patchValue(this.userProfile);
+    this.profilePictureUrl = this.userProfile.profileImgUrl
+
+    const {profileImgUrl, ...profile} = this.userProfile
+    this.form.patchValue(profile);
     if (this.isSearch) {
       this.form.disable();
     }
@@ -52,12 +62,13 @@ export class ProfileComponent extends FormComponent implements OnChanges {
       const reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]);
-
       reader.onload = load => {
-        this.profilePictureUrl = load.target.result;
+        this.profilePictureUrl = reader.result;
+        this.form.get('profileImgUrl').patchValue(reader.result);
       };
     }
   }
+
   public delete() {
     this.profilePictureUrl = null;
   }

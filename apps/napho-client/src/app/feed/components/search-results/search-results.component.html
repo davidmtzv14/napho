@@ -2,7 +2,7 @@
   <div class="col-6">
     <mat-form-field>
       <mat-label>Filter</mat-label>
-      <mat-select>
+      <mat-select (valueChange)="valueChange.emit($event)">
         <mat-option *ngFor="let filter of filterOptions"
                     [value]="filter.value">
           {{filter.label}}

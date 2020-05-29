@@ -6,7 +6,8 @@ import {
   ParseIntPipe,
   UseGuards,
   Patch,
-  Put
+  Put,
+  Body
 } from '@nestjs/common';
 import { UserEntity } from '../data/user.entity';
 import { UsersService } from '../services/users.service';
@@ -45,5 +46,13 @@ export class UsersController {
     @GetUser() user: Partial<User>
   ): Promise<UserEntity> {
     return this.usersService.followUser(user, id);
+  }
+
+  @Patch()
+  updateUser(
+    @Body('userBody') userBody: Partial<User>,
+    @GetUser() user: Partial<User>
+  ): Promise<UserEntity> {
+    return this.usersService.updateUser(user, userBody);
   }
 }

@@ -32,6 +32,7 @@ export class PhotosService {
       .leftJoinAndSelect('photo.user', 'user')
       .leftJoinAndSelect('photo.comments', 'comment')
       .leftJoinAndSelect('photo.tags', 'tag')
+      .leftJoinAndSelect('photo.favoriteOf', 'favoriteOf')
       .getMany();
 
     photos = photos.map(photo => {
@@ -124,6 +125,7 @@ export class PhotosService {
       .leftJoinAndSelect('photo.user', 'user')
       .leftJoinAndSelect('photo.comments', 'comment')
       .leftJoinAndSelect('photo.tags', 'tag')
+      .leftJoinAndSelect('photo.favoriteOf', 'favoriteOf')
       .getMany();
 
     photos = photos.filter(photo => {
@@ -168,7 +170,9 @@ export class PhotosService {
 
     query
       .leftJoinAndSelect('photo.user', 'user')
-      .leftJoinAndSelect('photo.tags', 'tags');
+      .leftJoinAndSelect('photo.comments', 'comment')
+      .leftJoinAndSelect('photo.tags', 'tag')
+      .leftJoinAndSelect('photo.favoriteOf', 'favoriteOf');
     // let photos = await query.getMany();
     // const tags = [];
     // photos.forEach(photo => photo.tags.forEach(tag => {
@@ -187,20 +191,23 @@ export class PhotosService {
     if (field) {
       if (field === 'favoriteOf') {
         query
-          .leftJoin('photo.favoriteOf', 'favoriteOf')
           .addSelect('COUNT(favoriteOf.id) as favoriteCount')
-          .orderBy('favoriteCount', 'ASC');
+          .orderBy('favoriteCount', 'DESC');
       } else if (field === 'comments') {
         query
-          .leftJoin('photo.comments', 'comment')
           .addSelect('COUNT(comment.id) as commentCount')
-          .orderBy('commentCount', 'ASC');
+          .orderBy('commentCount', 'DESC');
       }
     }
 
     let photos = await query
-      .leftJoinAndSelect('photo.comments', 'comment')
+      .groupBy('photo.id')
+      .addGroupBy('user.id')
+      .addGroupBy('comment.id')
+      .addGroupBy('tag.id')
+      .addGroupBy('favoriteOf.id')
       .getMany();
+
 
     photos = photos.map(photo => {
       let found = false;
@@ -218,6 +225,8 @@ export class PhotosService {
       }
       return photo;
     });
+
+    this.photoRepository.findAndCount()
 
     return photos;
   }

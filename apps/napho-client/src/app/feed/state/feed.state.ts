@@ -5,4 +5,5 @@ export interface FeedState {
   searchPhotos: Partial<Photo>[];
   searchUsers: Partial<User>[];
   profileUser: Partial<User>;
+  search: string;
 }

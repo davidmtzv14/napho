@@ -47,4 +47,9 @@ export class ProfileService {
   followUser(id: number): Observable<User> {
     return this.http.put<User>(`${this.config.apiUrl}/users/follow/${id}`, {});
   }
+
+  updateProfile(userBody: Partial<User>) {
+    const payload = { userBody };
+    return this.http.patch<User>(`${this.config.apiUrl}/users/`, payload);
+  }
 }

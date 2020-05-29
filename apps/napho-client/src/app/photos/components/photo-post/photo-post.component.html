@@ -3,9 +3,16 @@
     <mat-card>
       <mat-card-header>
         <div class="row">
-          <div class="col-2">
+          <div *ngIf="photo.user.profileImgUrl"
+               class="col-2">
             <img class="profile"
-                 [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath"
+                 [src]="photo.user.profileImgUrl"
+                 alt="Profile image">
+          </div>
+          <div *ngIf="!photo.user.profileImgUrl"
+               class="col-2">
+            <img class="profile"
+                 [src]="defaultPicturePath"
                  alt="Profile image">
           </div>
           <div class="ml-3 col-6">
@@ -47,12 +54,12 @@
         <div class="row mt-1">
           <div class="col-lg-3 col-6">
             <div>
-              {{photo.favoriteOf.length}} Favs
+              {{photo.favoriteOf?.length}} Favs
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <div (click)="changeShowComments()">
-              {{photo.comments.length}} Comments
+              {{photo.comments?.length}} Comments
             </div>
           </div>
         </div>

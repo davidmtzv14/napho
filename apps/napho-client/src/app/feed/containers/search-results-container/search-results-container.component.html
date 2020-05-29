@@ -1,3 +1,4 @@
 <napho-search-results [users]="users$ |async"
                       [photos]="photos$ |async"
+                      (valueChange)="sortSearchPhotos($event)"
                       (createComment)="createComment($event)"></napho-search-results>

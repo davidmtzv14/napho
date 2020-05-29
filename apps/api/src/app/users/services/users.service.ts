@@ -40,4 +40,22 @@ export class UsersService {
   async followUser(user: Partial<User>, id: number): Promise<UserEntity> {
     return this.userRepository.followUser(user, id);
   }
+
+  async updateUser(
+    user: Partial<User>,
+    userBody: Partial<User>
+  ): Promise<UserEntity> {
+    const userEntity = await this.getUserById(user.id);
+
+    userEntity.firstName = userBody.firstName;
+    userEntity.lastName = userBody.lastName;
+    userEntity.gender = userBody.gender;
+    userEntity.username = userBody.username;
+    userEntity.description = userBody.description;
+    userEntity.profileImgUrl = userBody.profileImgUrl;
+
+    await userEntity.save();
+
+    return userEntity;
+  }
 }
