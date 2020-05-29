@@ -2,6 +2,7 @@
 
 ## Endpoint documentation 
 - Auth /auth
+
 Post /signup: 
 > Body:
   username: string;
@@ -17,6 +18,7 @@ Post /signin
   password: string;
 
 - Comments :photoId/comments
+
 Get /
 > Params:
   photoId: number;
@@ -37,6 +39,7 @@ Patch /:id/status
   status: CommentStatus -- enum: pending, approved, rejected
 
 - Photos /photos
+
 Get /user/:id
   > Params:
   id: number;
