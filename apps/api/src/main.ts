@@ -18,7 +18,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   app.use(bodyParser.json({limit: '50mb'}));
   app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-  const port =  process.env.PORT || environment.server.port;
+  const port = environment.server.port;
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
   });
