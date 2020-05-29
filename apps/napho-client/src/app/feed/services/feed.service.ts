@@ -36,6 +36,13 @@ export class FeedService {
     );
   }
 
+  updatePhotoFavorite(id: number): Observable<Photo> {
+    return this.http.patch<Photo>(
+      `${this.config.apiUrl}/photos/${id}/favorite`,
+      {}
+    );
+  }
+
   updateCommentStatus(comment: Partial<Comment>): Observable<Comment> {
     const payload = { status: comment.status };
     return this.http.patch<Comment>(

@@ -49,7 +49,8 @@
                 <div class="text-center"
                      *ngIf="previewUrl">
                   <img [src]="previewUrl"
-                       style="  min-width: 300px; max-width: 600px;" />
+                       style="  min-width: 300px; max-width: 600px;"
+                       alt="Image preview" />
                 </div>
               </div>
             </div>
@@ -69,7 +70,7 @@
   </form>
 </mat-card>
 
-<div *ngFor="let photo of photoArray">
+<div *ngFor="let photo of photos">
   <napho-photo-post-container [photo]="photo"
                               (createComment)="createComment.emit($event)"></napho-photo-post-container>
 </div>

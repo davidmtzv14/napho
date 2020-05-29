@@ -31,13 +31,19 @@ export class PhotosController {
   // }
 
   @Get('user/:id')
-  getUserPhotos(@Param('id', ParseIntPipe) id: number): Promise<PhotoEntity[]> {
-    return this.photosService.getUserPhotos(id);
+  getUserPhotos(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: Partial<User>
+  ): Promise<PhotoEntity[]> {
+    return this.photosService.getUserPhotos(id, user);
   }
 
   @Get('user-fav/:id')
-  getUserFavPhotos(@Param('id', ParseIntPipe) id: number): Promise<PhotoEntity[]> {
-    return this.photosService.getUserFavPhotos(id);
+  getUserFavPhotos(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: Partial<User>
+  ): Promise<PhotoEntity[]> {
+    return this.photosService.getUserFavPhotos(id, user);
   }
 
   @Get('feed')
@@ -47,17 +53,18 @@ export class PhotosController {
 
   @Get('search')
   getSearchPhotos(
-    @Query(ValidationPipe) filterDto: GetPhotosFilterDto
+    @Query(ValidationPipe) filterDto: GetPhotosFilterDto,
+    @GetUser() user: Partial<User>
   ): Promise<PhotoEntity[]> {
-    return this.photosService.getSearchPhotos(filterDto);
+    return this.photosService.getSearchPhotos(filterDto, user);
   }
 
   @Get(':id')
   getPhotoById(
-    @Param('id', ParseIntPipe) id: number,
-    @GetUser() user: Partial<User>
+    @Param('id', ParseIntPipe) id: number
+    // @GetUser() user: Partial<User>
   ): Promise<PhotoEntity> {
-    return this.photosService.getPhotoById(id, user);
+    return this.photosService.getPhotoById(id);
   }
 
   @Post()
@@ -77,7 +84,7 @@ export class PhotosController {
     return this.photosService.deletePhoto(id, user);
   }
 
-  @Patch('/:id')
+  @Patch(':id/favorite')
   updatePhotoFavorite(
     @Param('id', ParseIntPipe) id: number,
     @GetUser() user: Partial<User>

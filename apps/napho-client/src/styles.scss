@@ -28,11 +28,13 @@ $font-size: 14px;
 
 html,
 body {
+  box-sizing: border-box;
   background-color: $white-color;
   min-height: 100%;
   min-height: 100vh;
 }
-body, header {
+body,
+header {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif !important;
   font-size: $font-size !important;
@@ -61,6 +63,7 @@ mat-card-footer {
 img {
   min-width: 300px;
   max-width: 600px;
+  width: 100%;
 }
 
 mat-toolbar {
@@ -107,102 +110,102 @@ h6,
 @import '~bootstrap/scss/mixins';
 
 $napho-grey: (
-  50 : #e9e9e7,
-  100 : #c7c7c4,
-  200 : #a2a29d,
-  300 : #7c7c76,
-  400 : #606058,
-  500 : #44443b,
-  600 : #3e3e35,
-  700 : #35352d,
-  800 : #2d2d26,
-  900 : #1f1f19,
-  A100 : #f9f96d,
-  A200 : #f7f73c,
-  A400 : #ffff01,
-  A700 : #e6e600,
+  50: #e9e9e7,
+  100: #c7c7c4,
+  200: #a2a29d,
+  300: #7c7c76,
+  400: #606058,
+  500: #44443b,
+  600: #3e3e35,
+  700: #35352d,
+  800: #2d2d26,
+  900: #1f1f19,
+  A100: #f9f96d,
+  A200: #f7f73c,
+  A400: #ffff01,
+  A700: #e6e600,
   contrast: (
-      50 : #000000,
-      100 : #000000,
-      200 : #000000,
-      300 : #ffffff,
-      400 : #ffffff,
-      500 : #ffffff,
-      600 : #ffffff,
-      700 : #ffffff,
-      800 : #ffffff,
-      900 : #ffffff,
-      A100 : #000000,
-      A200 : #000000,
-      A400 : #000000,
-      A700 : #000000,
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
   )
 );
 
 $napho-orange: (
-    50 : #feede2,
-    100 : #fbd3b6,
-    200 : #f9b585,
-    300 : #f79754,
-    400 : #f5812f,
-    500 : #f36b0a,
-    600 : #f16309,
-    700 : #ef5807,
-    800 : #ed4e05,
-    900 : #ea3c03,
-    A100 : #ffffff,
-    A200 : #ffe4de,
-    A400 : #ffbbab,
-    A700 : #ffa691,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
+  50: #feede2,
+  100: #fbd3b6,
+  200: #f9b585,
+  300: #f79754,
+  400: #f5812f,
+  500: #f36b0a,
+  600: #f16309,
+  700: #ef5807,
+  800: #ed4e05,
+  900: #ea3c03,
+  A100: #ffffff,
+  A200: #ffe4de,
+  A400: #ffbbab,
+  A700: #ffa691,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
 );
 
 $napho-brown: (
-    50 : #f2e9e6,
-    100 : #dec8c0,
-    200 : #c8a396,
-    300 : #b17e6b,
-    400 : #a1624c,
-    500 : #90462c,
-    600 : #883f27,
-    700 : #7d3721,
-    800 : #732f1b,
-    900 : #612010,
-    A100 : #ffa897,
-    A200 : #ff7d64,
-    A400 : #ff5331,
-    A700 : #ff3d18,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #ffffff,
-    )
+  50: #f2e9e6,
+  100: #dec8c0,
+  200: #c8a396,
+  300: #b17e6b,
+  400: #a1624c,
+  500: #90462c,
+  600: #883f27,
+  700: #7d3721,
+  800: #732f1b,
+  900: #612010,
+  A100: #ffa897,
+  A200: #ff7d64,
+  A400: #ff5331,
+  A700: #ff3d18,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
+  )
 );
 
 $theme-colors: (
@@ -247,23 +250,15 @@ $napho-app-primary: mat-palette($napho-grey);
 $napho-app-accent: mat-palette($napho-orange);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$napho-app-theme: mat-light-theme(
-  $napho-app-primary,
-  $napho-app-accent,
-);
-
+$napho-app-theme: mat-light-theme($napho-app-primary, $napho-app-accent);
 
 $napho-app-orange: mat-palette($napho-orange);
 $napho-app-brown: mat-palette($napho-brown);
 
-$napho-app-button: mat-light-theme(
-  $napho-app-orange,
-  $napho-app-brown,
-);
+$napho-app-button: mat-light-theme($napho-app-orange, $napho-app-brown);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($napho-app-theme);
 @include mat-button-theme($napho-app-button);
-

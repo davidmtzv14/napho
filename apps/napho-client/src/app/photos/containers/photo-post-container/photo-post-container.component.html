@@ -1,4 +1,5 @@
 <napho-photo-post [photo]="photo"
                   [user]="user$ | async"
                   (updateCommentStatus)="updateCommentStatus($event)"
+                  (updatePhotoFavorite)="updatePhotoFavorite($event)"
                   (formSubmit)="createComment.emit($event)"></napho-photo-post>

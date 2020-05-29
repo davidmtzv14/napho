@@ -19,4 +19,8 @@ export class PhotoPostContainerComponent {
   updateCommentStatus(comment: Partial<Comment>) {
     this.store.dispatch(fromFeed.actions.updateCommentStatus({ comment }));
   }
+
+  updatePhotoFavorite(id: number) {
+    this.store.dispatch(fromFeed.actions.updatePhotoFavorite({ id }));
+  }
 }

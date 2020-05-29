@@ -20,6 +20,7 @@ export class PhotoPostComponent extends FormComponent implements OnChanges {
   @Input() photo: Photo;
   @Input() user: Partial<User>;
   @Output() updateCommentStatus = new EventEmitter<Partial<Comment>>();
+  @Output() updatePhotoFavorite = new EventEmitter<number>();
   profilePictureUrl;
   defaultPicturePath = 'assets/img/blank-profile.png';
   showComment = false;
@@ -37,7 +38,7 @@ export class PhotoPostComponent extends FormComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.photo && this.photo) {
+    if (changes.photo && this.photo && this.photo.comments) {
       this.photo = {
         ...this.photo,
         comments: this.photo.comments.filter(comment => {
@@ -85,6 +86,11 @@ export class PhotoPostComponent extends FormComponent implements OnChanges {
       photoId
     };
     this.updateCommentStatus.emit(commentPayload);
+  }
+
+  toggleFavorite() {
+    this.photo.favorite = !this.photo.favorite;
+    this.updatePhotoFavorite.emit(this.photo.id);
   }
 
   onSubmit() {

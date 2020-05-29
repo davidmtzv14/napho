@@ -26,7 +26,8 @@
                 <label class="hoverable"
                        for="fileInput">
                   <img class="profileImg"
-                       [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath">
+                       [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath"
+                       alt="Profile image">
                   <div *ngIf="!isSearch"
                        class="hover-text">Change picture</div>
                   <div class="background"></div>
@@ -123,19 +124,19 @@
       <div class="col">
         <mat-tab-group mat-align-tabs="center">
           <mat-tab label="Photos">
-            <div *ngFor="let photo of photoArray">
+            <div *ngFor="let photo of photos">
               <napho-photo-post-container [photo]="photo"
                                           (createComment)="createComment.emit($event)"></napho-photo-post-container>
             </div>
           </mat-tab>
           <mat-tab label="Favorite Photos">
-            <div *ngFor="let photo of favPhotoArray">
+            <div *ngFor="let photo of favPhotos">
               <napho-photo-post-container [photo]="photo"
                                           (createComment)="createComment.emit($event)"></napho-photo-post-container>
             </div>
           </mat-tab>
           <mat-tab label="Followers">
-            <div *ngFor="let user of followerArray"
+            <div *ngFor="let user of followers"
                  class="row">
               <div class="col">
                 <mat-card class="mt-0">
@@ -144,12 +145,14 @@
                       <div *ngIf="user.profileImgUrl"
                            class="col-1">
                         <img class="profile"
-                             [src]="user.profileImgUrl">
+                             [src]="user.profileImgUrl"
+                             alt="Profile image">
                       </div>
                       <div *ngIf="!user.profileImgUrl"
                            class="col-1">
                         <img class="profile"
-                             [src]="defaultPicturePath">
+                             [src]="defaultPicturePath"
+                             alt="Profile image">
                       </div>
                       <div class="ml-3 col-7">
                         <h3>{{user.username}}</h3>
@@ -168,7 +171,7 @@
             </div>
           </mat-tab>
           <mat-tab label="Following">
-            <div *ngFor="let user of followingArray"
+            <div *ngFor="let user of following"
                  class="row">
               <div class="col">
                 <mat-card class="mt-0">
@@ -177,12 +180,14 @@
                       <div *ngIf="user.profileImgUrl"
                            class="col-1">
                         <img class="profile"
-                             [src]="user.profileImgUrl">
+                             [src]="user.profileImgUrl"
+                             alt="Profile image">
                       </div>
                       <div *ngIf="!user.profileImgUrl"
                            class="col-1">
                         <img class="profile"
-                             [src]="defaultPicturePath">
+                             [src]="defaultPicturePath"
+                             alt="Profile image">
                       </div>
                       <div class="ml-3 col-7">
                         <h3>{{user.username}}</h3>

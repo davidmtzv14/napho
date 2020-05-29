@@ -10,4 +10,5 @@ export interface Photo {
   user: Partial<User>;
   favoriteOf: Partial<User>[];
   tags: Tag[];
+  favorite?: boolean;
 }

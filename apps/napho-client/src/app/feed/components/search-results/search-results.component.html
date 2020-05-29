@@ -17,7 +17,7 @@
       <h1>Users</h1>
     </mat-card-content>
   </mat-card>
-  <div *ngFor="let user of usersArray"
+  <div *ngFor="let user of users"
        class="row">
     <div class="col">
       <mat-card class="mt-0">
@@ -26,12 +26,14 @@
             <div *ngIf="user.profileImgUrl"
                  class="col-1">
               <img class="profile"
-                   [src]="user.profileImgUrl">
+                   [src]="user.profileImgUrl"
+                   alt="Profile image">
             </div>
             <div *ngIf="!user.profileImgUrl"
                  class="col-1">
               <img class="profile"
-                   [src]="defaultPicturePath">
+                   [src]="defaultPicturePath"
+                   alt="Profile image">
             </div>
             <div class="ml-3 col-7">
               <h3>{{user.username}}</h3>
@@ -55,7 +57,7 @@
       <h1>Photo posts</h1>
     </mat-card-content>
   </mat-card>
-  <div *ngFor="let photo of photoArray">
+  <div *ngFor="let photo of photos">
     <napho-photo-post-container [photo]="photo"
                                 (createComment)="createComment.emit($event)"></napho-photo-post-container>
   </div>

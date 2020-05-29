@@ -6,7 +6,7 @@ import {
   ManyToOne,
   OneToMany,
   ManyToMany,
-  JoinTable
+  JoinColumn
 } from 'typeorm';
 import { User, Photo, Comment } from '@napho/data';
 import { UserEntity } from '../../users/data/user.entity';
@@ -43,10 +43,8 @@ export class PhotoEntity extends BaseEntity implements Photo {
 
   @ManyToMany(
     type => UserEntity,
-    favOf => favOf.photos,
-    { cascade: false }
+    user => user.favPhotos
   )
-  @JoinTable()
   favoriteOf: Partial<User>[];
 
   @OneToMany(
@@ -54,5 +52,6 @@ export class PhotoEntity extends BaseEntity implements Photo {
     tag => tag.photo,
     { eager: true, cascade: true }
   )
+  @JoinColumn()
   tags: TagEntity[];
 }

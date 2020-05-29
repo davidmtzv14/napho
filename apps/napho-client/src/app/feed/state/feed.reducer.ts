@@ -15,34 +15,31 @@ export const feedReducer = createReducer(
   on(FeedActions.createPhotoSuccess, (state, action) => {
     return {
       ...state,
-      photos: {
-        ...state.photos,
-        ...action.photo
-      }
+      photos: [...state.photos, action.photo]
     };
   }),
+  // on(FeedActions.updatePhotoFavoriteSuccess, (state, action) => {
+  //   return {
+  //     ...state,
+  //     photos: [...state.photos, action.photo]
+  //   };
+  // }),
   on(FeedActions.getFeedPhotosSuccess, (state, action) => {
     return {
       ...state,
-      photos: {
-        ...action.photos
-      }
+      photos: [...action.photos]
     };
   }),
   on(FeedActions.getSearchPhotosSuccess, (state, action) => {
     return {
       ...state,
-      searchPhotos: {
-        ...action.photos
-      }
+      searchPhotos: [...action.photos]
     };
   }),
   on(FeedActions.getSearchUsersSuccess, (state, action) => {
     return {
       ...state,
-      searchUsers: {
-        ...action.users
-      }
+      searchUsers: [...action.users]
     };
   }),
 );

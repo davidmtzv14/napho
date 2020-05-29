@@ -5,7 +5,8 @@
         <div class="row">
           <div class="col-2">
             <img class="profile"
-                 [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath">
+                 [src]="profilePictureUrl ? profilePictureUrl : defaultPicturePath"
+                 alt="Profile image">
           </div>
           <div class="ml-3 col-6">
             <h3>{{photo.user.username}}</h3>
@@ -16,16 +17,24 @@
         <div class="border text-center">
           <img [src]="photo.imageUrl"
                class="img-fluid"
-               alt="photo">
+               alt="Photo Post">
         </div>
         <div class="border row mt-1">
           <div class="col-lg-3 col-6">
-            <button mat-button
-                    color="primary">
-              <mat-icon>favorite</mat-icon>
-              <mat-icon>favorite_border</mat-icon>
-              Favorite
-            </button>
+            <span *ngIf="photo.favorite">
+              <button mat-button
+                      color="primary"
+                      (click)="toggleFavorite()">
+                <mat-icon>favorite</mat-icon>Unfavorite
+              </button>
+            </span>
+            <span *ngIf="!photo.favorite">
+              <button mat-button
+                      color="primary"
+                      (click)="toggleFavorite()">
+                <mat-icon>favorite_border</mat-icon>Favorite
+              </button>
+            </span>
           </div>
           <div class="col-lg-3 col-6">
             <button mat-button
@@ -38,7 +47,7 @@
         <div class="row mt-1">
           <div class="col-lg-3 col-6">
             <div>
-              10 Favs
+              {{photo.favoriteOf.length}} Favs
             </div>
           </div>
           <div class="col-lg-3 col-6">
@@ -80,7 +89,7 @@
         <div *ngFor="let comment of photo.comments"
              class="row m-0">
           <div class="col p-0">
-            <strong>{{comment.username}} </strong> {{comment.content}}
+            <strong>{{comment?.username}} </strong> {{comment.content}}
             <span *ngIf="photo.user.id === user.id && comment.status === pendingStatus">
               <button mat-icon-button
                       (click)="changeCommentStatus(comment.id, approvedStatus)">

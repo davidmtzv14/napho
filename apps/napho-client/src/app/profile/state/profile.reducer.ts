@@ -6,9 +6,9 @@ import { ProfileState } from './profile.state';
 export const initialState: ProfileState = {
   user: {},
   photos: [],
-  favPhotos:[],
-  followers:[],
-  following:[]
+  favPhotos: [],
+  followers: [],
+  following: []
 };
 
 export const profileReducer = createReducer(
@@ -24,33 +24,25 @@ export const profileReducer = createReducer(
   on(ProfileActions.getProfilePhotosSuccess, (state, action) => {
     return {
       ...state,
-      photos: {
-        ...action.photos
-      }
+      photos: [...action.photos]
     };
   }),
   on(ProfileActions.getFavPhotosSuccess, (state, action) => {
     return {
       ...state,
-      favPhotos: {
-        ...action.photos
-      }
+      favPhotos: [...action.photos]
     };
   }),
   on(ProfileActions.getUserFollowersSuccess, (state, action) => {
     return {
       ...state,
-      followers: {
-        ...action.followers
-      }
+      followers: [...action.followers]
     };
   }),
   on(ProfileActions.getUserFollowingSuccess, (state, action) => {
     return {
       ...state,
-      following: {
-        ...action.following
-      }
+      following: [...action.following]
     };
   }),
   on(ProfileActions.followUserSuccess, (state, action) => {
@@ -60,7 +52,7 @@ export const profileReducer = createReducer(
         ...action.user
       }
     };
-  }),
+  })
 );
 
 export function reducer(state: ProfileState, action: Action): ProfileState {

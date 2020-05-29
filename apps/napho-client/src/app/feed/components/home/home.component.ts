@@ -19,10 +19,9 @@ import { Photo, CommentStatus, Comment } from '@napho/data';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent extends FormComponent implements OnChanges {
+export class HomeComponent extends FormComponent {
   @Input() photos: Photo[];
   @Output() createComment = new EventEmitter<Comment>();
-  photoArray: Photo[];
   fileData: File = null;
   previewUrl: any = null;
   fileUploadProgress: string = null;
@@ -41,12 +40,6 @@ export class HomeComponent extends FormComponent implements OnChanges {
       tags: [null],
       imageUrl: [null, Validators.required]
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.photos) {
-      this.photoArray = Object.values(this.photos);
-    }
   }
 
   add(event: MatChipInputEvent): void {

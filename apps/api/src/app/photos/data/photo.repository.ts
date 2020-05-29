@@ -8,67 +8,6 @@ import { UserRepository } from '@api/users/data/user.repository';
 
 @EntityRepository(PhotoEntity)
 export class PhotoRepository extends Repository<PhotoEntity> {
-  async getUserPhotos(id: number): Promise<PhotoEntity[]> {
-    const query = this.createQueryBuilder('photo');
-
-    query.andWhere('photo.userId = :userId', { userId: id });
-
-    const photos = await query
-      .leftJoinAndSelect('photo.user', 'user')
-      .leftJoinAndSelect('photo.comments', 'comment')
-      .leftJoinAndSelect('photo.tags', 'tag')
-      .getMany();
-
-    return photos;
-  }
-
-  async getUserFavPhotos(id: number): Promise<PhotoEntity[]> {
-    const query = this.createQueryBuilder('photo');
-
-    query.andWhere('photo.userId = :userId', { userId: id });
-
-    const photos = await query
-      .leftJoinAndSelect('photo.user', 'user')
-      .leftJoinAndSelect('photo.comments', 'comment')
-      .leftJoinAndSelect('photo.tags', 'tag')
-      .getMany();
-
-    return photos;
-  }
-
-  async getSearchPhotos(filterDto: GetPhotosFilterDto): Promise<PhotoEntity[]> {
-    const { search, field } = filterDto;
-    const query = this.createQueryBuilder('photo');
-    query.leftJoinAndSelect('photo.user', 'user');
-
-    if (search) {
-      query.where(
-        '(photo.description LIKE :search OR user.username LIKE :search)',
-        { search: `%${search}%` }
-      );
-    }
-
-    if (field) {
-      if (field === 'favoriteOf') {
-        query
-          .leftJoin('photo.favoriteOf', 'favoriteOf')
-          .addSelect('COUNT(favoriteOf.id) as favoriteCount')
-          .orderBy('favoriteCount', 'ASC');
-      } else if (field === 'comments') {
-        query
-          .leftJoin('photo.comments', 'comment')
-          .addSelect('COUNT(comment.id) as commentCount')
-          .orderBy('commentCount', 'ASC');
-      }
-    }
-
-    const photos = await query
-      .leftJoinAndSelect('photo.comments', 'comment')
-      .leftJoinAndSelect('photo.tags', 'tag')
-      .getMany();
-
-    return photos;
-  }
 
   async createPhoto(
     createPhotoDto: CreatePhotoDto,
@@ -90,7 +29,6 @@ export class PhotoRepository extends Repository<PhotoEntity> {
     });
     photo.tags = photoTags;
     await photo.save();
-    delete photo.user;
 
     return photo;
   }

@@ -60,8 +60,9 @@ export class UserEntity extends BaseEntity implements User {
 
   @ManyToMany(
     type => PhotoEntity,
-    favPhoto => favPhoto.user
+    photo => photo.favoriteOf
   )
+  @JoinTable()
   favPhotos: Photo[];
 
   @ManyToMany(type => UserEntity, { cascade: true })

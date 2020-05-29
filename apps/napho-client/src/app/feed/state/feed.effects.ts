@@ -37,6 +37,20 @@ export class FeedEffects {
     )
   );
 
+  updatePhotoFavorite$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FeedActions.updatePhotoFavorite),
+      mergeMap(({ id }) =>
+        this.feedService.updatePhotoFavorite(id).pipe(
+          map(photo =>
+            FeedActions.updatePhotoFavoriteSuccess({ photo })
+          ),
+          catchError(() => of(FeedActions.updatePhotoFavoriteFailed()))
+        )
+      )
+    )
+  );
+
   updateCommentStatus$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FeedActions.updateCommentStatus),

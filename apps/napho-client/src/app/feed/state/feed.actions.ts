@@ -25,6 +25,20 @@ export const createCommentSuccess = createAction(
 
 export const createCommentFailed = createAction('[Feed] Create comment failed');
 
+export const updatePhotoFavorite = createAction(
+  '[Feed] Update photo favorite',
+  props<{ id: number }>()
+);
+
+export const updatePhotoFavoriteSuccess = createAction(
+  '[Feed] Update photo favorite success',
+  props<{ photo: Partial<Photo> }>()
+);
+
+export const updatePhotoFavoriteFailed = createAction(
+  '[Feed] Update photo favorite failed'
+);
+
 export const updateCommentStatus = createAction(
   '[Feed] Update comment status',
   props<{ comment: Partial<Comment> }>()
