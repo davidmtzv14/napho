@@ -7,10 +7,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../config/typeorm.config';
 import { PhotosModule } from './photos/photos.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from '@napho/data';
+
+import { ServeStaticModule } from '@nestjs/serve-static'; // <- INSERT LINE
+import { join } from 'path'; // <- INSERT LINE
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'napho-client'),
+      exclude: ['/api*']
+    }),
     TypeOrmModule.forRoot(typeOrmConfig),
     AuthModule,
     CommentsModule,

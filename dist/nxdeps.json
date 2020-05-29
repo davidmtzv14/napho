@@ -1,0 +1,3332 @@
+{
+  "projectGraph": {
+    "nodes": {
+      "napho-client-e2e": {
+        "name": "napho-client-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/napho-client-e2e",
+          "sourceRoot": "apps/napho-client-e2e/src",
+          "projectType": "application",
+          "architect": {
+            "e2e": {
+              "builder": "@nrwl/cypress:cypress",
+              "options": {
+                "cypressConfig": "apps/napho-client-e2e/cypress.json",
+                "tsConfig": "apps/napho-client-e2e/tsconfig.e2e.json",
+                "devServerTarget": "napho-client:serve"
+              },
+              "configurations": {
+                "production": {
+                  "devServerTarget": "napho-client:serve:production"
+                }
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/napho-client-e2e/tsconfig.e2e.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/napho-client-e2e/**"
+                ]
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/napho-client-e2e/cypress.json",
+              "ext": ".json",
+              "mtime": 1589424667179.6873
+            },
+            {
+              "file": "apps/napho-client-e2e/src/fixtures/example.json",
+              "ext": ".json",
+              "mtime": 1589424667180.5361
+            },
+            {
+              "file": "apps/napho-client-e2e/src/integration/app.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589424667180.8477
+            },
+            {
+              "file": "apps/napho-client-e2e/src/plugins/index.js",
+              "ext": ".js",
+              "mtime": 1589424667181.147
+            },
+            {
+              "file": "apps/napho-client-e2e/src/support/app.po.ts",
+              "ext": ".ts",
+              "mtime": 1589424667181.514
+            },
+            {
+              "file": "apps/napho-client-e2e/src/support/commands.ts",
+              "ext": ".ts",
+              "mtime": 1589424667181.7434
+            },
+            {
+              "file": "apps/napho-client-e2e/src/support/index.ts",
+              "ext": ".ts",
+              "mtime": 1589424667181.9558
+            },
+            {
+              "file": "apps/napho-client-e2e/tsconfig.e2e.json",
+              "ext": ".json",
+              "mtime": 1589424667179.9014
+            },
+            {
+              "file": "apps/napho-client-e2e/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1589424667180.1123
+            },
+            {
+              "file": "apps/napho-client-e2e/tslint.json",
+              "ext": ".json",
+              "mtime": 1589424667179.3162
+            }
+          ]
+        }
+      },
+      "api-interfaces": {
+        "name": "api-interfaces",
+        "type": "lib",
+        "data": {
+          "root": "libs/api-interfaces",
+          "sourceRoot": "libs/api-interfaces/src",
+          "projectType": "library",
+          "schematics": {},
+          "architect": {
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "libs/api-interfaces/tsconfig.lib.json",
+                  "libs/api-interfaces/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!libs/api-interfaces/**"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "libs/api-interfaces/jest.config.js",
+                "tsConfig": "libs/api-interfaces/tsconfig.spec.json",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "libs/api-interfaces/README.md",
+              "ext": ".md",
+              "mtime": 1589424667187.7795
+            },
+            {
+              "file": "libs/api-interfaces/jest.config.js",
+              "ext": ".js",
+              "mtime": 1589424667189.169
+            },
+            {
+              "file": "libs/api-interfaces/src/index.ts",
+              "ext": ".ts",
+              "mtime": 1589424667188.64
+            },
+            {
+              "file": "libs/api-interfaces/src/lib/api-interfaces.ts",
+              "ext": ".ts",
+              "mtime": 1589424667188.933
+            },
+            {
+              "file": "libs/api-interfaces/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1589424667188.0781
+            },
+            {
+              "file": "libs/api-interfaces/tsconfig.lib.json",
+              "ext": ".json",
+              "mtime": 1589424667188.3313
+            },
+            {
+              "file": "libs/api-interfaces/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1589424667189.4148
+            },
+            {
+              "file": "libs/api-interfaces/tslint.json",
+              "ext": ".json",
+              "mtime": 1589424667187.4065
+            }
+          ]
+        }
+      },
+      "napho-client": {
+        "name": "napho-client",
+        "type": "app",
+        "data": {
+          "projectType": "application",
+          "schematics": {
+            "@schematics/angular:component": {
+              "style": "scss"
+            }
+          },
+          "root": "apps/napho-client",
+          "sourceRoot": "apps/napho-client/src",
+          "prefix": "napho",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:browser",
+              "options": {
+                "outputPath": "dist/apps/napho-client",
+                "index": "apps/napho-client/src/index.html",
+                "main": "apps/napho-client/src/main.ts",
+                "polyfills": "apps/napho-client/src/polyfills.ts",
+                "tsConfig": "apps/napho-client/tsconfig.app.json",
+                "aot": true,
+                "assets": [
+                  "apps/napho-client/src/favicon.ico",
+                  "apps/napho-client/src/assets"
+                ],
+                "styles": [
+                  "apps/napho-client/src/styles.scss"
+                ],
+                "scripts": []
+              },
+              "configurations": {
+                "production": {
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/napho-client/src/environments/environment.ts",
+                      "with": "apps/napho-client/src/environments/environment.prod.ts"
+                    }
+                  ],
+                  "optimization": true,
+                  "outputHashing": "all",
+                  "sourceMap": false,
+                  "extractCss": true,
+                  "namedChunks": false,
+                  "extractLicenses": true,
+                  "vendorChunk": false,
+                  "buildOptimizer": true,
+                  "budgets": [
+                    {
+                      "type": "initial",
+                      "maximumWarning": "2mb",
+                      "maximumError": "5mb"
+                    },
+                    {
+                      "type": "anyComponentStyle",
+                      "maximumWarning": "6kb",
+                      "maximumError": "10kb"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve": {
+              "builder": "@angular-devkit/build-angular:dev-server",
+              "options": {
+                "browserTarget": "napho-client:build",
+                "proxyConfig": "apps/napho-client/proxy.conf.json"
+              },
+              "configurations": {
+                "production": {
+                  "browserTarget": "napho-client:build:production"
+                }
+              }
+            },
+            "extract-i18n": {
+              "builder": "@angular-devkit/build-angular:extract-i18n",
+              "options": {
+                "browserTarget": "napho-client:build"
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/napho-client/tsconfig.app.json",
+                  "apps/napho-client/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/napho-client/**"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "apps/napho-client/jest.config.js",
+                "tsConfig": "apps/napho-client/tsconfig.spec.json",
+                "passWithNoTests": true,
+                "setupFile": "apps/napho-client/src/test-setup.ts"
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/napho-client/browserslist",
+              "ext": "",
+              "mtime": 1589424667174.5708
+            },
+            {
+              "file": "apps/napho-client/jest.config.js",
+              "ext": ".js",
+              "mtime": 1589424667178.5122
+            },
+            {
+              "file": "apps/napho-client/proxy.conf.json",
+              "ext": ".json",
+              "mtime": 1589424667186.1328
+            },
+            {
+              "file": "apps/napho-client/src/app/app-routing.module.ts",
+              "ext": ".ts",
+              "mtime": 1590546717417.6404
+            },
+            {
+              "file": "apps/napho-client/src/app/app.component.html",
+              "ext": ".html",
+              "mtime": 1589648502925.073
+            },
+            {
+              "file": "apps/napho-client/src/app/app.component.scss",
+              "ext": ".scss",
+              "mtime": 1590424760251.5388
+            },
+            {
+              "file": "apps/napho-client/src/app/app.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589424667178.126
+            },
+            {
+              "file": "apps/napho-client/src/app/app.component.ts",
+              "ext": ".ts",
+              "mtime": 1590610954783.3967
+            },
+            {
+              "file": "apps/napho-client/src/app/app.module.ts",
+              "ext": ".ts",
+              "mtime": 1590616415561.6802
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/auth-routing.module.ts",
+              "ext": ".ts",
+              "mtime": 1589649289008.7727
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/auth.module.ts",
+              "ext": ".ts",
+              "mtime": 1590545129576.8975
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.html",
+              "ext": ".html",
+              "mtime": 1590548132654.117
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.scss",
+              "ext": ".scss",
+              "mtime": 1589428783327.8828
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589428783328.9316
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.ts",
+              "ext": ".ts",
+              "mtime": 1590422684888.8198
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.html",
+              "ext": ".html",
+              "mtime": 1590548045519.5999
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.scss",
+              "ext": ".scss",
+              "mtime": 1589427554151
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589427539306.4792
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.ts",
+              "ext": ".ts",
+              "mtime": 1589653645564.3276
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.html",
+              "ext": ".html",
+              "mtime": 1590368671155.9487
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1589649205758.653
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589649205759.4922
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590547242951.3823
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.html",
+              "ext": ".html",
+              "mtime": 1589657484855.885
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1589428680315.8765
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589428680319.4788
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590539000890.6472
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/guards/auth.guard.ts",
+              "ext": ".ts",
+              "mtime": 1590548697467.3103
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/interceptors/token.interceptor.ts",
+              "ext": ".ts",
+              "mtime": 1590603393896.5808
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/services/auth.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589655942642.6052
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/services/auth.service.ts",
+              "ext": ".ts",
+              "mtime": 1590637135424.8645
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/state/auth.actions.ts",
+              "ext": ".ts",
+              "mtime": 1589657484653.8042
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/state/auth.effects.ts",
+              "ext": ".ts",
+              "mtime": 1590547242963.9922
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/state/auth.reducer.ts",
+              "ext": ".ts",
+              "mtime": 1590638397110.1433
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/state/auth.selectors.ts",
+              "ext": ".ts",
+              "mtime": 1590537814063.1729
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/state/auth.state.ts",
+              "ext": ".ts",
+              "mtime": 1589657484653.609
+            },
+            {
+              "file": "apps/napho-client/src/app/auth/state/index.ts",
+              "ext": ".ts",
+              "mtime": 1590539000890.709
+            },
+            {
+              "file": "apps/napho-client/src/app/core/components/form/form.component.html",
+              "ext": ".html",
+              "mtime": 1589651029764.7703
+            },
+            {
+              "file": "apps/napho-client/src/app/core/components/form/form.component.scss",
+              "ext": ".scss",
+              "mtime": 1589651029764.3167
+            },
+            {
+              "file": "apps/napho-client/src/app/core/components/form/form.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589651029767.0967
+            },
+            {
+              "file": "apps/napho-client/src/app/core/components/form/form.component.ts",
+              "ext": ".ts",
+              "mtime": 1589651325604.6592
+            },
+            {
+              "file": "apps/napho-client/src/app/core/core.module.ts",
+              "ext": ".ts",
+              "mtime": 1589651029767.8574
+            },
+            {
+              "file": "apps/napho-client/src/app/core/services/form.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589650995376.59
+            },
+            {
+              "file": "apps/napho-client/src/app/core/services/form.service.ts",
+              "ext": ".ts",
+              "mtime": 1589651325746.442
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/home/home.component.html",
+              "ext": ".html",
+              "mtime": 1590719161186.5928
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/home/home.component.scss",
+              "ext": ".scss",
+              "mtime": 1590373907199.8557
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/home/home.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590373907200.886
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/home/home.component.ts",
+              "ext": ".ts",
+              "mtime": 1590708966131.4656
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.html",
+              "ext": ".html",
+              "mtime": 1590722941953.453
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.scss",
+              "ext": ".scss",
+              "mtime": 1590682934245.2986
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590373931101.8687
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.ts",
+              "ext": ".ts",
+              "mtime": 1590722941984.8496
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.html",
+              "ext": ".html",
+              "mtime": 1590633700981.465
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1590373957937.8918
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590373957938.773
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590635394053.7683
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.html",
+              "ext": ".html",
+              "mtime": 1590722941935.6248
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1590373948606.2786
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590373948608.0342
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590723384738.8506
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/feed-routing.module.ts",
+              "ext": ".ts",
+              "mtime": 1590679380499.4414
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/feed.module.ts",
+              "ext": ".ts",
+              "mtime": 1590685005467.4778
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/resolvers/feed-resolver.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590614674733.4856
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/resolvers/feed-resolver.service.ts",
+              "ext": ".ts",
+              "mtime": 1590616710002.575
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/resolvers/search-resolver.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590677396747.1626
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/resolvers/search-resolver.service.ts",
+              "ext": ".ts",
+              "mtime": 1590681877118.972
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/services/feed.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590600662203.673
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/services/feed.service.ts",
+              "ext": ".ts",
+              "mtime": 1590726007146.077
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/state/feed.actions.ts",
+              "ext": ".ts",
+              "mtime": 1590716400104.798
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/state/feed.effects.ts",
+              "ext": ".ts",
+              "mtime": 1590723224649.4414
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/state/feed.reducer.ts",
+              "ext": ".ts",
+              "mtime": 1590722941934.2463
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/state/feed.selectors.ts",
+              "ext": ".ts",
+              "mtime": 1590722941953.5825
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/state/feed.state.ts",
+              "ext": ".ts",
+              "mtime": 1590722941969.3318
+            },
+            {
+              "file": "apps/napho-client/src/app/feed/state/index.ts",
+              "ext": ".ts",
+              "mtime": 1590602020391.2756
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.html",
+              "ext": ".html",
+              "mtime": 1590726781347.833
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.scss",
+              "ext": ".scss",
+              "mtime": 1590527217659.6318
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590448828748.3552
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.ts",
+              "ext": ".ts",
+              "mtime": 1590716400104.3176
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.html",
+              "ext": ".html",
+              "mtime": 1590716400139.2356
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1590699672656.3596
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590699672657.1387
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590716400104.492
+            },
+            {
+              "file": "apps/napho-client/src/app/photos/photos.module.ts",
+              "ext": ".ts",
+              "mtime": 1590705168660.154
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/components/profile/profile.component.html",
+              "ext": ".html",
+              "mtime": 1590728558232.849
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/components/profile/profile.component.scss",
+              "ext": ".scss",
+              "mtime": 1590698850483.343
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/components/profile/profile.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590431205830.7944
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/components/profile/profile.component.ts",
+              "ext": ".ts",
+              "mtime": 1590728558286.1985
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.html",
+              "ext": ".html",
+              "mtime": 1590725745565.8108
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1590431120615.373
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590431120624.4204
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590726864915.2502
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.html",
+              "ext": ".html",
+              "mtime": 1590700257675.0952
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1590685144580.9949
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590685144583.702
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590700257658.1047
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/profile-routing.module.ts",
+              "ext": ".ts",
+              "mtime": 1590687333605.401
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/profile.module.ts",
+              "ext": ".ts",
+              "mtime": 1590687661903.519
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/resolvers/profile-resolver.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590617406029.9478
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/resolvers/profile-resolver.service.ts",
+              "ext": ".ts",
+              "mtime": 1590698400492.9314
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/services/profile.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590685606411.6536
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/services/profile.service.ts",
+              "ext": ".ts",
+              "mtime": 1590728183333.9116
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/state/index.ts",
+              "ext": ".ts",
+              "mtime": 1590687287367.89
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/state/profile.actions.ts",
+              "ext": ".ts",
+              "mtime": 1590725745565.843
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/state/profile.effects.ts",
+              "ext": ".ts",
+              "mtime": 1590725745565.9744
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/state/profile.reducer.ts",
+              "ext": ".ts",
+              "mtime": 1590708880489.7524
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/state/profile.selectors.ts",
+              "ext": ".ts",
+              "mtime": 1590698700866.971
+            },
+            {
+              "file": "apps/napho-client/src/app/profile/state/profile.state.ts",
+              "ext": ".ts",
+              "mtime": 1590698400492.2664
+            },
+            {
+              "file": "apps/napho-client/src/app/shared/shared.module.ts",
+              "ext": ".ts",
+              "mtime": 1590426978298.8604
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/components/spa/spa.component.html",
+              "ext": ".html",
+              "mtime": 1590682622365.1829
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/components/spa/spa.component.scss",
+              "ext": ".scss",
+              "mtime": 1590528582448.8965
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/components/spa/spa.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589647896106.1387
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/components/spa/spa.component.ts",
+              "ext": ".ts",
+              "mtime": 1590682570126.712
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.html",
+              "ext": ".html",
+              "mtime": 1590682570126.804
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.scss",
+              "ext": ".scss",
+              "mtime": 1589647904247.0432
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589647904247.978
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.ts",
+              "ext": ".ts",
+              "mtime": 1590682863198.6436
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/spa-routing.module.ts",
+              "ext": ".ts",
+              "mtime": 1590431648839.412
+            },
+            {
+              "file": "apps/napho-client/src/app/spa/spa.module.ts",
+              "ext": ".ts",
+              "mtime": 1590606712466.7698
+            },
+            {
+              "file": "apps/napho-client/src/assets/.gitkeep",
+              "ext": "",
+              "mtime": 1589424667176.7134
+            },
+            {
+              "file": "apps/napho-client/src/assets/img/blank-profile.png",
+              "ext": ".png",
+              "mtime": 1590523963663.2913
+            },
+            {
+              "file": "apps/napho-client/src/environments/environment.prod.ts",
+              "ext": ".ts",
+              "mtime": 1589424667176.99
+            },
+            {
+              "file": "apps/napho-client/src/environments/environment.ts",
+              "ext": ".ts",
+              "mtime": 1590535379887.441
+            },
+            {
+              "file": "apps/napho-client/src/favicon.ico",
+              "ext": ".ico",
+              "mtime": 1589424667174.011
+            },
+            {
+              "file": "apps/napho-client/src/index.html",
+              "ext": ".html",
+              "mtime": 1590599135707.5132
+            },
+            {
+              "file": "apps/napho-client/src/main.ts",
+              "ext": ".ts",
+              "mtime": 1589424667175.9497
+            },
+            {
+              "file": "apps/napho-client/src/polyfills.ts",
+              "ext": ".ts",
+              "mtime": 1589424667176.2095
+            },
+            {
+              "file": "apps/napho-client/src/styles.scss",
+              "ext": ".scss",
+              "mtime": 1590713503583.4836
+            },
+            {
+              "file": "apps/napho-client/src/test-setup.ts",
+              "ext": ".ts",
+              "mtime": 1589424667178.894
+            },
+            {
+              "file": "apps/napho-client/tsconfig.app.json",
+              "ext": ".json",
+              "mtime": 1589424667174.9407
+            },
+            {
+              "file": "apps/napho-client/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1590423938396.0217
+            },
+            {
+              "file": "apps/napho-client/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1589424667178.7002
+            },
+            {
+              "file": "apps/napho-client/tslint.json",
+              "ext": ".json",
+              "mtime": 1589424667175.206
+            }
+          ]
+        }
+      },
+      "data": {
+        "name": "data",
+        "type": "lib",
+        "data": {
+          "projectType": "library",
+          "root": "libs/data",
+          "sourceRoot": "libs/data/src",
+          "prefix": "napho",
+          "architect": {
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "libs/data/tsconfig.lib.json",
+                  "libs/data/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!libs/data/**"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "libs/data/jest.config.js",
+                "tsConfig": "libs/data/tsconfig.spec.json",
+                "passWithNoTests": true,
+                "setupFile": "libs/data/src/test-setup.ts"
+              }
+            }
+          },
+          "schematics": {
+            "@nrwl/angular:component": {
+              "style": "scss"
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "libs/data/README.md",
+              "ext": ".md",
+              "mtime": 1589655722326.374
+            },
+            {
+              "file": "libs/data/jest.config.js",
+              "ext": ".js",
+              "mtime": 1589655722328.55
+            },
+            {
+              "file": "libs/data/src/index.ts",
+              "ext": ".ts",
+              "mtime": 1590535563173.9888
+            },
+            {
+              "file": "libs/data/src/lib/comments/index.ts",
+              "ext": ".ts",
+              "mtime": 1589763607462.7683
+            },
+            {
+              "file": "libs/data/src/lib/comments/models/comment.model.ts",
+              "ext": ".ts",
+              "mtime": 1590639505210.7668
+            },
+            {
+              "file": "libs/data/src/lib/comments/models/index.ts",
+              "ext": ".ts",
+              "mtime": 1589763607462.8457
+            },
+            {
+              "file": "libs/data/src/lib/data.config.ts",
+              "ext": ".ts",
+              "mtime": 1589670493999.4375
+            },
+            {
+              "file": "libs/data/src/lib/data.module.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589655722327.867
+            },
+            {
+              "file": "libs/data/src/lib/data.module.ts",
+              "ext": ".ts",
+              "mtime": 1589655722327.6494
+            },
+            {
+              "file": "libs/data/src/lib/photos/index.ts",
+              "ext": ".ts",
+              "mtime": 1590186711209.8828
+            },
+            {
+              "file": "libs/data/src/lib/photos/models/index.ts",
+              "ext": ".ts",
+              "mtime": 1590613683002.896
+            },
+            {
+              "file": "libs/data/src/lib/photos/models/photo.model.ts",
+              "ext": ".ts",
+              "mtime": 1590715209593.5298
+            },
+            {
+              "file": "libs/data/src/lib/photos/models/tag.model.ts",
+              "ext": ".ts",
+              "mtime": 1590613682984.632
+            },
+            {
+              "file": "libs/data/src/lib/users/index.ts",
+              "ext": ".ts",
+              "mtime": 1589657484825.83
+            },
+            {
+              "file": "libs/data/src/lib/users/models/index.ts",
+              "ext": ".ts",
+              "mtime": 1589657484800.041
+            },
+            {
+              "file": "libs/data/src/lib/users/models/user.model.ts",
+              "ext": ".ts",
+              "mtime": 1590536786178.9458
+            },
+            {
+              "file": "libs/data/src/lib/users/users.module.ts",
+              "ext": ".ts",
+              "mtime": 1589656552474.3481
+            },
+            {
+              "file": "libs/data/src/test-setup.ts",
+              "ext": ".ts",
+              "mtime": 1589655722329.3118
+            },
+            {
+              "file": "libs/data/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1589655722328.0713
+            },
+            {
+              "file": "libs/data/tsconfig.lib.json",
+              "ext": ".json",
+              "mtime": 1589655722326.7048
+            },
+            {
+              "file": "libs/data/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1589655722328.944
+            },
+            {
+              "file": "libs/data/tslint.json",
+              "ext": ".json",
+              "mtime": 1589655722327.034
+            }
+          ]
+        }
+      },
+      "api": {
+        "name": "api",
+        "type": "app",
+        "data": {
+          "root": "apps/api",
+          "sourceRoot": "apps/api/src",
+          "projectType": "application",
+          "prefix": "api",
+          "schematics": {},
+          "architect": {
+            "build": {
+              "builder": "@nrwl/node:build",
+              "options": {
+                "outputPath": "dist/apps/api",
+                "main": "apps/api/src/main.ts",
+                "tsConfig": "apps/api/tsconfig.app.json",
+                "assets": [
+                  "apps/api/src/assets"
+                ]
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "extractLicenses": true,
+                  "inspect": false,
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/api/src/environments/environment.ts",
+                      "with": "apps/api/src/environments/environment.prod.ts"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve": {
+              "builder": "@nrwl/node:execute",
+              "options": {
+                "buildTarget": "api:build"
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/api/tsconfig.app.json",
+                  "apps/api/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/api/**"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "apps/api/jest.config.js",
+                "tsConfig": "apps/api/tsconfig.spec.json",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/api/jest.config.js",
+              "ext": ".js",
+              "mtime": 1589424667185.5461
+            },
+            {
+              "file": "apps/api/src/app/.gitkeep",
+              "ext": "",
+              "mtime": 1589424667184.0027
+            },
+            {
+              "file": "apps/api/src/app/app.controller.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589424667186.3442
+            },
+            {
+              "file": "apps/api/src/app/app.controller.ts",
+              "ext": ".ts",
+              "mtime": 1590268699007.5608
+            },
+            {
+              "file": "apps/api/src/app/app.module.ts",
+              "ext": ".ts",
+              "mtime": 1590735050195.788
+            },
+            {
+              "file": "apps/api/src/app/app.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589424667186.9214
+            },
+            {
+              "file": "apps/api/src/app/app.service.ts",
+              "ext": ".ts",
+              "mtime": 1590268722777.345
+            },
+            {
+              "file": "apps/api/src/app/auth/auth.module.ts",
+              "ext": ".ts",
+              "mtime": 1590681542783.6611
+            },
+            {
+              "file": "apps/api/src/app/auth/controllers/auth.controller.spec.ts",
+              "ext": ".ts",
+              "mtime": 1589671594762
+            },
+            {
+              "file": "apps/api/src/app/auth/controllers/auth.controller.ts",
+              "ext": ".ts",
+              "mtime": 1590547473170.928
+            },
+            {
+              "file": "apps/api/src/app/auth/decorators/get-user.decorator.ts",
+              "ext": ".ts",
+              "mtime": 1590673746713.9531
+            },
+            {
+              "file": "apps/api/src/app/auth/dto/auth-credentials.dto.ts",
+              "ext": ".ts",
+              "mtime": 1590536545828.726
+            },
+            {
+              "file": "apps/api/src/app/auth/services/auth.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590268495820.871
+            },
+            {
+              "file": "apps/api/src/app/auth/services/auth.service.ts",
+              "ext": ".ts",
+              "mtime": 1590695825076.2317
+            },
+            {
+              "file": "apps/api/src/app/auth/services/jwt.strategy.ts",
+              "ext": ".ts",
+              "mtime": 1590673746734.286
+            },
+            {
+              "file": "apps/api/src/app/comments/comments.module.ts",
+              "ext": ".ts",
+              "mtime": 1590185695525.7637
+            },
+            {
+              "file": "apps/api/src/app/comments/controllers/comments.controller.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590020058622
+            },
+            {
+              "file": "apps/api/src/app/comments/controllers/comments.controller.ts",
+              "ext": ".ts",
+              "mtime": 1590705403545.7058
+            },
+            {
+              "file": "apps/api/src/app/comments/data/comment.entity.ts",
+              "ext": ".ts",
+              "mtime": 1590673746714.1172
+            },
+            {
+              "file": "apps/api/src/app/comments/data/comment.repository.ts",
+              "ext": ".ts",
+              "mtime": 1590618807129.1206
+            },
+            {
+              "file": "apps/api/src/app/comments/dto/create-comment.dto.ts",
+              "ext": ".ts",
+              "mtime": 1590618807128.0515
+            },
+            {
+              "file": "apps/api/src/app/comments/dto/get-comments-filter.dto.ts",
+              "ext": ".ts",
+              "mtime": 1590019315682.8354
+            },
+            {
+              "file": "apps/api/src/app/comments/pipes/comment-status-validation.pipe.ts",
+              "ext": ".ts",
+              "mtime": 1590019101516.2349
+            },
+            {
+              "file": "apps/api/src/app/comments/services/comments.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590020088684
+            },
+            {
+              "file": "apps/api/src/app/comments/services/comments.service.ts",
+              "ext": ".ts",
+              "mtime": 1590639382152.2676
+            },
+            {
+              "file": "apps/api/src/app/photos/controllers/photos.controller.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590186042143
+            },
+            {
+              "file": "apps/api/src/app/photos/controllers/photos.controller.ts",
+              "ext": ".ts",
+              "mtime": 1590720223621.3286
+            },
+            {
+              "file": "apps/api/src/app/photos/data/photo.entity.ts",
+              "ext": ".ts",
+              "mtime": 1590724469387.4392
+            },
+            {
+              "file": "apps/api/src/app/photos/data/photo.repository.ts",
+              "ext": ".ts",
+              "mtime": 1590717110060.3018
+            },
+            {
+              "file": "apps/api/src/app/photos/data/tag.entity.ts",
+              "ext": ".ts",
+              "mtime": 1590613683002.8188
+            },
+            {
+              "file": "apps/api/src/app/photos/dto/create-photo.dto.ts",
+              "ext": ".ts",
+              "mtime": 1590611205010.2014
+            },
+            {
+              "file": "apps/api/src/app/photos/dto/get-photos-filter.dto.ts",
+              "ext": ".ts",
+              "mtime": 1590710690220.907
+            },
+            {
+              "file": "apps/api/src/app/photos/photos.module.ts",
+              "ext": ".ts",
+              "mtime": 1590269142800.8223
+            },
+            {
+              "file": "apps/api/src/app/photos/services/photos.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590186047729
+            },
+            {
+              "file": "apps/api/src/app/photos/services/photos.service.ts",
+              "ext": ".ts",
+              "mtime": 1590724702683.9453
+            },
+            {
+              "file": "apps/api/src/app/users/controllers/users.controller.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590673729030
+            },
+            {
+              "file": "apps/api/src/app/users/controllers/users.controller.ts",
+              "ext": ".ts",
+              "mtime": 1590726382846.3057
+            },
+            {
+              "file": "apps/api/src/app/users/data/user.entity.ts",
+              "ext": ".ts",
+              "mtime": 1590717879299.9104
+            },
+            {
+              "file": "apps/api/src/app/users/data/user.repository.ts",
+              "ext": ".ts",
+              "mtime": 1590699015223.2969
+            },
+            {
+              "file": "apps/api/src/app/users/services/users.service.spec.ts",
+              "ext": ".ts",
+              "mtime": 1590673741097
+            },
+            {
+              "file": "apps/api/src/app/users/services/users.service.ts",
+              "ext": ".ts",
+              "mtime": 1590728183333.6824
+            },
+            {
+              "file": "apps/api/src/app/users/users.module.ts",
+              "ext": ".ts",
+              "mtime": 1590680621099.9463
+            },
+            {
+              "file": "apps/api/src/assets/.gitkeep",
+              "ext": "",
+              "mtime": 1589424667184.2668
+            },
+            {
+              "file": "apps/api/src/config/typeorm.config.ts",
+              "ext": ".ts",
+              "mtime": 1590673746714.1887
+            },
+            {
+              "file": "apps/api/src/environments/environment.model.ts",
+              "ext": ".ts",
+              "mtime": 1590282302324.7031
+            },
+            {
+              "file": "apps/api/src/environments/environment.prod.ts",
+              "ext": ".ts",
+              "mtime": 1589424667184.5837
+            },
+            {
+              "file": "apps/api/src/environments/environment.ts",
+              "ext": ".ts",
+              "mtime": 1590611999045.0447
+            },
+            {
+              "file": "apps/api/src/main.ts",
+              "ext": ".ts",
+              "mtime": 1590638862608.008
+            },
+            {
+              "file": "apps/api/tsconfig.app.json",
+              "ext": ".json",
+              "mtime": 1589424667182.6829
+            },
+            {
+              "file": "apps/api/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1590267812632.2988
+            },
+            {
+              "file": "apps/api/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1589424667185.8928
+            },
+            {
+              "file": "apps/api/tslint.json",
+              "ext": ".json",
+              "mtime": 1589424667182.2637
+            }
+          ]
+        }
+      },
+      "@angular-devkit/build-angular": {
+        "type": "npm",
+        "name": "@angular-devkit/build-angular",
+        "data": {
+          "version": "0.901.0",
+          "files": []
+        }
+      },
+      "@angular/animations": {
+        "type": "npm",
+        "name": "@angular/animations",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/cdk": {
+        "type": "npm",
+        "name": "@angular/cdk",
+        "data": {
+          "version": "^9.2.3",
+          "files": []
+        }
+      },
+      "@angular/cli": {
+        "type": "npm",
+        "name": "@angular/cli",
+        "data": {
+          "version": "9.1.0",
+          "files": []
+        }
+      },
+      "@angular/common": {
+        "type": "npm",
+        "name": "@angular/common",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/compiler": {
+        "type": "npm",
+        "name": "@angular/compiler",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/compiler-cli": {
+        "type": "npm",
+        "name": "@angular/compiler-cli",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/core": {
+        "type": "npm",
+        "name": "@angular/core",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/forms": {
+        "type": "npm",
+        "name": "@angular/forms",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/language-service": {
+        "type": "npm",
+        "name": "@angular/language-service",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/material": {
+        "type": "npm",
+        "name": "@angular/material",
+        "data": {
+          "version": "^9.2.3",
+          "files": []
+        }
+      },
+      "@angular/platform-browser": {
+        "type": "npm",
+        "name": "@angular/platform-browser",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/platform-browser-dynamic": {
+        "type": "npm",
+        "name": "@angular/platform-browser-dynamic",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@angular/router": {
+        "type": "npm",
+        "name": "@angular/router",
+        "data": {
+          "version": "^9.1.0",
+          "files": []
+        }
+      },
+      "@nestjs/common": {
+        "type": "npm",
+        "name": "@nestjs/common",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nestjs/core": {
+        "type": "npm",
+        "name": "@nestjs/core",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nestjs/jwt": {
+        "type": "npm",
+        "name": "@nestjs/jwt",
+        "data": {
+          "version": "^7.0.0",
+          "files": []
+        }
+      },
+      "@nestjs/passport": {
+        "type": "npm",
+        "name": "@nestjs/passport",
+        "data": {
+          "version": "^7.0.0",
+          "files": []
+        }
+      },
+      "@nestjs/platform-express": {
+        "type": "npm",
+        "name": "@nestjs/platform-express",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nestjs/schematics": {
+        "type": "npm",
+        "name": "@nestjs/schematics",
+        "data": {
+          "version": "^6.7.0",
+          "files": []
+        }
+      },
+      "@nestjs/serve-static": {
+        "type": "npm",
+        "name": "@nestjs/serve-static",
+        "data": {
+          "version": "^2.1.1",
+          "files": []
+        }
+      },
+      "@nestjs/testing": {
+        "type": "npm",
+        "name": "@nestjs/testing",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nestjs/typeorm": {
+        "type": "npm",
+        "name": "@nestjs/typeorm",
+        "data": {
+          "version": "^7.0.0",
+          "files": []
+        }
+      },
+      "@ngrx/effects": {
+        "type": "npm",
+        "name": "@ngrx/effects",
+        "data": {
+          "version": "^9.1.2",
+          "files": []
+        }
+      },
+      "@ngrx/store": {
+        "type": "npm",
+        "name": "@ngrx/store",
+        "data": {
+          "version": "^9.1.2",
+          "files": []
+        }
+      },
+      "@ngrx/store-devtools": {
+        "type": "npm",
+        "name": "@ngrx/store-devtools",
+        "data": {
+          "version": "^9.1.2",
+          "files": []
+        }
+      },
+      "@nrwl/angular": {
+        "type": "npm",
+        "name": "@nrwl/angular",
+        "data": {
+          "version": "9.2.4",
+          "files": []
+        }
+      },
+      "@nrwl/cypress": {
+        "type": "npm",
+        "name": "@nrwl/cypress",
+        "data": {
+          "version": "9.2.4",
+          "files": []
+        }
+      },
+      "@nrwl/jest": {
+        "type": "npm",
+        "name": "@nrwl/jest",
+        "data": {
+          "version": "9.2.4",
+          "files": []
+        }
+      },
+      "@nrwl/nest": {
+        "type": "npm",
+        "name": "@nrwl/nest",
+        "data": {
+          "version": "9.2.4",
+          "files": []
+        }
+      },
+      "@nrwl/node": {
+        "type": "npm",
+        "name": "@nrwl/node",
+        "data": {
+          "version": "9.2.4",
+          "files": []
+        }
+      },
+      "@nrwl/workspace": {
+        "type": "npm",
+        "name": "@nrwl/workspace",
+        "data": {
+          "version": "9.2.4",
+          "files": []
+        }
+      },
+      "@types/jest": {
+        "type": "npm",
+        "name": "@types/jest",
+        "data": {
+          "version": "25.1.4",
+          "files": []
+        }
+      },
+      "@types/node": {
+        "type": "npm",
+        "name": "@types/node",
+        "data": {
+          "version": "~8.9.4",
+          "files": []
+        }
+      },
+      "bcryptjs": {
+        "type": "npm",
+        "name": "bcryptjs",
+        "data": {
+          "version": "^2.4.3",
+          "files": []
+        }
+      },
+      "body-parser": {
+        "type": "npm",
+        "name": "body-parser",
+        "data": {
+          "version": "^1.19.0",
+          "files": []
+        }
+      },
+      "bootstrap": {
+        "type": "npm",
+        "name": "bootstrap",
+        "data": {
+          "version": "^4.5.0",
+          "files": []
+        }
+      },
+      "class-transformer": {
+        "type": "npm",
+        "name": "class-transformer",
+        "data": {
+          "version": "^0.2.3",
+          "files": []
+        }
+      },
+      "class-validator": {
+        "type": "npm",
+        "name": "class-validator",
+        "data": {
+          "version": "^0.12.2",
+          "files": []
+        }
+      },
+      "codelyzer": {
+        "type": "npm",
+        "name": "codelyzer",
+        "data": {
+          "version": "~5.0.1",
+          "files": []
+        }
+      },
+      "config": {
+        "type": "npm",
+        "name": "config",
+        "data": {
+          "version": "^3.3.1",
+          "files": []
+        }
+      },
+      "core-js": {
+        "type": "npm",
+        "name": "core-js",
+        "data": {
+          "version": "^2.5.4",
+          "files": []
+        }
+      },
+      "cypress": {
+        "type": "npm",
+        "name": "cypress",
+        "data": {
+          "version": "^4.1.0",
+          "files": []
+        }
+      },
+      "dotenv": {
+        "type": "npm",
+        "name": "dotenv",
+        "data": {
+          "version": "6.2.0",
+          "files": []
+        }
+      },
+      "eslint": {
+        "type": "npm",
+        "name": "eslint",
+        "data": {
+          "version": "6.8.0",
+          "files": []
+        }
+      },
+      "jest": {
+        "type": "npm",
+        "name": "jest",
+        "data": {
+          "version": "25.2.3",
+          "files": []
+        }
+      },
+      "jest-preset-angular": {
+        "type": "npm",
+        "name": "jest-preset-angular",
+        "data": {
+          "version": "8.1.2",
+          "files": []
+        }
+      },
+      "local-storage": {
+        "type": "npm",
+        "name": "local-storage",
+        "data": {
+          "version": "^2.0.0",
+          "files": []
+        }
+      },
+      "ng-mat-search-bar": {
+        "type": "npm",
+        "name": "ng-mat-search-bar",
+        "data": {
+          "version": "^9.0.0",
+          "files": []
+        }
+      },
+      "ngrx": {
+        "type": "npm",
+        "name": "ngrx",
+        "data": {
+          "version": "0.0.1-security",
+          "files": []
+        }
+      },
+      "ngx-localstorage": {
+        "type": "npm",
+        "name": "ngx-localstorage",
+        "data": {
+          "version": "^3.1.0",
+          "files": []
+        }
+      },
+      "passport": {
+        "type": "npm",
+        "name": "passport",
+        "data": {
+          "version": "^0.4.1",
+          "files": []
+        }
+      },
+      "passport-jwt": {
+        "type": "npm",
+        "name": "passport-jwt",
+        "data": {
+          "version": "^4.0.0",
+          "files": []
+        }
+      },
+      "pg": {
+        "type": "npm",
+        "name": "pg",
+        "data": {
+          "version": "^8.2.1",
+          "files": []
+        }
+      },
+      "prettier": {
+        "type": "npm",
+        "name": "prettier",
+        "data": {
+          "version": "1.19.1",
+          "files": []
+        }
+      },
+      "reflect-metadata": {
+        "type": "npm",
+        "name": "reflect-metadata",
+        "data": {
+          "version": "^0.1.13",
+          "files": []
+        }
+      },
+      "rxjs": {
+        "type": "npm",
+        "name": "rxjs",
+        "data": {
+          "version": "~6.5.4",
+          "files": []
+        }
+      },
+      "ts-jest": {
+        "type": "npm",
+        "name": "ts-jest",
+        "data": {
+          "version": "25.2.1",
+          "files": []
+        }
+      },
+      "ts-node": {
+        "type": "npm",
+        "name": "ts-node",
+        "data": {
+          "version": "~7.0.0",
+          "files": []
+        }
+      },
+      "ts-transformer-keys": {
+        "type": "npm",
+        "name": "ts-transformer-keys",
+        "data": {
+          "version": "^0.4.1",
+          "files": []
+        }
+      },
+      "tslint": {
+        "type": "npm",
+        "name": "tslint",
+        "data": {
+          "version": "~6.0.0",
+          "files": []
+        }
+      },
+      "typeorm": {
+        "type": "npm",
+        "name": "typeorm",
+        "data": {
+          "version": "^0.2.25",
+          "files": []
+        }
+      },
+      "typescript": {
+        "type": "npm",
+        "name": "typescript",
+        "data": {
+          "version": "~3.8.3",
+          "files": []
+        }
+      },
+      "uuid": {
+        "type": "npm",
+        "name": "uuid",
+        "data": {
+          "version": "^8.1.0",
+          "files": []
+        }
+      },
+      "zone.js": {
+        "type": "npm",
+        "name": "zone.js",
+        "data": {
+          "version": "^0.10.2",
+          "files": []
+        }
+      }
+    },
+    "dependencies": {
+      "napho-client-e2e": [
+        {
+          "type": "implicit",
+          "source": "napho-client-e2e",
+          "target": "napho-client"
+        }
+      ],
+      "api-interfaces": [],
+      "napho-client": [
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "api-interfaces"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "data"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/core"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/router"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/common"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/platform-browser"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@ngrx/store"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@ngrx/effects"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "ngx-localstorage"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@ngrx/store-devtools"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/forms"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/compiler"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "rxjs"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/cdk"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/material"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "ng-mat-search-bar"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "@angular/platform-browser-dynamic"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "zone.js"
+        },
+        {
+          "type": "static",
+          "source": "napho-client",
+          "target": "jest-preset-angular"
+        }
+      ],
+      "data": [
+        {
+          "type": "static",
+          "source": "data",
+          "target": "@angular/core"
+        },
+        {
+          "type": "static",
+          "source": "data",
+          "target": "@angular/common"
+        },
+        {
+          "type": "static",
+          "source": "data",
+          "target": "jest-preset-angular"
+        }
+      ],
+      "api": [
+        {
+          "type": "static",
+          "source": "api",
+          "target": "data"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "napho-client"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/testing"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/common"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/typeorm"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/serve-static"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/jwt"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/passport"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "class-validator"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "typeorm"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "passport-jwt"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "bcryptjs"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "@nestjs/core"
+        },
+        {
+          "type": "static",
+          "source": "api",
+          "target": "body-parser"
+        }
+      ],
+      "@angular-devkit/build-angular": [],
+      "@angular/animations": [],
+      "@angular/cdk": [],
+      "@angular/cli": [],
+      "@angular/common": [],
+      "@angular/compiler": [],
+      "@angular/compiler-cli": [],
+      "@angular/core": [],
+      "@angular/forms": [],
+      "@angular/language-service": [],
+      "@angular/material": [],
+      "@angular/platform-browser": [],
+      "@angular/platform-browser-dynamic": [],
+      "@angular/router": [],
+      "@nestjs/common": [],
+      "@nestjs/core": [],
+      "@nestjs/jwt": [],
+      "@nestjs/passport": [],
+      "@nestjs/platform-express": [],
+      "@nestjs/schematics": [],
+      "@nestjs/serve-static": [],
+      "@nestjs/testing": [],
+      "@nestjs/typeorm": [],
+      "@ngrx/effects": [],
+      "@ngrx/store": [],
+      "@ngrx/store-devtools": [],
+      "@nrwl/angular": [],
+      "@nrwl/cypress": [],
+      "@nrwl/jest": [],
+      "@nrwl/nest": [],
+      "@nrwl/node": [],
+      "@nrwl/workspace": [],
+      "@types/jest": [],
+      "@types/node": [],
+      "bcryptjs": [],
+      "body-parser": [],
+      "bootstrap": [],
+      "class-transformer": [],
+      "class-validator": [],
+      "codelyzer": [],
+      "config": [],
+      "core-js": [],
+      "cypress": [],
+      "dotenv": [],
+      "eslint": [],
+      "jest": [],
+      "jest-preset-angular": [],
+      "local-storage": [],
+      "ng-mat-search-bar": [],
+      "ngrx": [],
+      "ngx-localstorage": [],
+      "passport": [],
+      "passport-jwt": [],
+      "pg": [],
+      "prettier": [],
+      "reflect-metadata": [],
+      "rxjs": [],
+      "ts-jest": [],
+      "ts-node": [],
+      "ts-transformer-keys": [],
+      "tslint": [],
+      "typeorm": [],
+      "typescript": [],
+      "uuid": [],
+      "zone.js": []
+    }
+  },
+  "fileMap": {
+    "napho-client-e2e": [
+      {
+        "file": "apps/napho-client-e2e/cypress.json",
+        "ext": ".json",
+        "mtime": 1589424667179.6873
+      },
+      {
+        "file": "apps/napho-client-e2e/src/fixtures/example.json",
+        "ext": ".json",
+        "mtime": 1589424667180.5361
+      },
+      {
+        "file": "apps/napho-client-e2e/src/integration/app.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589424667180.8477
+      },
+      {
+        "file": "apps/napho-client-e2e/src/plugins/index.js",
+        "ext": ".js",
+        "mtime": 1589424667181.147
+      },
+      {
+        "file": "apps/napho-client-e2e/src/support/app.po.ts",
+        "ext": ".ts",
+        "mtime": 1589424667181.514
+      },
+      {
+        "file": "apps/napho-client-e2e/src/support/commands.ts",
+        "ext": ".ts",
+        "mtime": 1589424667181.7434
+      },
+      {
+        "file": "apps/napho-client-e2e/src/support/index.ts",
+        "ext": ".ts",
+        "mtime": 1589424667181.9558
+      },
+      {
+        "file": "apps/napho-client-e2e/tsconfig.e2e.json",
+        "ext": ".json",
+        "mtime": 1589424667179.9014
+      },
+      {
+        "file": "apps/napho-client-e2e/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1589424667180.1123
+      },
+      {
+        "file": "apps/napho-client-e2e/tslint.json",
+        "ext": ".json",
+        "mtime": 1589424667179.3162
+      }
+    ],
+    "api-interfaces": [
+      {
+        "file": "libs/api-interfaces/README.md",
+        "ext": ".md",
+        "mtime": 1589424667187.7795
+      },
+      {
+        "file": "libs/api-interfaces/jest.config.js",
+        "ext": ".js",
+        "mtime": 1589424667189.169
+      },
+      {
+        "file": "libs/api-interfaces/src/index.ts",
+        "ext": ".ts",
+        "mtime": 1589424667188.64
+      },
+      {
+        "file": "libs/api-interfaces/src/lib/api-interfaces.ts",
+        "ext": ".ts",
+        "mtime": 1589424667188.933
+      },
+      {
+        "file": "libs/api-interfaces/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1589424667188.0781
+      },
+      {
+        "file": "libs/api-interfaces/tsconfig.lib.json",
+        "ext": ".json",
+        "mtime": 1589424667188.3313
+      },
+      {
+        "file": "libs/api-interfaces/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1589424667189.4148
+      },
+      {
+        "file": "libs/api-interfaces/tslint.json",
+        "ext": ".json",
+        "mtime": 1589424667187.4065
+      }
+    ],
+    "napho-client": [
+      {
+        "file": "apps/napho-client/browserslist",
+        "ext": "",
+        "mtime": 1589424667174.5708
+      },
+      {
+        "file": "apps/napho-client/jest.config.js",
+        "ext": ".js",
+        "mtime": 1589424667178.5122
+      },
+      {
+        "file": "apps/napho-client/proxy.conf.json",
+        "ext": ".json",
+        "mtime": 1589424667186.1328
+      },
+      {
+        "file": "apps/napho-client/src/app/app-routing.module.ts",
+        "ext": ".ts",
+        "mtime": 1590546717417.6404
+      },
+      {
+        "file": "apps/napho-client/src/app/app.component.html",
+        "ext": ".html",
+        "mtime": 1589648502925.073
+      },
+      {
+        "file": "apps/napho-client/src/app/app.component.scss",
+        "ext": ".scss",
+        "mtime": 1590424760251.5388
+      },
+      {
+        "file": "apps/napho-client/src/app/app.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589424667178.126
+      },
+      {
+        "file": "apps/napho-client/src/app/app.component.ts",
+        "ext": ".ts",
+        "mtime": 1590610954783.3967
+      },
+      {
+        "file": "apps/napho-client/src/app/app.module.ts",
+        "ext": ".ts",
+        "mtime": 1590616415561.6802
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/auth-routing.module.ts",
+        "ext": ".ts",
+        "mtime": 1589649289008.7727
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/auth.module.ts",
+        "ext": ".ts",
+        "mtime": 1590545129576.8975
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.html",
+        "ext": ".html",
+        "mtime": 1590548132654.117
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.scss",
+        "ext": ".scss",
+        "mtime": 1589428783327.8828
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589428783328.9316
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/create-account-form/create-account-form.component.ts",
+        "ext": ".ts",
+        "mtime": 1590422684888.8198
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.html",
+        "ext": ".html",
+        "mtime": 1590548045519.5999
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.scss",
+        "ext": ".scss",
+        "mtime": 1589427554151
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589427539306.4792
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/components/login-form/login-form.component.ts",
+        "ext": ".ts",
+        "mtime": 1589653645564.3276
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.html",
+        "ext": ".html",
+        "mtime": 1590368671155.9487
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1589649205758.653
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589649205759.4922
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/create-account-form-container/create-account-form-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590547242951.3823
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.html",
+        "ext": ".html",
+        "mtime": 1589657484855.885
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1589428680315.8765
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589428680319.4788
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/containers/login-form-container/login-form-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590539000890.6472
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/guards/auth.guard.ts",
+        "ext": ".ts",
+        "mtime": 1590548697467.3103
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/interceptors/token.interceptor.ts",
+        "ext": ".ts",
+        "mtime": 1590603393896.5808
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/services/auth.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589655942642.6052
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/services/auth.service.ts",
+        "ext": ".ts",
+        "mtime": 1590637135424.8645
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/state/auth.actions.ts",
+        "ext": ".ts",
+        "mtime": 1589657484653.8042
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/state/auth.effects.ts",
+        "ext": ".ts",
+        "mtime": 1590547242963.9922
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/state/auth.reducer.ts",
+        "ext": ".ts",
+        "mtime": 1590638397110.1433
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/state/auth.selectors.ts",
+        "ext": ".ts",
+        "mtime": 1590537814063.1729
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/state/auth.state.ts",
+        "ext": ".ts",
+        "mtime": 1589657484653.609
+      },
+      {
+        "file": "apps/napho-client/src/app/auth/state/index.ts",
+        "ext": ".ts",
+        "mtime": 1590539000890.709
+      },
+      {
+        "file": "apps/napho-client/src/app/core/components/form/form.component.html",
+        "ext": ".html",
+        "mtime": 1589651029764.7703
+      },
+      {
+        "file": "apps/napho-client/src/app/core/components/form/form.component.scss",
+        "ext": ".scss",
+        "mtime": 1589651029764.3167
+      },
+      {
+        "file": "apps/napho-client/src/app/core/components/form/form.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589651029767.0967
+      },
+      {
+        "file": "apps/napho-client/src/app/core/components/form/form.component.ts",
+        "ext": ".ts",
+        "mtime": 1589651325604.6592
+      },
+      {
+        "file": "apps/napho-client/src/app/core/core.module.ts",
+        "ext": ".ts",
+        "mtime": 1589651029767.8574
+      },
+      {
+        "file": "apps/napho-client/src/app/core/services/form.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589650995376.59
+      },
+      {
+        "file": "apps/napho-client/src/app/core/services/form.service.ts",
+        "ext": ".ts",
+        "mtime": 1589651325746.442
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/home/home.component.html",
+        "ext": ".html",
+        "mtime": 1590719161186.5928
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/home/home.component.scss",
+        "ext": ".scss",
+        "mtime": 1590373907199.8557
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/home/home.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590373907200.886
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/home/home.component.ts",
+        "ext": ".ts",
+        "mtime": 1590708966131.4656
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.html",
+        "ext": ".html",
+        "mtime": 1590722941953.453
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.scss",
+        "ext": ".scss",
+        "mtime": 1590682934245.2986
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590373931101.8687
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/components/search-results/search-results.component.ts",
+        "ext": ".ts",
+        "mtime": 1590722941984.8496
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.html",
+        "ext": ".html",
+        "mtime": 1590633700981.465
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1590373957937.8918
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590373957938.773
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/home-container/home-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590635394053.7683
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.html",
+        "ext": ".html",
+        "mtime": 1590722941935.6248
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1590373948606.2786
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590373948608.0342
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/containers/search-results-container/search-results-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590723384738.8506
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/feed-routing.module.ts",
+        "ext": ".ts",
+        "mtime": 1590679380499.4414
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/feed.module.ts",
+        "ext": ".ts",
+        "mtime": 1590685005467.4778
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/resolvers/feed-resolver.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590614674733.4856
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/resolvers/feed-resolver.service.ts",
+        "ext": ".ts",
+        "mtime": 1590616710002.575
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/resolvers/search-resolver.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590677396747.1626
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/resolvers/search-resolver.service.ts",
+        "ext": ".ts",
+        "mtime": 1590681877118.972
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/services/feed.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590600662203.673
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/services/feed.service.ts",
+        "ext": ".ts",
+        "mtime": 1590726007146.077
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/state/feed.actions.ts",
+        "ext": ".ts",
+        "mtime": 1590716400104.798
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/state/feed.effects.ts",
+        "ext": ".ts",
+        "mtime": 1590723224649.4414
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/state/feed.reducer.ts",
+        "ext": ".ts",
+        "mtime": 1590722941934.2463
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/state/feed.selectors.ts",
+        "ext": ".ts",
+        "mtime": 1590722941953.5825
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/state/feed.state.ts",
+        "ext": ".ts",
+        "mtime": 1590722941969.3318
+      },
+      {
+        "file": "apps/napho-client/src/app/feed/state/index.ts",
+        "ext": ".ts",
+        "mtime": 1590602020391.2756
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.html",
+        "ext": ".html",
+        "mtime": 1590726781347.833
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.scss",
+        "ext": ".scss",
+        "mtime": 1590527217659.6318
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590448828748.3552
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/components/photo-post/photo-post.component.ts",
+        "ext": ".ts",
+        "mtime": 1590716400104.3176
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.html",
+        "ext": ".html",
+        "mtime": 1590716400139.2356
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1590699672656.3596
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590699672657.1387
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/containers/photo-post-container/photo-post-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590716400104.492
+      },
+      {
+        "file": "apps/napho-client/src/app/photos/photos.module.ts",
+        "ext": ".ts",
+        "mtime": 1590705168660.154
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/components/profile/profile.component.html",
+        "ext": ".html",
+        "mtime": 1590728558232.849
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/components/profile/profile.component.scss",
+        "ext": ".scss",
+        "mtime": 1590698850483.343
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/components/profile/profile.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590431205830.7944
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/components/profile/profile.component.ts",
+        "ext": ".ts",
+        "mtime": 1590728558286.1985
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.html",
+        "ext": ".html",
+        "mtime": 1590725745565.8108
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1590431120615.373
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590431120624.4204
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/profile-container/profile-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590726864915.2502
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.html",
+        "ext": ".html",
+        "mtime": 1590700257675.0952
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1590685144580.9949
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590685144583.702
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/containers/search-profile-container/search-profile-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590700257658.1047
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/profile-routing.module.ts",
+        "ext": ".ts",
+        "mtime": 1590687333605.401
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/profile.module.ts",
+        "ext": ".ts",
+        "mtime": 1590687661903.519
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/resolvers/profile-resolver.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590617406029.9478
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/resolvers/profile-resolver.service.ts",
+        "ext": ".ts",
+        "mtime": 1590698400492.9314
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/services/profile.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590685606411.6536
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/services/profile.service.ts",
+        "ext": ".ts",
+        "mtime": 1590728183333.9116
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/state/index.ts",
+        "ext": ".ts",
+        "mtime": 1590687287367.89
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/state/profile.actions.ts",
+        "ext": ".ts",
+        "mtime": 1590725745565.843
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/state/profile.effects.ts",
+        "ext": ".ts",
+        "mtime": 1590725745565.9744
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/state/profile.reducer.ts",
+        "ext": ".ts",
+        "mtime": 1590708880489.7524
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/state/profile.selectors.ts",
+        "ext": ".ts",
+        "mtime": 1590698700866.971
+      },
+      {
+        "file": "apps/napho-client/src/app/profile/state/profile.state.ts",
+        "ext": ".ts",
+        "mtime": 1590698400492.2664
+      },
+      {
+        "file": "apps/napho-client/src/app/shared/shared.module.ts",
+        "ext": ".ts",
+        "mtime": 1590426978298.8604
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/components/spa/spa.component.html",
+        "ext": ".html",
+        "mtime": 1590682622365.1829
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/components/spa/spa.component.scss",
+        "ext": ".scss",
+        "mtime": 1590528582448.8965
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/components/spa/spa.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589647896106.1387
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/components/spa/spa.component.ts",
+        "ext": ".ts",
+        "mtime": 1590682570126.712
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.html",
+        "ext": ".html",
+        "mtime": 1590682570126.804
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.scss",
+        "ext": ".scss",
+        "mtime": 1589647904247.0432
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589647904247.978
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/containers/spa-container/spa-container.component.ts",
+        "ext": ".ts",
+        "mtime": 1590682863198.6436
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/spa-routing.module.ts",
+        "ext": ".ts",
+        "mtime": 1590431648839.412
+      },
+      {
+        "file": "apps/napho-client/src/app/spa/spa.module.ts",
+        "ext": ".ts",
+        "mtime": 1590606712466.7698
+      },
+      {
+        "file": "apps/napho-client/src/assets/.gitkeep",
+        "ext": "",
+        "mtime": 1589424667176.7134
+      },
+      {
+        "file": "apps/napho-client/src/assets/img/blank-profile.png",
+        "ext": ".png",
+        "mtime": 1590523963663.2913
+      },
+      {
+        "file": "apps/napho-client/src/environments/environment.prod.ts",
+        "ext": ".ts",
+        "mtime": 1589424667176.99
+      },
+      {
+        "file": "apps/napho-client/src/environments/environment.ts",
+        "ext": ".ts",
+        "mtime": 1590535379887.441
+      },
+      {
+        "file": "apps/napho-client/src/favicon.ico",
+        "ext": ".ico",
+        "mtime": 1589424667174.011
+      },
+      {
+        "file": "apps/napho-client/src/index.html",
+        "ext": ".html",
+        "mtime": 1590599135707.5132
+      },
+      {
+        "file": "apps/napho-client/src/main.ts",
+        "ext": ".ts",
+        "mtime": 1589424667175.9497
+      },
+      {
+        "file": "apps/napho-client/src/polyfills.ts",
+        "ext": ".ts",
+        "mtime": 1589424667176.2095
+      },
+      {
+        "file": "apps/napho-client/src/styles.scss",
+        "ext": ".scss",
+        "mtime": 1590713503583.4836
+      },
+      {
+        "file": "apps/napho-client/src/test-setup.ts",
+        "ext": ".ts",
+        "mtime": 1589424667178.894
+      },
+      {
+        "file": "apps/napho-client/tsconfig.app.json",
+        "ext": ".json",
+        "mtime": 1589424667174.9407
+      },
+      {
+        "file": "apps/napho-client/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1590423938396.0217
+      },
+      {
+        "file": "apps/napho-client/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1589424667178.7002
+      },
+      {
+        "file": "apps/napho-client/tslint.json",
+        "ext": ".json",
+        "mtime": 1589424667175.206
+      }
+    ],
+    "data": [
+      {
+        "file": "libs/data/README.md",
+        "ext": ".md",
+        "mtime": 1589655722326.374
+      },
+      {
+        "file": "libs/data/jest.config.js",
+        "ext": ".js",
+        "mtime": 1589655722328.55
+      },
+      {
+        "file": "libs/data/src/index.ts",
+        "ext": ".ts",
+        "mtime": 1590535563173.9888
+      },
+      {
+        "file": "libs/data/src/lib/comments/index.ts",
+        "ext": ".ts",
+        "mtime": 1589763607462.7683
+      },
+      {
+        "file": "libs/data/src/lib/comments/models/comment.model.ts",
+        "ext": ".ts",
+        "mtime": 1590639505210.7668
+      },
+      {
+        "file": "libs/data/src/lib/comments/models/index.ts",
+        "ext": ".ts",
+        "mtime": 1589763607462.8457
+      },
+      {
+        "file": "libs/data/src/lib/data.config.ts",
+        "ext": ".ts",
+        "mtime": 1589670493999.4375
+      },
+      {
+        "file": "libs/data/src/lib/data.module.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589655722327.867
+      },
+      {
+        "file": "libs/data/src/lib/data.module.ts",
+        "ext": ".ts",
+        "mtime": 1589655722327.6494
+      },
+      {
+        "file": "libs/data/src/lib/photos/index.ts",
+        "ext": ".ts",
+        "mtime": 1590186711209.8828
+      },
+      {
+        "file": "libs/data/src/lib/photos/models/index.ts",
+        "ext": ".ts",
+        "mtime": 1590613683002.896
+      },
+      {
+        "file": "libs/data/src/lib/photos/models/photo.model.ts",
+        "ext": ".ts",
+        "mtime": 1590715209593.5298
+      },
+      {
+        "file": "libs/data/src/lib/photos/models/tag.model.ts",
+        "ext": ".ts",
+        "mtime": 1590613682984.632
+      },
+      {
+        "file": "libs/data/src/lib/users/index.ts",
+        "ext": ".ts",
+        "mtime": 1589657484825.83
+      },
+      {
+        "file": "libs/data/src/lib/users/models/index.ts",
+        "ext": ".ts",
+        "mtime": 1589657484800.041
+      },
+      {
+        "file": "libs/data/src/lib/users/models/user.model.ts",
+        "ext": ".ts",
+        "mtime": 1590536786178.9458
+      },
+      {
+        "file": "libs/data/src/lib/users/users.module.ts",
+        "ext": ".ts",
+        "mtime": 1589656552474.3481
+      },
+      {
+        "file": "libs/data/src/test-setup.ts",
+        "ext": ".ts",
+        "mtime": 1589655722329.3118
+      },
+      {
+        "file": "libs/data/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1589655722328.0713
+      },
+      {
+        "file": "libs/data/tsconfig.lib.json",
+        "ext": ".json",
+        "mtime": 1589655722326.7048
+      },
+      {
+        "file": "libs/data/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1589655722328.944
+      },
+      {
+        "file": "libs/data/tslint.json",
+        "ext": ".json",
+        "mtime": 1589655722327.034
+      }
+    ],
+    "api": [
+      {
+        "file": "apps/api/jest.config.js",
+        "ext": ".js",
+        "mtime": 1589424667185.5461
+      },
+      {
+        "file": "apps/api/src/app/.gitkeep",
+        "ext": "",
+        "mtime": 1589424667184.0027
+      },
+      {
+        "file": "apps/api/src/app/app.controller.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589424667186.3442
+      },
+      {
+        "file": "apps/api/src/app/app.controller.ts",
+        "ext": ".ts",
+        "mtime": 1590268699007.5608
+      },
+      {
+        "file": "apps/api/src/app/app.module.ts",
+        "ext": ".ts",
+        "mtime": 1590735050195.788
+      },
+      {
+        "file": "apps/api/src/app/app.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589424667186.9214
+      },
+      {
+        "file": "apps/api/src/app/app.service.ts",
+        "ext": ".ts",
+        "mtime": 1590268722777.345
+      },
+      {
+        "file": "apps/api/src/app/auth/auth.module.ts",
+        "ext": ".ts",
+        "mtime": 1590681542783.6611
+      },
+      {
+        "file": "apps/api/src/app/auth/controllers/auth.controller.spec.ts",
+        "ext": ".ts",
+        "mtime": 1589671594762
+      },
+      {
+        "file": "apps/api/src/app/auth/controllers/auth.controller.ts",
+        "ext": ".ts",
+        "mtime": 1590547473170.928
+      },
+      {
+        "file": "apps/api/src/app/auth/decorators/get-user.decorator.ts",
+        "ext": ".ts",
+        "mtime": 1590673746713.9531
+      },
+      {
+        "file": "apps/api/src/app/auth/dto/auth-credentials.dto.ts",
+        "ext": ".ts",
+        "mtime": 1590536545828.726
+      },
+      {
+        "file": "apps/api/src/app/auth/services/auth.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590268495820.871
+      },
+      {
+        "file": "apps/api/src/app/auth/services/auth.service.ts",
+        "ext": ".ts",
+        "mtime": 1590695825076.2317
+      },
+      {
+        "file": "apps/api/src/app/auth/services/jwt.strategy.ts",
+        "ext": ".ts",
+        "mtime": 1590673746734.286
+      },
+      {
+        "file": "apps/api/src/app/comments/comments.module.ts",
+        "ext": ".ts",
+        "mtime": 1590185695525.7637
+      },
+      {
+        "file": "apps/api/src/app/comments/controllers/comments.controller.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590020058622
+      },
+      {
+        "file": "apps/api/src/app/comments/controllers/comments.controller.ts",
+        "ext": ".ts",
+        "mtime": 1590705403545.7058
+      },
+      {
+        "file": "apps/api/src/app/comments/data/comment.entity.ts",
+        "ext": ".ts",
+        "mtime": 1590673746714.1172
+      },
+      {
+        "file": "apps/api/src/app/comments/data/comment.repository.ts",
+        "ext": ".ts",
+        "mtime": 1590618807129.1206
+      },
+      {
+        "file": "apps/api/src/app/comments/dto/create-comment.dto.ts",
+        "ext": ".ts",
+        "mtime": 1590618807128.0515
+      },
+      {
+        "file": "apps/api/src/app/comments/dto/get-comments-filter.dto.ts",
+        "ext": ".ts",
+        "mtime": 1590019315682.8354
+      },
+      {
+        "file": "apps/api/src/app/comments/pipes/comment-status-validation.pipe.ts",
+        "ext": ".ts",
+        "mtime": 1590019101516.2349
+      },
+      {
+        "file": "apps/api/src/app/comments/services/comments.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590020088684
+      },
+      {
+        "file": "apps/api/src/app/comments/services/comments.service.ts",
+        "ext": ".ts",
+        "mtime": 1590639382152.2676
+      },
+      {
+        "file": "apps/api/src/app/photos/controllers/photos.controller.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590186042143
+      },
+      {
+        "file": "apps/api/src/app/photos/controllers/photos.controller.ts",
+        "ext": ".ts",
+        "mtime": 1590720223621.3286
+      },
+      {
+        "file": "apps/api/src/app/photos/data/photo.entity.ts",
+        "ext": ".ts",
+        "mtime": 1590724469387.4392
+      },
+      {
+        "file": "apps/api/src/app/photos/data/photo.repository.ts",
+        "ext": ".ts",
+        "mtime": 1590717110060.3018
+      },
+      {
+        "file": "apps/api/src/app/photos/data/tag.entity.ts",
+        "ext": ".ts",
+        "mtime": 1590613683002.8188
+      },
+      {
+        "file": "apps/api/src/app/photos/dto/create-photo.dto.ts",
+        "ext": ".ts",
+        "mtime": 1590611205010.2014
+      },
+      {
+        "file": "apps/api/src/app/photos/dto/get-photos-filter.dto.ts",
+        "ext": ".ts",
+        "mtime": 1590710690220.907
+      },
+      {
+        "file": "apps/api/src/app/photos/photos.module.ts",
+        "ext": ".ts",
+        "mtime": 1590269142800.8223
+      },
+      {
+        "file": "apps/api/src/app/photos/services/photos.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590186047729
+      },
+      {
+        "file": "apps/api/src/app/photos/services/photos.service.ts",
+        "ext": ".ts",
+        "mtime": 1590724702683.9453
+      },
+      {
+        "file": "apps/api/src/app/users/controllers/users.controller.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590673729030
+      },
+      {
+        "file": "apps/api/src/app/users/controllers/users.controller.ts",
+        "ext": ".ts",
+        "mtime": 1590726382846.3057
+      },
+      {
+        "file": "apps/api/src/app/users/data/user.entity.ts",
+        "ext": ".ts",
+        "mtime": 1590717879299.9104
+      },
+      {
+        "file": "apps/api/src/app/users/data/user.repository.ts",
+        "ext": ".ts",
+        "mtime": 1590699015223.2969
+      },
+      {
+        "file": "apps/api/src/app/users/services/users.service.spec.ts",
+        "ext": ".ts",
+        "mtime": 1590673741097
+      },
+      {
+        "file": "apps/api/src/app/users/services/users.service.ts",
+        "ext": ".ts",
+        "mtime": 1590728183333.6824
+      },
+      {
+        "file": "apps/api/src/app/users/users.module.ts",
+        "ext": ".ts",
+        "mtime": 1590680621099.9463
+      },
+      {
+        "file": "apps/api/src/assets/.gitkeep",
+        "ext": "",
+        "mtime": 1589424667184.2668
+      },
+      {
+        "file": "apps/api/src/config/typeorm.config.ts",
+        "ext": ".ts",
+        "mtime": 1590673746714.1887
+      },
+      {
+        "file": "apps/api/src/environments/environment.model.ts",
+        "ext": ".ts",
+        "mtime": 1590282302324.7031
+      },
+      {
+        "file": "apps/api/src/environments/environment.prod.ts",
+        "ext": ".ts",
+        "mtime": 1589424667184.5837
+      },
+      {
+        "file": "apps/api/src/environments/environment.ts",
+        "ext": ".ts",
+        "mtime": 1590611999045.0447
+      },
+      {
+        "file": "apps/api/src/main.ts",
+        "ext": ".ts",
+        "mtime": 1590638862608.008
+      },
+      {
+        "file": "apps/api/tsconfig.app.json",
+        "ext": ".json",
+        "mtime": 1589424667182.6829
+      },
+      {
+        "file": "apps/api/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1590267812632.2988
+      },
+      {
+        "file": "apps/api/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1589424667185.8928
+      },
+      {
+        "file": "apps/api/tslint.json",
+        "ext": ".json",
+        "mtime": 1589424667182.2637
+      }
+    ]
+  }
+}
